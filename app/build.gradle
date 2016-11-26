@@ -23,6 +23,7 @@ ext {
     supportLibVersion = '25.0.1'
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.4.1'
+    picassoVersion = '2.5.2'
 }
 
 dependencies {
@@ -30,11 +31,14 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
     compile "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    compile "com.squareup.picasso:picasso:${picassoVersion}"
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
+    compile "com.android.support:design:${supportLibVersion}"
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     testCompile 'junit:junit:4.12'
 }
