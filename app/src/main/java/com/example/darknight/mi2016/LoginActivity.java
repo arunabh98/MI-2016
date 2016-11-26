@@ -21,6 +21,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().setTitle("MI 2016");

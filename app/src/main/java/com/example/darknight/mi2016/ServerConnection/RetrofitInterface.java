@@ -7,6 +7,7 @@ import retrofit2.http.Query;
 public interface RetrofitInterface {
     @GET
     Call<GsonModels.Genre> getGenres();
+
     @GET("/search/users")
     Call<GsonModels.Event> getEvents(@Query("Genre") String genre);
 }

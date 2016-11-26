@@ -8,6 +8,7 @@ public class GsonModels {
     public class Genre {
 
     }
+
     public class Event {
 
     }
