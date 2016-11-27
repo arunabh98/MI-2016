@@ -4,4 +4,6 @@
     <string name="question2">Lorem Ipsum is simply dummy text of the printing and typesetting industry?</string>
     <string name="answer1">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
     <string name="answer2">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
+    <string name="facebook_app_id">2162284863996064</string>
+    <string name="fb_login_protocol_scheme">fb2162284863996064</string>
 </resources>
