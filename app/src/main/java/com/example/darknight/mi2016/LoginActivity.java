@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("MI 2016");
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();

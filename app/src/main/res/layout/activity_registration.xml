@@ -13,7 +13,7 @@
     tools:context="com.example.darknight.mi2016.RegistrationActivity">
 
     <Button
-        android:drawableRight="@drawable/arrow1"
+        android:drawableEnd="@drawable/arrow1"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:id="@+id/submit"
@@ -27,11 +27,10 @@
         android:layout_height="wrap_content"
         android:inputType="textNoSuggestions"
         android:ems="10"
-        android:hint="Name"
         android:textColorHint="#a9a8a2"
         android:id="@+id/userInputField"
         android:backgroundTint="#a9a8a2"
-        android:textSize="30dp"
+        android:textSize="27sp"
         android:fontFamily="sans-serif-light"
         android:textCursorDrawable="@null"
         android:layout_marginBottom="115dp"
@@ -41,14 +40,14 @@
         android:layout_toStartOf="@+id/submit" />
 
     <Button
-        android:text="Register later"
+        android:text="@string/register_later"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registerLater"
         android:background="#000000"
         android:textColor="#a9a8a2"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="27sp"
         android:fontFamily="sans-serif-light"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
