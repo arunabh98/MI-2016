@@ -3,4 +3,5 @@
     <string name="facebook_app_id">2162284863996064</string>
     <string name="fb_login_protocol_scheme">fb2162284863996064</string>
     <string name="register_later">Register later</string>
+    <string name="com_facebook_loginview_log_out_button">Log in with Facebook</string>
 </resources>
