@@ -51,15 +51,4 @@
         android:layout_alignBottom="@+id/submit"
         android:layout_toStartOf="@+id/submit" />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dropList"
-        android:popupBackground="#ffffff"
-        android:layout_alignBottom="@+id/submit"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/submit"
-        android:layout_alignTop="@+id/submit"
-        android:backgroundTint="@color/grey" />
-
 </RelativeLayout>

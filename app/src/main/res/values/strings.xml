@@ -4,4 +4,15 @@
     <string name="fb_login_protocol_scheme">fb2162284863996064</string>
     <string name="register_later">Register later</string>
     <string name="com_facebook_loginview_log_out_button">Log in with Facebook</string>
+
+    <string-array name="cities_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>
