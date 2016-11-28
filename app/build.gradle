@@ -40,5 +40,6 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.android.support:support-v4:25.0.1'
     testCompile 'junit:junit:4.12'
 }

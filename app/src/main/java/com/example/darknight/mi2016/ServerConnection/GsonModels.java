@@ -45,6 +45,24 @@ public class GsonModels {
         }
     }
 
+    public class EventResponse {
+        private int count;
+        private List<Event> eventList;
+
+        public EventResponse(int count, List<Event> eventList) {
+            this.count = count;
+            this.eventList = eventList;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public List<Event> getEventList() {
+            return eventList;
+        }
+    }
+
     public class Event {
 
     }
