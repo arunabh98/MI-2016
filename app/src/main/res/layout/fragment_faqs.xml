@@ -3,52 +3,56 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:scrollbars = "vertical"
-    android:scrollbarStyle="insideInset">
+    android:scrollbarStyle="insideInset"
+    android:scrollbars="vertical">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000">
+        android:background="#000000"
+        android:orientation="vertical">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:text="@string/question1"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:text="@string/answer1"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"/>
+            android:textSize="20sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:text="@string/question2"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="@string/answer2"
-            android:textSize="20sp"
-            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingLeft="8dp"/>
+            android:paddingTop="8dp"
+            android:text="@string/answer2"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
