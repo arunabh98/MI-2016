@@ -2,6 +2,8 @@ package com.example.darknight.mi2016;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        FragmentManager manager = getSupportFragmentManager();
 
         if (id == R.id.nav_events) {
 
@@ -75,7 +78,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_schedule) {
 
         } else if (id == R.id.nav_faq) {
-
+            FaqsFragment faqsFragment = new FaqsFragment();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.add(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
+            transaction.commit();
         } else if (id == R.id.nav_contact) {
 
         } else if (id == R.id.nav_map) {
