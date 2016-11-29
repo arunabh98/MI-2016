@@ -2,7 +2,6 @@ package com.example.darknight.mi2016;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +24,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (index >= 6) {
                     ;
                 } else {
-                    Log.e("fdsjhfsdjk", field.getText().toString());
                     userDetails[index] = field.getText().toString();
                     if (fieldNames[index].equals("Name") || fieldNames[index].equals("Email ID")) {
                         field.setText(getIntent().getStringExtra(fieldNames[index]));
