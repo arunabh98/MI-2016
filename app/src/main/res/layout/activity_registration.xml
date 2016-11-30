@@ -46,9 +46,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="115dp"
         android:ems="10"
         android:textColorHint="#a9a8a2"
         android:id="@+id/userInputField"
@@ -58,5 +55,5 @@
         android:textCursorDrawable="@null"
         android:textColor="#a9a8a2"
         android:layout_alignBottom="@+id/submit"
-        android:layout_toStartOf="@+id/submit" />
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
