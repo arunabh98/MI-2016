@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
-                                    Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("Name", jsonObject.getString("name"));
                                     intent.putExtra("Email ID", jsonObject.getString("email"));
                                     intent.putExtra("Gender", jsonObject.getString("gender"));
