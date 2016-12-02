@@ -77,7 +77,6 @@ class RegisterMI extends AsyncTask<String, Void, Void> {
             Response response = client.newCall(request).execute();
             String jsonData = response.body().string();
             JSONObject Jobject = new JSONObject(jsonData);
-            Log.e("WWWWWWWWWWWWWWWWW", Jobject.toString());
             return null;
         } catch (Exception e) {
             Log.e("APP_TAG", "STACKTRACE");
