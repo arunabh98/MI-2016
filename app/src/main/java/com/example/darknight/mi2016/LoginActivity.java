@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                                     intent.putExtra("Name", jsonObject.getString("name"));
                                     intent.putExtra("Email ID", jsonObject.getString("email"));
+                                    intent.putExtra("Gender", jsonObject.getString("gender"));
+                                    intent.putExtra("ID", jsonObject.getString("id"));
                                     startActivity(intent);
                                 } catch (Exception e) {
                                     Log.e("LoginActivity", "Error in parsing JSON");
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,link,cover,email");
+                parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
             }

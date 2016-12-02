@@ -8,8 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONObject;
+
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class RegistrationActivity extends AppCompatActivity {
     int index = 1;
@@ -26,14 +31,11 @@ public class RegistrationActivity extends AppCompatActivity {
         final String[] userDetails = new String[10];
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.w("dsadasd", Integer.toString(index));
                 if (index == lengthList) {
                     userDetails[index-1] = field.getText().toString();
-                    for (int i = 0; i < lengthList; i++) {
-                        Log.w("Hello", userDetails[i]);
-                    }
+                    userDetails[index] = getIntent().getStringExtra("Gender");
                     RegisterMI registerMI = new RegisterMI();
-                    registerMI.execute();
+                    registerMI.execute(userDetails);
                 } else if (index < lengthList + 1) {
                     userDetails[index - 1] = field.getText().toString();
                     if (index < lengthList) {
@@ -55,19 +57,31 @@ class RegisterMI extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... params) {
         try {
+            OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("name", "a")
-                    .addFormDataPart("email", "b")
-                    .addFormDataPart("mobile", "c")
-                    .addFormDataPart("gender", "c")
-                    .addFormDataPart("city", "c")
-                    .addFormDataPart("college", "c")
+                    .addFormDataPart("name", params[0])
+                    .addFormDataPart("email", params[1])
+                    .addFormDataPart("mobile", params[2])
+                    .addFormDataPart("gender", params[6])
+                    .addFormDataPart("city", params[3])
+                    .addFormDataPart("college", params[4])
                     .build();
 
-            Log.e("dsdddf", requestBody.toString());
+            Request request = new Request.Builder()
+                    .url("https://moodi.org/api/insert/fbLogin")
+                    .method("POST", RequestBody.create(null, new byte[0]))
+                    .post(requestBody)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            String jsonData = response.body().string();
+            JSONObject Jobject = new JSONObject(jsonData);
+            Log.e("WWWWWWWWWWWWWWWWW", Jobject.toString());
             return null;
         } catch (Exception e) {
+            Log.e("APP_TAG", "STACKTRACE");
+            Log.e("APP_TAG", Log.getStackTraceString(e));
             return null;
         }
     }
