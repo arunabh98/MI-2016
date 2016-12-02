@@ -8,14 +8,11 @@
     <string name="question2">Lorem Ipsum is simply dummy text of the printing and typesetting industry?</string>
     <string name="answer1">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
     <string name="answer2">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Mood Indigo 2016</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
