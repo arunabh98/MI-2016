@@ -28,7 +28,7 @@ public class EventPageFragment extends Fragment {
 
 
         final View rootView = inflater.inflate(R.layout.fragment_event_page, container, false);
-        final ImageButton ib = (ImageButton) rootView.findViewById(R.id.myIconButton);
+        ImageButton ib = (ImageButton) rootView.findViewById(R.id.myIconButton);
         ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -85,7 +85,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact) {
 
         } else if (id == R.id.nav_map) {
-
+//            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+//            startActivity(intent);
+            MapFragment MapFragment = new MapFragment();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.add(R.id.relativelayout_for_fragment, MapFragment, MapFragment.getTag());
+            transaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

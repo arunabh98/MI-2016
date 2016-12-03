@@ -26,37 +26,27 @@
         android:textSize="27sp" />
 
     <Button
-        android:id="@+id/submit"
+        android:drawableEnd="@drawable/arrow1"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/registerLater"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/submit"
         android:background="#000000"
-        android:drawableEnd="@drawable/arrow1" />
-    android:id="@+id/submit"
-    android:layout_width="50dp"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/userInputField"
-    android:layout_alignBottom="@+id/userInputField"
-    android:layout_alignParentEnd="true"
-    android:background="#000000"
-    android:drawableRight="@drawable/arrow1" />
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/registerLater"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/userInputField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/submit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="115dp"
-        android:layout_toStartOf="@+id/submit"
+        android:textColorHint="#a9a8a2"
         android:backgroundTint="#a9a8a2"
         android:ems="10"
+        android:textSize="27sp"
         android:fontFamily="sans-serif-light"
         android:textColor="#a9a8a2"
-        android:textColorHint="#a9a8a2"
-        android:textCursorDrawable="@null"
-        android:textSize="27sp" />
+        android:layout_alignBottom="@+id/submit"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/submit" />
+
 </RelativeLayout>
