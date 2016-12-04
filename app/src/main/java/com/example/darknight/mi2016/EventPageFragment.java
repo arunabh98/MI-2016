@@ -28,29 +28,29 @@ public class EventPageFragment extends Fragment {
 
 
         final View rootView = inflater.inflate(R.layout.fragment_event_page, container, false);
-        final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.myIconButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        final ImageButton notification = (ImageButton) rootView.findViewById(R.id.icon_button);
+        notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textView = (TextView) rootView.findViewById(R.id.Event_venue);
-                TextView textView2 = (TextView) rootView.findViewById(R.id.Time);
-                ImageView imageView = (ImageView) rootView.findViewById(R.id.Clock_icon);
-                ImageView imageView2 = (ImageView) rootView.findViewById(R.id.Location_icon);
-                if(textView.getCurrentTextColor()==getResources().getColor(R.color.yellow))
+                TextView eventVenue = (TextView) rootView.findViewById(R.id.event_venue);
+                TextView time = (TextView) rootView.findViewById(R.id.time);
+                ImageView clockIcon = (ImageView) rootView.findViewById(R.id.clock_icon);
+                ImageView locationIcon = (ImageView) rootView.findViewById(R.id.location_icon);
+                if(eventVenue.getCurrentTextColor()==getResources().getColor(R.color.yellow))
                 {
-                    imageButton.setImageResource(R.drawable.ic_notifications_none_white_24px);
-                    textView.setTextColor(getResources().getColor(R.color.white));
-                    textView2.setTextColor(getResources().getColor(R.color.white));
-                    imageView.setImageResource(R.drawable.ic_access_time_white_24px);
-                    imageView2.setImageResource(R.drawable.ic_place_white_24px);
+                    notification.setImageResource(R.drawable.ic_notifications_none_white_24px);
+                    eventVenue.setTextColor(getResources().getColor(R.color.white));
+                    time.setTextColor(getResources().getColor(R.color.white));
+                    clockIcon.setImageResource(R.drawable.ic_access_time_white_24px);
+                    locationIcon.setImageResource(R.drawable.ic_place_white_24px);
                 }
                 else
                 {
-                    textView.setTextColor(getResources().getColor(R.color.yellow));
-                    textView2.setTextColor(getResources().getColor(R.color.yellow));
-                    imageView.setImageResource(R.drawable.ic_access_time_yellow_24px);
-                    imageView2.setImageResource(R.drawable.ic_place_yellow_24px);
-                    imageButton.setImageResource(R.drawable.ic_notifications_white_24px);
+                    eventVenue.setTextColor(getResources().getColor(R.color.yellow));
+                    time.setTextColor(getResources().getColor(R.color.yellow));
+                    clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
+                    locationIcon.setImageResource(R.drawable.ic_place_yellow_24px);
+                    notification.setImageResource(R.drawable.ic_notifications_white_24px);
                 }
 
             }
