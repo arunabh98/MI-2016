@@ -7,18 +7,18 @@
 
 
     <ImageView
-        android:id="@+id/myImageView"
+        android:id="@+id/Event_image"
         android:layout_width="wrap_content"
         android:layout_height="220dp"
         android:src="@drawable/reflectedsunrise"
         android:scaleType="fitXY"
         android:layout_alignParentEnd="true" />
     <TextView
-        android:id="@+id/myImageViewText1"
+        android:id="@+id/Genre_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/myImageView"
-        android:layout_alignBottom="@id/myImageView"
+        android:layout_alignLeft="@id/Event_image"
+        android:layout_alignBottom="@id/Event_image"
         android:textColor="#FFFFFF"
         android:text="@string/genre_name"
         android:textSize="16sp"
@@ -26,69 +26,69 @@
         android:paddingLeft="32dp"
         android:paddingBottom="8dp"/>
     <TextView
-        android:id="@+id/myImageViewText2"
+        android:id="@+id/Event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/myImageView"
-        android:layout_above="@id/myImageViewText1"
+        android:layout_alignLeft="@id/Event_image"
+        android:layout_above="@id/Genre_name"
         android:textColor="#FFFFFF"
         android:text="@string/event_name"
         android:textSize="24sp"
         android:textStyle="bold"
         android:paddingLeft="32dp" />
     <ImageView
-        android:id="@+id/myLocationIcon"
+        android:id="@+id/Location_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/myImageView"
+        android:layout_below="@id/Event_image"
         android:src="@drawable/ic_place_white_24px"
         android:paddingLeft="32dp"
         android:paddingTop="8dp"/>
     <TextView
-        android:id="@+id/myTextView1"
+        android:id="@+id/Event_venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/myLocationIcon"
+        android:layout_toRightOf="@id/Location_icon"
         android:textColor="@color/white"
-        android:layout_alignBottom="@id/myLocationIcon"
+        android:layout_alignBottom="@id/Location_icon"
         android:paddingLeft="8dp"
         android:textSize="20sp"
         android:fontFamily="sans-serif-light"
         android:text="@string/event_venue"/>
     <ImageView
-        android:id="@+id/myClockIcon"
+        android:id="@+id/Clock_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/myLocationIcon"
+        android:layout_below="@id/Location_icon"
         android:paddingTop="8dp"
         android:paddingLeft="32dp"
         android:src="@drawable/ic_access_time_white_24px" />
     <TextView
-        android:id="@+id/myTextView2"
+        android:id="@+id/Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/myClockIcon"
-        android:layout_alignBottom="@id/myClockIcon"
+        android:layout_toRightOf="@id/Clock_icon"
+        android:layout_alignBottom="@id/Clock_icon"
         android:paddingLeft="8dp"
         android:textSize='20sp'
         android:fontFamily="sans-serif-light"
         android:textColor="@color/white"
         android:text="@string/time"/>
     <ImageButton
-        android:id="@+id/myIconButton"
+        android:id="@+id/Icon_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/myImageView"
+        android:layout_below="@id/Event_image"
         android:src="@drawable/ic_notifications_none_white_24px"
-        android:layout_alignBottom="@id/myClockIcon"
+        android:layout_alignBottom="@id/Clock_icon"
         android:paddingRight="8dp"
         android:background="#000000"
         />
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/myClockIcon"
+        android:layout_below="@id/Clock_icon"
         android:paddingLeft="32dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp">
