@@ -11,17 +11,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.darknight.mi2016.LoginActivity">
 
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    <Button
+        android:text="Register Later"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000000"
+        android:textSize="27sp"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/grey"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/registerLater"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
-        android:paddingBottom="15sp"
-        android:paddingTop="15sp"
-        android:textSize="15sp" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Log in"
+        android:background="@color/com_facebook_blue"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mi_number"
+        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/registerLater"
+        android:layout_alignEnd="@+id/registerLater"
+        android:layout_alignStart="@+id/registerLater" />
 
 </RelativeLayout>
