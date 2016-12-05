@@ -25,7 +25,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -60,20 +59,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(map));
         mapFragment.getMapAsync(this);
-
         return mapView;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.clear();
         LatLng convocationHall = new LatLng(19.131973, 72.914285);
+        LatLng gymkhanaGround = new LatLng(19.134446, 72.912217);
+        LatLng lectureHall1 = new LatLng(19.130735, 72.916900);
         LatLng IITB = new LatLng(19.133180, 72.913458);
         LatLng LTPCSA = new LatLng(19.132348, 72.915785);
+        LatLng openAirTheatre = new LatLng(19.135045, 72.913401);
 
         mMap.addMarker(new MarkerOptions().position(convocationHall).title("Convocation Hall"));
+        mMap.addMarker(new MarkerOptions().position(lectureHall1).title("Lecture Hall - LT, LC,LH"));
         mMap.addMarker(new MarkerOptions().position(LTPCSA).title("PC Saxena Auditorium (LTPCSA)"));
+        mMap.addMarker(new MarkerOptions().position(gymkhanaGround).title("Gymkhana Grounds"));
+        mMap.addMarker(new MarkerOptions().position(openAirTheatre).title("Open Air Theatre (OAT)"));
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -102,15 +106,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
         //Place current location marker
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
-
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
 
         //stop location updates
         if (mGoogleApiClient != null) {
