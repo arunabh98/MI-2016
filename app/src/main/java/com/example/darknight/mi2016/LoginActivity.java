@@ -12,6 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -32,25 +42,72 @@ public class LoginActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    Button login_button;
-    Button reg_later_button;
-    EditText mi_no;
-    Button submit_button;
-    JSONObject Jobject;
+    private Button mi_login_button;
+    private LoginButton fb_login_button;
+    private Button reg_later_button;
+    private EditText mi_no;
+    private Button submit_button;
+    private JSONObject Jobject;
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
 
-        login_button = (Button) findViewById(R.id.mi_number);
+        mi_login_button = (Button) findViewById(R.id.mi_login_button);
+        fb_login_button = (LoginButton) findViewById(R.id.fb_login_button);
         reg_later_button = (Button) findViewById(R.id.register_later);
         mi_no = (EditText) findViewById(R.id.mi_number_input);
         submit_button = (Button) findViewById(R.id.login_submit);
 
-        login_button.setOnClickListener(new View.OnClickListener() {
+        AppEventsLogger.activateApp(this);
+        fb_login_button.setReadPermissions("email");
+
+        fb_login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject jsonObject, GraphResponse response) {
+                                try {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("NAME", jsonObject.getString("name"));
+                                    intent.putExtra("EMAIL", jsonObject.getString("email"));
+                                    intent.putExtra("GENDER", jsonObject.getString("gender"));
+                                    intent.putExtra("FB_ID", jsonObject.getString("id"));
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                                } catch (Exception e) {
+                                    Log.e("LoginActivity", "Error in parsing JSON");
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+
+        mi_login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                login_button.setVisibility(View.GONE);
+                mi_login_button.setVisibility(View.GONE);
+                fb_login_button.setVisibility(View.GONE);
                 mi_no.setVisibility(View.VISIBLE);
                 submit_button.setVisibility(View.VISIBLE);
             }
@@ -85,40 +142,21 @@ public class LoginActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
     public void startMainActivity(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         try {
             intent.putExtra("NAME", Jobject.getString("NAME"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("EMAIL", Jobject.getString("EMAIL"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("MI_NUMBER", Jobject.getString("MI_NUMBER"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("CONTACT", Jobject.getString("CONTACT"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("GENDER", Jobject.getString("GENDER"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("CITY", Jobject.getString("CITY"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
             intent.putExtra("COLLEGE", Jobject.getString("COLLEGE"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -129,8 +167,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (login_button.getVisibility() == View.GONE) {
-            login_button.setVisibility(View.VISIBLE);
+        if (mi_login_button.getVisibility() == View.GONE) {
+            mi_login_button.setVisibility(View.VISIBLE);
+            fb_login_button.setVisibility(View.VISIBLE);
             mi_no.setVisibility(View.GONE);
             submit_button.setVisibility(View.GONE);
         } else {

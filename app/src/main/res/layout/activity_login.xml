@@ -52,17 +52,29 @@
         android:layout_toStartOf="@+id/login_submit" />
 
     <Button
-        android:text="Log in"
+        android:text="Log in with MI Number"
+        android:textAllCaps="false"
+        android:textSize="15sp"
         android:background="@color/com_facebook_blue"
         android:textColor="#ffffff"
-        android:textAllCaps="false"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mi_number"
+        android:id="@+id/mi_login_button"
+        android:layout_marginBottom="16dp"
         android:layout_above="@+id/register_later"
-        android:layout_marginBottom="18dp"
-        android:layout_alignStart="@+id/register_later"
-        android:layout_alignEnd="@+id/register_later" />
+        android:layout_alignEnd="@+id/fb_login_button"
+        android:layout_alignStart="@+id/fb_login_button" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="15sp"
+        android:paddingTop="15sp"
+        android:textSize="15sp"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/mi_login_button"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
