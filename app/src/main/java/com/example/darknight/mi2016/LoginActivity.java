@@ -1,6 +1,7 @@
 package com.example.darknight.mi2016;
 
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button submit_button;
     private JSONObject Jobject;
     private CallbackManager callbackManager;
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         reg_later_button = (Button) findViewById(R.id.register_later);
         mi_no = (EditText) findViewById(R.id.mi_number_input);
         submit_button = (Button) findViewById(R.id.login_submit);
+        pb = (ProgressBar) findViewById(R.id.progress);
+        pb.setVisibility(View.GONE);
 
         AppEventsLogger.activateApp(this);
         fb_login_button.setReadPermissions("email");
@@ -106,16 +112,36 @@ public class LoginActivity extends AppCompatActivity {
 
         mi_login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mi_login_button.setVisibility(View.GONE);
-                fb_login_button.setVisibility(View.GONE);
+                ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_login_button, "translationX", -1000);
+                translationFbLogin.setInterpolator(new DecelerateInterpolator());
+                translationFbLogin.setDuration(300);
+                translationFbLogin.start();
+
+                ObjectAnimator translationMiLogin = ObjectAnimator.ofFloat(fb_login_button, "translationX", -1000);
+                translationMiLogin.setInterpolator(new DecelerateInterpolator());
+                translationMiLogin.setDuration(300);
+                translationMiLogin.start();
+
                 mi_no.setVisibility(View.VISIBLE);
+                ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 1000, 0);
+                translationMiNumber.setInterpolator(new DecelerateInterpolator());
+                translationMiNumber.setDuration(300);
+                translationMiNumber.start();
+
                 submit_button.setVisibility(View.VISIBLE);
+                ObjectAnimator translationSubmitButton = ObjectAnimator.ofFloat(submit_button, "translationX", 1000, 0);
+                translationSubmitButton.setInterpolator(new DecelerateInterpolator());
+                translationSubmitButton.setDuration(300);
+                translationSubmitButton.start();
+                //mi_login_button.setVisibility(View.GONE);
+                //fb_login_button.setVisibility(View.GONE);
             }
         });
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                submit_button.setEnabled(false);
+                pb.setVisibility(View.VISIBLE);
                 String mi_no_text = mi_no.getText().toString().toUpperCase();
                 Pattern pattern = Pattern.compile("MI-[A-Z]{3}-[0-9]{3,4}");
 
@@ -124,7 +150,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     new getDetails().execute(mi_no_text);
-
                 }
             }
         });
@@ -169,9 +194,28 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (mi_login_button.getVisibility() == View.GONE) {
             mi_login_button.setVisibility(View.VISIBLE);
+            ObjectAnimator translationMiLogin = ObjectAnimator.ofFloat(fb_login_button, "translationX", 0);
+            translationMiLogin.setInterpolator(new DecelerateInterpolator());
+            translationMiLogin.setDuration(300);
+            translationMiLogin.start();
+
             fb_login_button.setVisibility(View.VISIBLE);
-            mi_no.setVisibility(View.GONE);
-            submit_button.setVisibility(View.GONE);
+            ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_login_button, "translationX", 0);
+            translationFbLogin.setInterpolator(new DecelerateInterpolator());
+            translationFbLogin.setDuration(300);
+            translationFbLogin.start();
+
+            ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 2000);
+            translationMiNumber.setInterpolator(new DecelerateInterpolator());
+            translationMiNumber.setDuration(300);
+            translationMiNumber.start();
+
+            ObjectAnimator translationSubmitButton = ObjectAnimator.ofFloat(submit_button, "translationX", 2000);
+            translationSubmitButton.setInterpolator(new DecelerateInterpolator());
+            translationSubmitButton.setDuration(300);
+            translationSubmitButton.start();
+            //mi_no.setVisibility(View.GONE);
+            //submit_button.setVisibility(View.GONE);
         } else {
             super.onBackPressed();
         }
@@ -236,6 +280,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            pb.setVisibility(View.GONE);
             LoginActivity.this.startMainActivity();
         }
 

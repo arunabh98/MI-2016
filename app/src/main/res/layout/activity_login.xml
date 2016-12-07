@@ -77,4 +77,11 @@
         android:layout_above="@+id/mi_login_button"
         android:layout_centerHorizontal="true" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>
