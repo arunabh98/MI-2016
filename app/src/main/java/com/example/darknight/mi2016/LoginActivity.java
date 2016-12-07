@@ -32,8 +32,10 @@ import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
@@ -69,19 +72,16 @@ public class LoginActivity extends AppCompatActivity {
         fb_login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                mi_login_button.setEnabled(false);
+                fb_login_button.setEnabled(false);
+                reg_later_button.setEnabled(false);
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("NAME", jsonObject.getString("name"));
-                                    intent.putExtra("EMAIL", jsonObject.getString("email"));
-                                    intent.putExtra("GENDER", jsonObject.getString("gender"));
-                                    intent.putExtra("FB_ID", jsonObject.getString("id"));
-                                    startActivity(intent);
-                                    overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                                    new getDetails_fb().execute(jsonObject.getString("id"));
                                 } catch (Exception e) {
                                     Log.e("LoginActivity", "Error in parsing JSON");
                                 }
@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
+
             }
 
             @Override
@@ -121,8 +122,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!pattern.matcher(mi_no_text).matches()) {
                     Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
+                    mi_no.setEnabled(false);
+                    submit_button.setEnabled(false);
+                    reg_later_button.setEnabled(false);
                     new getDetails().execute(mi_no_text);
 
                 }
@@ -148,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void startMainActivity(){
+    public void startMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         try {
             intent.putExtra("NAME", Jobject.getString("NAME"));
@@ -158,6 +161,25 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("GENDER", Jobject.getString("GENDER"));
             intent.putExtra("CITY", Jobject.getString("CITY"));
             intent.putExtra("COLLEGE", Jobject.getString("COLLEGE"));
+            intent.putExtra("FB_ID", Jobject.getString("fb_id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        startActivity(intent);
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+    }
+
+    public void startMainActivity_fb() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        try {
+            intent.putExtra("NAME", Jobject.getString("name"));
+            intent.putExtra("EMAIL", Jobject.getString("email"));
+            intent.putExtra("MI_NUMBER", Jobject.getString("mi_number"));
+            intent.putExtra("CONTACT", Jobject.getString("contact"));
+            intent.putExtra("GENDER", Jobject.getString("gender"));
+            intent.putExtra("CITY", Jobject.getString("city"));
+            intent.putExtra("COLLEGE", Jobject.getString("college"));
+            intent.putExtra("FB_ID", Jobject.getString("fb_id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -175,6 +197,16 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mi_login_button.setEnabled(true);
+        fb_login_button.setEnabled(true);
+        reg_later_button.setEnabled(true);
+        submit_button.setEnabled(true);
+        mi_no.setEnabled(true);
     }
 
     /**
@@ -220,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://cradmin.moodi.org/parti-det/"+params[0])
+                        .url("http://cradmin.moodi.org/parti-det/" + params[0])
                         .build();
                 Response response = client.newCall(request).execute();
                 String jsonData = response.body().string();
@@ -240,5 +272,41 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+    private class getDetails_fb extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... params) {
+            try {
+                OkHttpClient client = new OkHttpClient();
+                String json = "{\"fb_id\":\"" + params[0] + "\"}";
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody body = RequestBody.create(JSON, json);
+                Request request = new Request.Builder()
+                        .url("http://moodi.org/api/insert/fbLogin")
+                        .post(body)
+                        .build();
+                Log.d("body", json);
+                Log.d("fb request", request.toString());
+                Response response = client.newCall(request).execute();
+                String jsonData = response.body().string();
+                Log.d("hurray", jsonData);
+                Jobject = new JSONObject(jsonData);
+            } catch (Exception e) {
+                Log.e("APP_TAG", "STACKTRACE");
+                Log.e("APP_TAG", Log.getStackTraceString(e));
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            LoginActivity.this.startMainActivity_fb();
+        }
+
+    }
+
 
 }
