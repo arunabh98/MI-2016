@@ -51,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button submit_button;
     private JSONObject Jobject;
     private CallbackManager callbackManager;
+    private String mi_no_text;
+    private String contact_no;
+    private int index=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,22 +114,42 @@ public class LoginActivity extends AppCompatActivity {
                 fb_login_button.setVisibility(View.GONE);
                 mi_no.setVisibility(View.VISIBLE);
                 submit_button.setVisibility(View.VISIBLE);
+                mi_no.setHint("Enter your MI Number");
             }
         });
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String mi_no_text = mi_no.getText().toString().toUpperCase();
-                Pattern pattern = Pattern.compile("MI-[A-Z]{3}-[0-9]{3,4}");
 
-                if (!pattern.matcher(mi_no_text).matches()) {
-                    Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
-                } else {
-                    mi_no.setEnabled(false);
-                    submit_button.setEnabled(false);
-                    reg_later_button.setEnabled(false);
-                    new getDetails().execute(mi_no_text);
+                Log.d("MI Login",Integer.toString(index));
+                if ( index == 0 ) {
+
+                    mi_no_text = mi_no.getText().toString().toUpperCase();
+                    Pattern pattern = Pattern.compile("MI-[A-Z]{3}-[0-9]{3,4}");
+
+                    if (!pattern.matcher(mi_no_text).matches()) {
+                        Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        mi_no.setText(null);
+                        mi_no.setHint("Enter your Contact No.");
+                        index=index+1;
+                    }
+                }
+                else{
+
+                    contact_no = mi_no.getText().toString();
+                    Pattern pattern = Pattern.compile("[0-9]{10}");
+
+                    if(!pattern.matcher(contact_no).matches()){
+                        Toast.makeText(LoginActivity.this, "Not a Valid Contact Number!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        index=index+1;
+                        mi_no.setEnabled(false);
+                        submit_button.setEnabled(false);
+                        reg_later_button.setEnabled(false);
+                        new getDetails().execute(mi_no_text,contact_no);
+                    }
 
                 }
             }
@@ -250,13 +273,19 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
+                Log.d("Login details",params[0]);
+                Log.d("Login details",params[1]);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url("http://cradmin.moodi.org/parti-det/" + params[0])
                         .build();
                 Response response = client.newCall(request).execute();
                 String jsonData = response.body().string();
-                Jobject = new JSONObject(jsonData);
+                JSONObject tempjsonobject = new JSONObject(jsonData);
+                Log.d("Response",tempjsonobject.getString("CONTACT"));
+                if( tempjsonobject.getString("CONTACT") == params[1]){
+                    Jobject = tempjsonobject;
+                }
             } catch (Exception e) {
                 Log.e("APP_TAG", "STACKTRACE");
                 Log.e("APP_TAG", Log.getStackTraceString(e));
