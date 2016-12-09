@@ -41,7 +41,7 @@
     <string name="question13">Can I take photos?</string>
     <string name="answer13">Preferably not. You just stood in a huge queue to see it live, why ruin it for just showing it to others!</string>
     <string name="question14">Can I carry water?</string>
-    <string name="answer14">It's not required, there are arrangements inside. Moreover there is the food court.</string>
+    <string name="answer14">It is not required, there are arrangements inside. Moreover there is the food court.</string>
     <string name="question15">What type of accommodation will be provided?</string>
     <string name="answer15">Accommodation will be provided to boys and girls in well secured separate residential complexes on the campus of IIT Bombay.</string>
     <string name="question16">Does accommodation fee include the food facility as well?</string>
@@ -49,7 +49,7 @@
     <string name="question17">When will you confirm my accommodation?</string>
     <string name="answer17">You first need to register for Mood Indigo and get your MI number. Your accommodation will then be confirmed by the CL in coordination with the Hospitality Core Group members. The confirmation for the same will be communicated to the CL before 5th December.</string>
     <string name="question18">What are the accommodation charges for Mood Indigo 2016?</string>
-    <string name="answer18">For people paying online, an amount of Rs.1600* per person is the accommodation fee out of which Rs.100 is refundable. For people paying the accommodation fee after coming to Mood Indigo, an amount of Rs.1600* per person will be charged out of which Rs.100 is refundable. In exceptional circumstances the refund amount may be forfeited subject to one or more of the following conditions: i) Permanent damage has been done to the room/dorm/accessories where accommodation has been provided. ii) Rooms are not vacated on or before 27th December 1200 hrs. *The charges will be the same irrespective of duration of stay upto a maximum of five days i.e. from 22th – 26rd December</string>
+    <string name="answer18">For people paying online, an amount of Rs.1600* per person is the accommodation fee out of which Rs.100 is refundable. For people paying the accommodation fee after coming to Mood Indigo, an amount of Rs.1600* per person will be charged out of which Rs.100 is refundable. In exceptional circumstances the refund amount may be forfeited subject to one or more of the following conditions: i) Permanent damage has been done to the room/dorm/accessories where accommodation has been provided. ii) Rooms are not vacated on or before 27th December 1200 hrs. *The charges will be the same irrespective of duration of stay up to a maximum of five days i.e. from 22th en dash 26rd December</string>
     <string name="question19">What is the procedure for online payment of accommodation fee?</string>
     <string name="answer19">Once a particular contingent is finalised by CL and their accommodation is confirmed by Hospitality and PR CGs, each and every person with confirmed accommodation will be given a link to the payment portal where he/she needs to make the payment online. In case an individual wishes to make online payment of some other people in his/her contingent as well, the option for the same would be available.</string>
     <string name="question20">We are a group of friends not participating in any of the major competitions and just coming to MI to have fun. Would we be allowed?</string>
@@ -57,11 +57,14 @@
     <string name="question21">What is the procedure to be followed after we reach IIT Bombay?</string>
     <string name="answer21">You need to come to the Accommodation Desk, Students Activity Centre (SAC) along with your college identity card. You will be allotted your place of stay on campus and given a registration booklet. In case of a big contingent, contingent leader needs to present the ID cards of all the people in his contingent at the accommodation desk along with a list of all the people. Accommodation would be strictly on shared basis.</string>
     <string name="question22">What is the job of a Contingent Leader?</string>
-    <string name="answer22">CL acts as a representative between MI and his college, thus conveying all Mood Indigo information to students of his/her college. The CL is also responsible for applying for accommodation on behalf of the college's students. The CL gets a certificate of appreciation from Mood Indigo, IIT Bombay after completion of his/her duties.</string>
+    <string name="answer22">CL acts as a representative between MI and his college, thus conveying all Mood Indigo information to students of his/her college. The CL is also responsible for applying for accommodation on behalf of the college students. The CL gets a certificate of appreciation from Mood Indigo, IIT Bombay after completion of his/her duties.</string>
     <string name="question23">What is the procedure for being nominated as the Contingent Leader?</string>
     <string name="answer23">In order to be nominated as the CL for your college, you need an official letterhead of your college signed by the director/ principal saying that you have been nominated as the Contingent Leader for Mood Indigo 2016. Along with you, names of two other people should also be there who would be the Assistant CL. All three of you must mention your MI number along with your name in the letter. Send a scanned copy of the same to sanskar@moodi.org or hemant@moodi.org. All this should be done before October 30, 2016.</string>
-    <string name="question24">We have no such cultural committee in the college to nominate a CL & we are just a group of 4 en dash 5 people coming down to participate at MI 2016. How do we proceed?</string>
+    <string name="question24">We have no such cultural committee in the college to nominate a CL and we are just a group of 4 en dash 5 people coming down to participate at MI 2016. How do we proceed?</string>
     <string name="answer24">You should nominate a CL/ACL amongst yourselves, get it approved from the college and then proceed in the regular manner.</string>
     <string name="question25">I am not travelling with my college contingent and will be arriving separately. What should I do?</string>
-    <string name="answer25">You need to proceed with the registration in a similar way. Irrespective of your time of arrival, your CL will have to register & ensure complete payment of his/her contingent. As your registration at SAC would have been done by your CL you can then contact him/her and directly arrive at your place of stay.</string>
+    <string name="answer25">You need to proceed with the registration in a similar way. Irrespective of your time of arrival, your CL will have to register and ensure complete payment of his/her contingent. As your registration at SAC would have been done by your CL you can then contact him/her and directly arrive at your place of stay.</string>
+    <string name="back">BACK</string>
+    <string name="faqs">FAQs</string>
 </resources>
+
