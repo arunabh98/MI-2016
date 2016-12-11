@@ -43,6 +43,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    String miNumberStored;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -57,7 +58,10 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private ProgressBar pb;
     private String storeUserDetails = "userDetails";
-    String miNumberStored;
+    private String mi_no_text;
+    private String contact_no;
+    private int index = 0;
+    private String[] userDetailsList = {"NAME", "EMAIL", "MI_NUMBER", "CONTACT", "GENDER", "CITY", "COLLEGE"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         miNumberStored = prefs.getString("MI_NUMBER", null);
         if (miNumberStored != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("NAME", prefs.getString("NAME", null));
-            intent.putExtra("EMAIL", prefs.getString("EMAIL", null));
-            intent.putExtra("MI_NUMBER", prefs.getString("MI_NUMBER", null));
-            intent.putExtra("CONTACT", prefs.getString("CONTACT", null));
-            intent.putExtra("GENDER", prefs.getString("GENDER", null));
-            intent.putExtra("CITY", prefs.getString("CITY", null));
-            intent.putExtra("COLLEGE", prefs.getString("COLLEGE", null));
+            for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
+                intent.putExtra(userDetailsList[userDetail], prefs.getString(userDetailsList[userDetail], null));
+            }
             intent.putExtra("FB_ID", prefs.getString("fb_id", null));
             startActivity(intent);
         }
-
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
@@ -153,23 +152,46 @@ public class LoginActivity extends AppCompatActivity {
                 translationSubmitButton.start();
                 mi_login_button.setVisibility(View.GONE);
                 fb_login_button.setVisibility(View.GONE);
+                mi_no.setHint("Enter your MI Number");
             }
         });
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                submit_button.setEnabled(false);
-                String mi_no_text = mi_no.getText().toString().toUpperCase();
-                Pattern pattern = Pattern.compile("MI-[A-Z]{3}-[0-9]{3,4}");
 
-                if (!pattern.matcher(mi_no_text).matches()) {
-                    Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
+                Log.d("MI Login", Integer.toString(index));
+                if (index == 0) {
+
+                    mi_no_text = mi_no.getText().toString().toUpperCase();
+                    Pattern pattern = Pattern.compile("MI-[A-Z]{3}-[0-9]{3,4}");
+
+                    if (!pattern.matcher(mi_no_text).matches()) {
+                        Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_no, "translationX", -1000);
+                        translationFbLogin.setInterpolator(new DecelerateInterpolator());
+                        translationFbLogin.setDuration(300);
+                        translationFbLogin.start();
+                        mi_no.setText(null);
+                        mi_no.setHint("Enter your Contact No.");
+                        ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 1000, 0);
+                        translationMiNumber.setInterpolator(new DecelerateInterpolator());
+                        translationMiNumber.setDuration(300);
+                        translationMiNumber.start();
+                        index = index + 1;
+                    }
                 } else {
-                    pb.setVisibility(View.VISIBLE);
-                    mi_no.setEnabled(false);
-                    submit_button.setEnabled(false);
-                    reg_later_button.setEnabled(false);
-                    new getDetails().execute(mi_no_text);
+
+                    contact_no = mi_no.getText().toString();
+                    Pattern pattern = Pattern.compile("[0-9]{10}");
+
+                    if (!pattern.matcher(contact_no).matches()) {
+                        Toast.makeText(LoginActivity.this, "Not a Valid Contact Number!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        index = index + 1;
+                        pb.setVisibility(View.VISIBLE);
+                        new getDetails().execute(mi_no_text, contact_no);
+                    }
                 }
             }
         });
@@ -195,68 +217,58 @@ public class LoginActivity extends AppCompatActivity {
 
     public void startMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
         try {
-            intent.putExtra("NAME", Jobject.getString("NAME"));
-            intent.putExtra("EMAIL", Jobject.getString("EMAIL"));
-            intent.putExtra("MI_NUMBER", Jobject.getString("MI_NUMBER"));
-            intent.putExtra("CONTACT", Jobject.getString("CONTACT"));
-            intent.putExtra("GENDER", Jobject.getString("GENDER"));
-            intent.putExtra("CITY", Jobject.getString("CITY"));
-            intent.putExtra("COLLEGE", Jobject.getString("COLLEGE"));
-            intent.putExtra("FB_ID", Jobject.getString("fb_id"));
-            SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
-            editor.putString("NAME", Jobject.getString("NAME"));
-            editor.putString("EMAIL", Jobject.getString("EMAIL"));
-            editor.putString("MI_NUMBER", Jobject.getString("MI_NUMBER"));
-            editor.putString("CONTACT", Jobject.getString("CONTACT"));
-            editor.putString("GENDER", Jobject.getString("GENDER"));
-            editor.putString("CITY", Jobject.getString("CITY"));
-            editor.putString("COLLEGE", Jobject.getString("COLLEGE"));
-            editor.putString("FB_ID", Jobject.getString("fb_id"));
-            editor.apply();
+            if (Jobject != null) {
+                for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
+                    intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail]));
+                    editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail]));
+                }
+                intent.putExtra("FB_ID", Jobject.getString("fb_id"));
+                editor.putString("FB_ID", Jobject.getString("fb_id"));
+                editor.apply();
+                mi_no.setEnabled(false);
+                submit_button.setEnabled(false);
+                reg_later_button.setEnabled(false);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            } else {
+                Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        startActivity(intent);
-        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
     public void startMainActivity_fb() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
         try {
-            if (Jobject.getString("mi_number") != null) {
-                intent.putExtra("NAME", Jobject.getString("name"));
-                intent.putExtra("EMAIL", Jobject.getString("email"));
-                intent.putExtra("MI_NUMBER", Jobject.getString("mi_number"));
-                intent.putExtra("CONTACT", Jobject.getString("contact"));
-                intent.putExtra("GENDER", Jobject.getString("gender"));
-                intent.putExtra("CITY", Jobject.getString("city"));
-                intent.putExtra("COLLEGE", Jobject.getString("college"));
+            if (Jobject != null) {
+                for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
+                    intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
+                    editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
+                }
                 intent.putExtra("FB_ID", Jobject.getString("fb_id"));
-                SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
-                editor.putString("NAME", Jobject.getString("name"));
-                editor.putString("EMAIL", Jobject.getString("email"));
-                editor.putString("MI_NUMBER", Jobject.getString("mi_number"));
-                editor.putString("CONTACT", Jobject.getString("contact"));
-                editor.putString("GENDER", Jobject.getString("gender"));
-                editor.putString("CITY", Jobject.getString("city"));
-                editor.putString("COLLEGE", Jobject.getString("college"));
                 editor.putString("FB_ID", Jobject.getString("fb_id"));
                 editor.apply();
-            }
-            else {
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            } else {
                 Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        startActivity(intent);
-        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
     @Override
     public void onBackPressed() {
-        if (mi_login_button.getVisibility() == View.GONE) {
+        if (mi_no.getHint().equals("Enter your Contact No.")) {
+            index = 0;
+            mi_no.setText(mi_no_text);
+            mi_no.setHint("Enter your MI Number");
+        } else if (mi_login_button.getVisibility() == View.GONE) {
             mi_login_button.setVisibility(View.VISIBLE);
             ObjectAnimator translationMiLogin = ObjectAnimator.ofFloat(fb_login_button, "translationX", 0);
             translationMiLogin.setInterpolator(new DecelerateInterpolator());
@@ -336,13 +348,20 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
+                Log.d("Login details", params[0]);
+                Log.d("Login details", params[1]);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url("http://cradmin.moodi.org/parti-det/" + params[0])
                         .build();
                 Response response = client.newCall(request).execute();
                 String jsonData = response.body().string();
-                Jobject = new JSONObject(jsonData);
+                JSONObject tempjsonobject = new JSONObject(jsonData);
+                Log.d("Response", String.valueOf(tempjsonobject.getString("CONTACT").equals(Log.d("Login details", params[1]))));
+                if (tempjsonobject.getString("CONTACT").equals(params[1])) {
+                    Log.e("dfsdfds", "dsdfsdf");
+                    Jobject = tempjsonobject;
+                }
             } catch (Exception e) {
                 Log.e("APP_TAG", "STACKTRACE");
                 Log.e("APP_TAG", Log.getStackTraceString(e));
