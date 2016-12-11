@@ -1,6 +1,7 @@
 package com.example.darknight.mi2016;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,13 +15,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String miNumberStored;
+    int backButtonCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
+        miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
@@ -46,12 +53,36 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (miNumberStored == null) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+                overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+            }
         } else {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                    if(backButtonCount >= 1)
+                    {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+                        backButtonCount++;
+                    }
+                } else {
+                    getSupportFragmentManager().popBackStack();
+                }
+            }
         }
     }
 
@@ -94,6 +125,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_faq) {
             FaqsFragment faqsFragment = new FaqsFragment();
             FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
             transaction.add(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
             transaction.commit();
         } else if (id == R.id.nav_contact) {
@@ -103,6 +135,7 @@ public class MainActivity extends AppCompatActivity
 //            startActivity(intent);
             MapFragment MapFragment = new MapFragment();
             FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
             transaction.add(R.id.relativelayout_for_fragment, MapFragment, MapFragment.getTag());
             transaction.commit();
         }

@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="#a9a8a2"
         android:backgroundTint="#a9a8a2"
+        android:hint="MI-ABC-101"
         android:ems="10"
         android:textSize="27sp"
         android:fontFamily="sans-serif-light"
