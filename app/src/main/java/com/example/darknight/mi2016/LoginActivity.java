@@ -4,6 +4,7 @@ package com.example.darknight.mi2016;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -86,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
         mi_no = (EditText) findViewById(R.id.mi_number_input);
         submit_button = (Button) findViewById(R.id.login_submit);
         pb = (ProgressBar) findViewById(R.id.progress);
+        pb.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.green), PorterDuff.Mode.MULTIPLY);
+        pb.setScaleY(0.7f);
+        pb.setScaleX(0.7f);
         pb.setVisibility(View.GONE);
 
         AppEventsLogger.activateApp(this);
@@ -129,27 +133,15 @@ public class LoginActivity extends AppCompatActivity {
 
         mi_login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_login_button, "translationX", -1000);
-                translationFbLogin.setInterpolator(new DecelerateInterpolator());
-                translationFbLogin.setDuration(300);
-                translationFbLogin.start();
+                animateElement(mi_login_button, 300, -1000);
 
-                ObjectAnimator translationMiLogin = ObjectAnimator.ofFloat(fb_login_button, "translationX", -1000);
-                translationMiLogin.setInterpolator(new DecelerateInterpolator());
-                translationMiLogin.setDuration(300);
-                translationMiLogin.start();
+                animateElement(fb_login_button, 300, -1000);
 
                 mi_no.setVisibility(View.VISIBLE);
-                ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 1000, 0);
-                translationMiNumber.setInterpolator(new DecelerateInterpolator());
-                translationMiNumber.setDuration(300);
-                translationMiNumber.start();
+                animateElement(mi_no, 300, 1000, 0);
 
                 submit_button.setVisibility(View.VISIBLE);
-                ObjectAnimator translationSubmitButton = ObjectAnimator.ofFloat(submit_button, "translationX", 1000, 0);
-                translationSubmitButton.setInterpolator(new DecelerateInterpolator());
-                translationSubmitButton.setDuration(300);
-                translationSubmitButton.start();
+                animateElement(submit_button, 300, 1000, 0);
                 mi_login_button.setVisibility(View.GONE);
                 fb_login_button.setVisibility(View.GONE);
                 mi_no.setHint("Enter your MI Number");
@@ -168,16 +160,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (!pattern.matcher(mi_no_text).matches()) {
                         Toast.makeText(LoginActivity.this, "Not a Valid MI Number!", Toast.LENGTH_SHORT).show();
                     } else {
-                        ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_no, "translationX", -1000);
-                        translationFbLogin.setInterpolator(new DecelerateInterpolator());
-                        translationFbLogin.setDuration(300);
-                        translationFbLogin.start();
+                        animateElement(mi_no, 300, -1000);
                         mi_no.setText(null);
                         mi_no.setHint("Enter your Contact No.");
-                        ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 1000, 0);
-                        translationMiNumber.setInterpolator(new DecelerateInterpolator());
-                        translationMiNumber.setDuration(300);
-                        translationMiNumber.start();
+                        animateElement(mi_no, 300, 1000, 0);
                         index = index + 1;
                     }
                 } else {
@@ -266,35 +252,39 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (mi_no.getHint().equals("Enter your Contact No.")) {
             index = 0;
+            animateElement(mi_no, 300, 0, 1000);
             mi_no.setText(mi_no_text);
             mi_no.setHint("Enter your MI Number");
+            animateElement(mi_no, 300, -2000, 0);
         } else if (mi_login_button.getVisibility() == View.GONE) {
             mi_login_button.setVisibility(View.VISIBLE);
-            ObjectAnimator translationMiLogin = ObjectAnimator.ofFloat(fb_login_button, "translationX", 0);
-            translationMiLogin.setInterpolator(new DecelerateInterpolator());
-            translationMiLogin.setDuration(300);
-            translationMiLogin.start();
+            animateElement(fb_login_button, 300, 0);
 
             fb_login_button.setVisibility(View.VISIBLE);
-            ObjectAnimator translationFbLogin = ObjectAnimator.ofFloat(mi_login_button, "translationX", 0);
-            translationFbLogin.setInterpolator(new DecelerateInterpolator());
-            translationFbLogin.setDuration(300);
-            translationFbLogin.start();
+            animateElement(mi_login_button, 300, 0);
 
-            ObjectAnimator translationMiNumber = ObjectAnimator.ofFloat(mi_no, "translationX", 2000);
-            translationMiNumber.setInterpolator(new DecelerateInterpolator());
-            translationMiNumber.setDuration(300);
-            translationMiNumber.start();
+            animateElement(mi_no, 300, 2000);
 
-            ObjectAnimator translationSubmitButton = ObjectAnimator.ofFloat(submit_button, "translationX", 2000);
-            translationSubmitButton.setInterpolator(new DecelerateInterpolator());
-            translationSubmitButton.setDuration(300);
-            translationSubmitButton.start();
+            animateElement(submit_button, 300, 2000);
             mi_no.setVisibility(View.GONE);
             submit_button.setVisibility(View.GONE);
         } else {
             super.onBackPressed();
         }
+    }
+
+    void animateElement(View element, int duration, int start_pos, int final_pos) {
+        ObjectAnimator translateElement = ObjectAnimator.ofFloat(element, "translationX", start_pos, final_pos);
+        translateElement.setInterpolator(new DecelerateInterpolator());
+        translateElement.setDuration(duration);
+        translateElement.start();
+    }
+
+    void animateElement(View element, int duration, int pos) {
+        ObjectAnimator translateElement = ObjectAnimator.ofFloat(element, "translationX", pos);
+        translateElement.setInterpolator(new DecelerateInterpolator());
+        translateElement.setDuration(duration);
+        translateElement.start();
     }
 
     @Override

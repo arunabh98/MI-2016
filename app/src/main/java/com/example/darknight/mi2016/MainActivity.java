@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        String NAME= intent.getStringExtra("NAME");
-        String EMAIL= intent.getStringExtra("EMAIL");
+        String NAME = intent.getStringExtra("NAME");
+        String EMAIL = intent.getStringExtra("EMAIL");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View header=navigationView.getHeaderView(0);
-        TextView name = (TextView)header.findViewById(R.id.name);
-        TextView email = (TextView)header.findViewById(R.id.email_id);
+        View header = navigationView.getHeaderView(0);
+        TextView name = (TextView) header.findViewById(R.id.name);
+        TextView email = (TextView) header.findViewById(R.id.email_id);
         name.setText(NAME);
         email.setText(EMAIL);
     }
@@ -67,15 +67,12 @@ public class MainActivity extends AppCompatActivity
                 drawer.closeDrawer(GravityCompat.START);
             } else {
                 if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    if(backButtonCount >= 1)
-                    {
+                    if (backButtonCount >= 1) {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
                         backButtonCount++;
                     }
