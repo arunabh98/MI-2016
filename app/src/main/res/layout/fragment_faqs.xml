@@ -11,7 +11,7 @@
         android:layout_height="fill_parent"
         android:background="#000000"
         android:orientation="vertical"
-        android:paddingTop="50dp">
+        android:paddingTop="64dp">
 
 
         <Button
