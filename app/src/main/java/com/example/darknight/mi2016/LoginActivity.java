@@ -150,8 +150,6 @@ public class LoginActivity extends AppCompatActivity {
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Log.d("MI Login", Integer.toString(index));
                 if (index == 0) {
 
                     mi_no_text = mi_no.getText().toString().toUpperCase();
@@ -338,8 +336,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
-                Log.d("Login details", params[0]);
-                Log.d("Login details", params[1]);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url("http://cradmin.moodi.org/parti-det/" + params[0])
@@ -347,9 +343,7 @@ public class LoginActivity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String jsonData = response.body().string();
                 JSONObject tempjsonobject = new JSONObject(jsonData);
-                Log.d("Response", String.valueOf(tempjsonobject.getString("CONTACT").equals(Log.d("Login details", params[1]))));
                 if (tempjsonobject.getString("CONTACT").equals(params[1])) {
-                    Log.e("dfsdfds", "dsdfsdf");
                     Jobject = tempjsonobject;
                 }
             } catch (Exception e) {
@@ -366,7 +360,6 @@ public class LoginActivity extends AppCompatActivity {
             pb.setVisibility(View.GONE);
             LoginActivity.this.startMainActivity();
         }
-
     }
 
     private class getDetails_fb extends AsyncTask<String, Void, Void> {
@@ -382,11 +375,8 @@ public class LoginActivity extends AppCompatActivity {
                         .url("http://moodi.org/api/insert/fbLogin")
                         .post(body)
                         .build();
-                Log.d("body", json);
-                Log.d("fb request", request.toString());
                 Response response = client.newCall(request).execute();
                 String jsonData = response.body().string();
-                Log.d("hurray", jsonData);
                 Jobject = new JSONObject(jsonData);
             } catch (Exception e) {
                 Log.e("APP_TAG", "STACKTRACE");
@@ -401,8 +391,5 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(result);
             LoginActivity.this.startMainActivity_fb();
         }
-
     }
-
-
 }
