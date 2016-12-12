@@ -11,17 +11,78 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.darknight.mi2016.LoginActivity">
 
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    <Button
+        android:text="Register Later"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000000"
+        android:textSize="27sp"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/grey"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/register_later"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:drawableEnd="@drawable/arrow1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_submit"
+        android:background="#000000"
+        android:visibility="gone"
+        android:layout_alignTop="@+id/mi_number_input"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/mi_number_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="#a9a8a2"
+        android:backgroundTint="#a9a8a2"
+        android:hint="MI-ABC-101"
+        android:ems="10"
+        android:textSize="27sp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="#a9a8a2"
+        android:visibility="gone"
+        android:layout_above="@+id/register_later"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="18dp"
+        android:layout_toStartOf="@+id/login_submit" />
+
+    <Button
+        android:text="Log in with MI Number"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:background="@color/com_facebook_blue"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mi_login_button"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/register_later"
+        android:layout_alignEnd="@+id/fb_login_button"
+        android:layout_alignStart="@+id/fb_login_button" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
         android:paddingBottom="15sp"
         android:paddingTop="15sp"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/mi_login_button"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
