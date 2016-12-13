@@ -126,7 +126,11 @@ public class MainActivity extends AppCompatActivity
             transaction.add(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
             transaction.commit();
         } else if (id == R.id.nav_contact) {
-
+            ContactUsFragment contactUsFragment = new ContactUsFragment();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.add(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+            transaction.commit();
         } else if (id == R.id.nav_map) {
 //            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
 //            startActivity(intent);
