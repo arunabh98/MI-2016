@@ -4,6 +4,8 @@ package com.example.darknight.mi2016;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -36,6 +38,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -62,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     private String storeUserDetails = "userDetails";
     private String mi_no_text;
     private String contact_no;
+    Bitmap profilePic;
     private int index = 0;
     private String[] userDetailsList = {"NAME", "EMAIL", "MI_NUMBER", "CONTACT", "GENDER", "CITY", "COLLEGE"};
 
@@ -108,9 +115,10 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
-                                    new getDetails_fb().execute(jsonObject.getString("id"));
+                                    String profilePicUrl = jsonObject.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    new getDetails_fb().execute(jsonObject.getString("id"), profilePicUrl);
                                 } catch (Exception e) {
-                                    Log.e("LoginActivity", "Error in parsing JSON");
+                                    e.printStackTrace();
                                 }
                             }
                         });
@@ -194,6 +202,22 @@ public class LoginActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    public Bitmap getBitmapFromURL(String src) {
+        try {
+            java.net.URL url = new java.net.URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -235,6 +259,10 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
                 }
                 intent.putExtra("FB_ID", Jobject.getString("fb_id"));
+                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+                profilePic.compress(Bitmap.CompressFormat.PNG, 50, _bs);
+                Log.e("fsfsdf", profilePic.toString());
+                intent.putExtra("PROFILE_PIC", _bs.toByteArray());
                 editor.putString("FB_ID", Jobject.getString("fb_id"));
                 editor.apply();
                 startActivity(intent);
@@ -368,6 +396,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
+                profilePic = getBitmapFromURL(params[1]);
                 OkHttpClient client = new OkHttpClient();
                 String json = "{\"fb_id\":\"" + params[0] + "\"}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");

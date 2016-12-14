@@ -2,6 +2,8 @@ package com.example.darknight.mi2016;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +50,12 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         TextView name = (TextView) header.findViewById(R.id.name);
         TextView email = (TextView) header.findViewById(R.id.email_id);
+        if(getIntent().hasExtra("PROFILE_PIC")) {
+            Bitmap profilePic = BitmapFactory.decodeByteArray(
+                    getIntent().getByteArrayExtra("PROFILE_PIC"),0,getIntent().getByteArrayExtra("PROFILE_PIC").length);
+            ImageView profilepic = (ImageView) header.findViewById(R.id.profile_picture);
+            profilepic.setImageBitmap(profilePic);
+        }
         name.setText(NAME);
         email.setText(EMAIL);
     }
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     } else {
+                        super.onBackPressed();
                         Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
                         backButtonCount++;
                     }
