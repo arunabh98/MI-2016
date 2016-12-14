@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,5 +79,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     @Override
     public void onFailure(Call<List<GsonModels.Event>> call, Throwable t) {
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
+        Log.d("TAG", "onFailure: " + t.toString());
+        progressDialog.dismiss();
     }
 }
