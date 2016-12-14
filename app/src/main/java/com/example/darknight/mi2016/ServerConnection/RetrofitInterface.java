@@ -1,15 +1,15 @@
 package com.example.darknight.mi2016.ServerConnection;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RetrofitInterface {
-    @GET("/")
-        //TODO
-    Call<GsonModels.GenreResponse> getGenres();
+    @GET("/api/mi")
+    Call<List<GsonModels.Event>> getEvents();
 
     @GET("/")
-        //TODO
-    Call<GsonModels.EventResponse> getEvents(@Query("Genre") String genre);
+    Call<GsonModels.GenreResponse> getGenres();
 }

@@ -15,6 +15,8 @@ import com.example.darknight.mi2016.ServerConnection.GsonModels;
 import com.example.darknight.mi2016.ServerConnection.RetrofitInterface;
 import com.example.darknight.mi2016.ServerConnection.ServiceGenerator;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +25,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EventsFragment extends Fragment implements Callback<GsonModels.EventResponse> {
+public class EventsFragment extends Fragment implements Callback<List<GsonModels.Event>> {
 
     private ProgressDialog progressDialog;
     private RecyclerView eventsRecyclerView;
@@ -50,16 +52,16 @@ public class EventsFragment extends Fragment implements Callback<GsonModels.Even
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Requesting Details");
         RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
-        retrofitInterface.getEvents("lalala").enqueue(this);    //TODO
+        retrofitInterface.getEvents().enqueue(this);
         progressDialog.show();
     }
 
     @Override
-    public void onResponse(Call<GsonModels.EventResponse> call, Response<GsonModels.EventResponse> response) {
+    public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
-            GsonModels.EventResponse eventResponse = response.body();
-            Toast.makeText(getContext(), "No. of responses : " + eventResponse.getCount(), Toast.LENGTH_SHORT).show();
-            eventsListAdapter = new EventsListAdapter(eventResponse.getEventList(), new ItemCLickListener() {
+            List<GsonModels.Event> eventResponse = response.body();
+            Toast.makeText(getContext(), "No. of responses : " + eventResponse.size(), Toast.LENGTH_SHORT).show();
+            eventsListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
                     //TODO: Launch Event Page
@@ -74,7 +76,7 @@ public class EventsFragment extends Fragment implements Callback<GsonModels.Even
     }
 
     @Override
-    public void onFailure(Call<GsonModels.EventResponse> call, Throwable t) {
+    public void onFailure(Call<List<GsonModels.Event>> call, Throwable t) {
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
     }
 }
