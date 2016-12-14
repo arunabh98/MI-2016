@@ -26,5 +26,9 @@
             android:id="@+id/nav_map"
             android:icon="@drawable/map"
             android:title="Map" />
+        <item
+            android:id="@+id/nav_qr"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="QR Code Scanner" />
     </group>
 </menu>
