@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,18 +29,21 @@ public class ContactUsFragment extends Fragment {
     }
 
     public void call(View v){
+
         String uri = "tel:" + ((TextView)v).getText();
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
     }
 
-    public void email(View v){
-        String email = (String) ((TextView)v).getText();
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_EMAIL, email);
+    public void mail(View v){
 
-        startActivity(Intent.createChooser(intent, "Send Email"));
+        String[] email = new String[]{(String)((TextView)v).getText()};
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, email);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Query regarding Mood Indigo");
+        startActivity(intent);
     }
 
 }

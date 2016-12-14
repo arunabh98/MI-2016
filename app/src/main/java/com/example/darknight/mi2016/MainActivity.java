@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -169,11 +170,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void call (View v){
-            contactUsFragment.call(v);
+
+        contactUsFragment.call(v);
     }
 
-    public void email(View v) {
-            contactUsFragment.call(v);
+    public void mail(View v) {
+
+        contactUsFragment.mail(v);
 
     }
 

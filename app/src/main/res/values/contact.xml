@@ -65,7 +65,7 @@
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textColor">#deb951</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:onClick">email</item>
+        <item name="android:onClick">mail</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>
