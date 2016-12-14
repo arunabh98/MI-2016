@@ -66,5 +66,8 @@
     <string name="answer25">You need to proceed with the registration in a similar way. Irrespective of your time of arrival, your CL will have to register and ensure complete payment of his/her contingent. As your registration at SAC would have been done by your CL you can then contact him/her and directly arrive at your place of stay.</string>
     <string name="back">BACK</string>
     <string name="faqs">FAQs</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 
