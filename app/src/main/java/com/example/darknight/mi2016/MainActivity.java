@@ -6,14 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,21 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.darknight.mi2016.fragments.ClInfoFragment;
-import com.example.darknight.mi2016.fragments.CompetitionsFragment;
-import com.example.darknight.mi2016.fragments.ConcertsFragment;
-import com.example.darknight.mi2016.fragments.GeneralFragment;
-import com.example.darknight.mi2016.fragments.HospitalityFragment;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String miNumberStored;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+
 
 
     int backButtonCount=0;
@@ -84,10 +70,7 @@ public class MainActivity extends AppCompatActivity
         name.setText(NAME);
         email.setText(EMAIL);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        viewPager = (ViewPager)findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override
@@ -176,47 +159,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void setupViewPager(ViewPager viewPager){
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GeneralFragment(), "General");
-        adapter.addFragment(new CompetitionsFragment(), "Competitions");
-        adapter.addFragment(new ConcertsFragment(), "Concerts");
-        adapter.addFragment(new HospitalityFragment(), "Hospitality");
-        adapter.addFragment(new ClInfoFragment(),"CL Info");
-        viewPager.setAdapter(adapter);
-    }
-}
 
-class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
-
-    public ViewPagerAdapter(FragmentManager manager) {
-        super(manager);
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        return mFragmentList.get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return mFragmentList.size();
-    }
-
-
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
-    }
-
-    public void call(View v) {
+public void call(View v) {
 
         contactUsFragment.call(v);
     }
