@@ -25,6 +25,7 @@ public class FaqsFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         rootView = inflater.inflate(R.layout.fragment_faqs, container, false);
         Button buttonGeneral = (Button) rootView.findViewById(R.id.general_button);
         Button buttonCompetitions = (Button) rootView.findViewById(R.id.competitions_button);
@@ -39,6 +40,14 @@ public class FaqsFragment extends Fragment implements View.OnClickListener {
         buttonClInfo.setOnClickListener(this);
         button.setOnClickListener(this);
         return rootView;
+||||||| merged common ancestors
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_faqs, container, false);
+=======
+        // Inflate the layout for this fragment
+        getActivity().setTitle("FAQ");
+        return inflater.inflate(R.layout.fragment_faqs, container, false);
+>>>>>>> 66b461cf04167ca7c03d6bbb3f242955598fbbe5
     }
 
     @Override

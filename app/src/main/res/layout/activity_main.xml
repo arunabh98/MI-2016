@@ -19,6 +19,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#000"
+        app:itemTextColor="@color/yellow"
+        app:itemIconTint="@color/yellow"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
     <android.support.design.widget.AppBarLayout

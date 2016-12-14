@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.darknight.mi2016.QrCodeFragment">
+
+    <TextView android:text="Point to a QR Sticker to scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#deb951"
+        android:background="#000000"
+        android:layout_centerHorizontal="true"
+        android:padding="13dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/textView"/>
+
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scanner_view"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView">
+
+    </me.dm7.barcodescanner.zxing.ZXingScannerView>
+
+</RelativeLayout>

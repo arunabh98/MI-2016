@@ -7,7 +7,12 @@
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FFC107</color>
     <color name="green">#84ff84</color>
+<<<<<<< HEAD
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
+||||||| merged common ancestors
+=======
+    <color name="black">#000</color>
+>>>>>>> 66b461cf04167ca7c03d6bbb3f242955598fbbe5
 </resources>
