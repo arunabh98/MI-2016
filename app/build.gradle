@@ -24,6 +24,8 @@ ext {
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.4.1'
     picassoVersion = '2.5.2'
+    playServicesVersion = '10.0.1'
+    circleImageViewVersion = '2.1.0'
 }
 
 dependencies {
@@ -40,5 +42,9 @@ dependencies {
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
+    compile "de.hdodenhof:circleimageview:${circleImageViewVersion}"
+    compile "com.google.firebase:firebase-appindexing:${playServicesVersion}"
+    compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
+    compile "com.google.android.gms:play-services-location:${playServicesVersion}"
     testCompile 'junit:junit:4.12'
 }
