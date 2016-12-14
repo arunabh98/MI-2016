@@ -59,6 +59,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(map));
         mapFragment.getMapAsync(this);
+        getActivity().setTitle("Map");
         return mapView;
     }
 
@@ -69,15 +70,42 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         LatLng convocationHall = new LatLng(19.131973, 72.914285);
         LatLng gymkhanaGround = new LatLng(19.134446, 72.912217);
         LatLng lectureHall1 = new LatLng(19.130735, 72.916900);
-        LatLng IITB = new LatLng(19.133180, 72.913458);
+        LatLng som = new LatLng(19.131651, 72.915758);
+        LatLng ncc = new LatLng(19.133572, 72.913399);
+        LatLng sac = new LatLng(19.135422, 72.913674);
+        LatLng fck = new LatLng(19.130480, 72.915724);
+        LatLng nsp = new LatLng(19.135574, 72.912930);
+        LatLng kv = new LatLng(19.129113, 72.918408);
         LatLng LTPCSA = new LatLng(19.132348, 72.915785);
         LatLng openAirTheatre = new LatLng(19.135045, 72.913401);
+        LatLng mbLawns = new LatLng(19.132635, 72.915716);
+        LatLng ppl = new LatLng(19.130005, 72.916704);
+        LatLng h10TPoint = new LatLng(19.129574, 72.915394);
+        LatLng pcsaBackLawns = new LatLng(19.132030, 72.915920);
+        LatLng sacParking = new LatLng(19.135771, 72.914428);
+        LatLng sacBackyard = new LatLng(19.134779, 72.912952);
+        LatLng osp = new LatLng(19.135572, 72.914017);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(convocationHall));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
 
         mMap.addMarker(new MarkerOptions().position(convocationHall).title("Convocation Hall"));
-        mMap.addMarker(new MarkerOptions().position(lectureHall1).title("Lecture Hall - LT, LC,LH"));
-        mMap.addMarker(new MarkerOptions().position(LTPCSA).title("PC Saxena Auditorium (LTPCSA)"));
+        mMap.addMarker(new MarkerOptions().position(lectureHall1).title("Lecture Hall Complex (LCH)"));
+        mMap.addMarker(new MarkerOptions().position(LTPCSA).title("PC Saxena Auditorium (LT PCSA)"));
         mMap.addMarker(new MarkerOptions().position(gymkhanaGround).title("Gymkhana Grounds"));
+        mMap.addMarker(new MarkerOptions().position(ncc).title("NCC Grounds"));
+        mMap.addMarker(new MarkerOptions().position(fck).title("FC Kohli Auditorium (FCK)"));
+        mMap.addMarker(new MarkerOptions().position(nsp).title("New Swimming Pool"));
+        mMap.addMarker(new MarkerOptions().position(kv).title("Kendriya Vidyalaya (KV)"));
+        mMap.addMarker(new MarkerOptions().position(sac).title("Student Activity Center (SAC)"));
+        mMap.addMarker(new MarkerOptions().position(som).title("Shailesh J. Mehta School of Management (SOM)"));
         mMap.addMarker(new MarkerOptions().position(openAirTheatre).title("Open Air Theatre (OAT)"));
+        mMap.addMarker(new MarkerOptions().position(mbLawns).title("MB Lawns"));
+        mMap.addMarker(new MarkerOptions().position(ppl).title("Physics Parking Lot"));
+        mMap.addMarker(new MarkerOptions().position(h10TPoint).title("H10 T-Point"));
+        mMap.addMarker(new MarkerOptions().position(pcsaBackLawns).title("PCSA Backlawns"));
+        mMap.addMarker(new MarkerOptions().position(sacParking).title("SAC Parking Lot"));
+        mMap.addMarker(new MarkerOptions().position(sacBackyard).title("SAC Backyard"));
+        mMap.addMarker(new MarkerOptions().position(osp).title("Old Swimming Pool"));
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -108,7 +136,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
 
         //stop location updates
         if (mGoogleApiClient != null) {

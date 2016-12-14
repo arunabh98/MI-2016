@@ -39,7 +39,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

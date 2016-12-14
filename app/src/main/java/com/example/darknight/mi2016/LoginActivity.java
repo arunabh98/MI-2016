@@ -4,11 +4,15 @@ package com.example.darknight.mi2016;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -35,6 +39,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -45,6 +53,7 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
     String miNumberStored;
+    Bitmap profilePic;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -74,6 +83,14 @@ public class LoginActivity extends AppCompatActivity {
             for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
                 intent.putExtra(userDetailsList[userDetail], prefs.getString(userDetailsList[userDetail], null));
             }
+            String propic = prefs.getString("PROFILE_PIC", "");
+            if (!propic.equalsIgnoreCase("")) {
+                byte[] b = Base64.decode(propic, Base64.DEFAULT);
+                Bitmap profilePic = BitmapFactory.decodeByteArray(b, 0, b.length);
+                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+                profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
+                intent.putExtra("PROFILE_PIC", _bs.toByteArray());
+            }
             intent.putExtra("FB_ID", prefs.getString("fb_id", null));
             startActivity(intent);
         }
@@ -91,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         pb.setScaleY(0.7f);
         pb.setScaleX(0.7f);
         pb.setVisibility(View.GONE);
-
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFC107\">" + getString(R.string.app_name) + "</font>"));
         AppEventsLogger.activateApp(this);
         fb_login_button.setReadPermissions("email");
 
@@ -107,14 +124,15 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
-                                    new getDetails_fb().execute(jsonObject.getString("id"));
+                                    String profilePicUrl = jsonObject.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    new getDetails_fb().execute(jsonObject.getString("id"), profilePicUrl);
                                 } catch (Exception e) {
-                                    Log.e("LoginActivity", "Error in parsing JSON");
+                                    e.printStackTrace();
                                 }
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender");
+                parameters.putString("fields", "id,picture");
                 request.setParameters(parameters);
                 request.executeAsync();
 
@@ -193,6 +211,22 @@ public class LoginActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    public Bitmap getBitmapFromURL(String src) {
+        try {
+            java.net.URL url = new java.net.URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -234,6 +268,11 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
                 }
                 intent.putExtra("FB_ID", Jobject.getString("fb_id"));
+                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+                profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
+                intent.putExtra("PROFILE_PIC", _bs.toByteArray());
+                String encodedImage = Base64.encodeToString(_bs.toByteArray(), Base64.DEFAULT);
+                editor.putString("PROFILE_PIC", encodedImage);
                 editor.putString("FB_ID", Jobject.getString("fb_id"));
                 editor.apply();
                 startActivity(intent);
@@ -367,6 +406,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             try {
+                profilePic = getBitmapFromURL(params[1]);
                 OkHttpClient client = new OkHttpClient();
                 String json = "{\"fb_id\":\"" + params[0] + "\"}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
