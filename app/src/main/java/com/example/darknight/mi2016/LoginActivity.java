@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -81,6 +82,14 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
                 intent.putExtra(userDetailsList[userDetail], prefs.getString(userDetailsList[userDetail], null));
+            }
+            String propic = prefs.getString("PROFILE_PIC", "");
+            if( !propic.equalsIgnoreCase("") ){
+                byte[] b = Base64.decode(propic, Base64.DEFAULT);
+                Bitmap profilePic = BitmapFactory.decodeByteArray(b, 0, b.length);
+                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+                profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
+                intent.putExtra("PROFILE_PIC", _bs.toByteArray());
             }
             intent.putExtra("FB_ID", prefs.getString("fb_id", null));
             startActivity(intent);
@@ -260,9 +269,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 intent.putExtra("FB_ID", Jobject.getString("fb_id"));
                 ByteArrayOutputStream _bs = new ByteArrayOutputStream();
-                profilePic.compress(Bitmap.CompressFormat.PNG, 50, _bs);
-                Log.e("fsfsdf", profilePic.toString());
+                profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
                 intent.putExtra("PROFILE_PIC", _bs.toByteArray());
+                String encodedImage = Base64.encodeToString(_bs.toByteArray(), Base64.DEFAULT);
+                editor.putString("PROFILE_PIC", encodedImage);
                 editor.putString("FB_ID", Jobject.getString("fb_id"));
                 editor.apply();
                 startActivity(intent);
