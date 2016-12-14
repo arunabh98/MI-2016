@@ -18,7 +18,6 @@
     <string name="time">Time</string>
     <string name="event_info">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
     <string name="title_activity_maps">Map</string>
-<<<<<<< HEAD
     <string name="question3">How do I register for Mood Indigo?</string>
     <string name="answer3">Go to the Register tab to get your MI number.</string>
     <string name="question4">What is LYP?</string>
@@ -67,14 +66,8 @@
     <string name="answer25">You need to proceed with the registration in a similar way. Irrespective of your time of arrival, your CL will have to register and ensure complete payment of his/her contingent. As your registration at SAC would have been done by your CL you can then contact him/her and directly arrive at your place of stay.</string>
     <string name="back">BACK</string>
     <string name="faqs">FAQs</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-||||||| merged common ancestors
-=======
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
->>>>>>> 66b461cf04167ca7c03d6bbb3f242955598fbbe5
 </resources>
 

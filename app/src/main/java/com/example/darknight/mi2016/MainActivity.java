@@ -176,8 +176,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-<<<<<<< HEAD
-
     private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GeneralFragment(), "General");
@@ -189,21 +187,21 @@ public class MainActivity extends AppCompatActivity
     }
 }
 
-class ViewPagerAdapter extends FragmentPagerAdapter
-{
+class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-    public ViewPagerAdapter(FragmentManager manager){
+
+    public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
 
     @Override
-    public Fragment getItem(int position){
+    public Fragment getItem(int position) {
         return mFragmentList.get(position);
     }
 
     @Override
-    public int getCount(){
+    public int getCount() {
         return mFragmentList.size();
     }
 
@@ -218,7 +216,7 @@ class ViewPagerAdapter extends FragmentPagerAdapter
         return mFragmentTitleList.get(position);
     }
 
-    public void call (View v){
+    public void call(View v) {
 
         contactUsFragment.call(v);
     }
@@ -228,5 +226,6 @@ class ViewPagerAdapter extends FragmentPagerAdapter
         contactUsFragment.mail(v);
 
     }
-
 }
+
+
