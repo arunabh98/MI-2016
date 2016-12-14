@@ -1,5 +1,6 @@
 package com.example.darknight.mi2016;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -21,13 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String miNumberStored;
-
-
-
     int backButtonCount=0;
 
     ContactUsFragment contactUsFragment;
@@ -38,6 +39,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
 
         SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
@@ -69,8 +76,6 @@ public class MainActivity extends AppCompatActivity
         }
         name.setText(NAME);
         email.setText(EMAIL);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override
@@ -160,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-public void call(View v) {
+    public void call (View v){
 
         contactUsFragment.call(v);
     }
@@ -170,6 +175,11 @@ public void call(View v) {
         contactUsFragment.mail(v);
 
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+
 }
-
-
