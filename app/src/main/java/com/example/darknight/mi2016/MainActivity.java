@@ -113,8 +113,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_events) {
 
-        } else if (id == R.id.nav_hospitality) {
-
         } else if (id == R.id.nav_going) {
 
         } else if (id == R.id.nav_schedule) {

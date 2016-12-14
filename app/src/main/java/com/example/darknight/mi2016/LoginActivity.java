@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -91,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         pb.setScaleY(0.7f);
         pb.setScaleX(0.7f);
         pb.setVisibility(View.GONE);
-
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFC107\">" + getString(R.string.app_name) + "</font>"));
         AppEventsLogger.activateApp(this);
         fb_login_button.setReadPermissions("email");
 
@@ -114,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender");
+                parameters.putString("fields", "id,picture");
                 request.setParameters(parameters);
                 request.executeAsync();
 
