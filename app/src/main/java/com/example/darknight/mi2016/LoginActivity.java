@@ -53,6 +53,7 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
     String miNumberStored;
+    Bitmap profilePic;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -69,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
     private String storeUserDetails = "userDetails";
     private String mi_no_text;
     private String contact_no;
-    Bitmap profilePic;
     private int index = 0;
     private String[] userDetailsList = {"NAME", "EMAIL", "MI_NUMBER", "CONTACT", "GENDER", "CITY", "COLLEGE"};
 
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra(userDetailsList[userDetail], prefs.getString(userDetailsList[userDetail], null));
             }
             String propic = prefs.getString("PROFILE_PIC", "");
-            if( !propic.equalsIgnoreCase("") ){
+            if (!propic.equalsIgnoreCase("")) {
                 byte[] b = Base64.decode(propic, Base64.DEFAULT);
                 Bitmap profilePic = BitmapFactory.decodeByteArray(b, 0, b.length);
                 ByteArrayOutputStream _bs = new ByteArrayOutputStream();

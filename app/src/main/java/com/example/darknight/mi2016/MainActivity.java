@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         TextView name = (TextView) header.findViewById(R.id.name);
         TextView email = (TextView) header.findViewById(R.id.email_id);
-        if(getIntent().hasExtra("PROFILE_PIC")) {
+        if (getIntent().hasExtra("PROFILE_PIC")) {
             Bitmap profilePic = BitmapFactory.decodeByteArray(
-                    getIntent().getByteArrayExtra("PROFILE_PIC"),0,getIntent().getByteArrayExtra("PROFILE_PIC").length);
+                    getIntent().getByteArrayExtra("PROFILE_PIC"), 0, getIntent().getByteArrayExtra("PROFILE_PIC").length);
             ImageView profilepic = (ImageView) header.findViewById(R.id.profile_picture);
             profilepic.setImageBitmap(profilePic);
         }
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     } else {
-                        super.onBackPressed();
                         Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
                         backButtonCount++;
                     }
