@@ -59,6 +59,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(map));
         mapFragment.getMapAsync(this);
+        getActivity().setTitle("Map");
         return mapView;
     }
 
