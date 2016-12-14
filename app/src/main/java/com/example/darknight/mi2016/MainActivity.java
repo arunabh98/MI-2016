@@ -1,5 +1,6 @@
 package com.example.darknight.mi2016;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -21,15 +22,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String miNumberStored;
-    int backButtonCount;
+    int backButtonCount=0;
+
+    ContactUsFragment contactUsFragment;
+    FaqsFragment faqsFragment;
+    MapFragment mapFragment;
+    QrCodeFragment qrCodeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
@@ -79,6 +95,7 @@ public class MainActivity extends AppCompatActivity
             } else {
                 if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                     if (backButtonCount >= 1) {
+                        backButtonCount--;
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -98,7 +115,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        FragmentManager manager = getSupportFragmentManager();
 
         if (id == R.id.nav_events) {
 
@@ -107,25 +123,63 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_schedule) {
 
         } else if (id == R.id.nav_faq) {
-            FaqsFragment faqsFragment = new FaqsFragment();
+
+            faqsFragment = new FaqsFragment();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.addToBackStack(null);
-            transaction.add(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
+            transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
             transaction.commit();
+
         } else if (id == R.id.nav_contact) {
 
-        } else if (id == R.id.nav_map) {
-//            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-//            startActivity(intent);
-            MapFragment MapFragment = new MapFragment();
+            contactUsFragment = new ContactUsFragment();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.addToBackStack(null);
-            transaction.add(R.id.relativelayout_for_fragment, MapFragment, MapFragment.getTag());
+            transaction.replace(R.id.relativelayout_for_fragment,contactUsFragment,contactUsFragment.getTag());
             transaction.commit();
+
+        } else if (id == R.id.nav_map) {
+
+            mapFragment= new MapFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+            transaction.commit();
+
+        } else if (id == R.id.nav_qr) {
+
+            qrCodeFragment = new QrCodeFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+            transaction.commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void call (View v){
+
+        contactUsFragment.call(v);
+    }
+
+    public void mail(View v) {
+
+        contactUsFragment.mail(v);
+
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+
 }
