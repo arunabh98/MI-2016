@@ -1,395 +1,402 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:scrollbarStyle="insideInset"
-    android:scrollbars="vertical"
-    android:background="#000000">
-
-
-    <LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?android:attr/actionBarSize">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:background="#000000">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:text="HOSPITALITY & PR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:layout_column="1"
-                android:textAlignment="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textColor="#deb951"
-                android:textSize="25sp"
-                android:id="@+id/textView" />
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="COMPETITIONS AND LYP"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Ishaan Gupta"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738691440"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="ishaan@moodi.org"/>
+                    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center_horizontal">
-                
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp"
-                        android:fontFamily="montserrat"/>
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:text="HOSPITALITY & PR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:layout_column="1"
-                android:textAlignment="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textColor="#deb951"
-                android:textSize="25sp"
-                android:id="@+id/textView" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Pranita Nikam"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-8692955410"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="pranita@moodi.org"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="CREATIVES"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Shinjan Dwivedi"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738720700"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="shinjan@moodi.org"/>
+                    </LinearLayout>
 
-            <TextView
-                android:text="HOSPITALITY & PR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:layout_column="1"
-                android:textAlignment="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textColor="#deb951"
-                android:textSize="25sp"
-                android:id="@+id/textView" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Soham Gaunekar"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738690958"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="soham@moodi.org"/>
+                    </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Surya Pratap Singh"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9920990819"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="surya@moodi.org"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:text="HOSPITALITY & PR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:layout_column="1"
-                android:textAlignment="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textColor="#deb951"
-                android:textSize="25sp"
-                android:id="@+id/textView" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:text="Hemant Phalak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                    <TextView
-                        android:text="+91-9167842573"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingTop="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:text="hemant@moodi.org"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:paddingBottom="5dp"
-                        android:textColor="#deb951"
-                        android:textSize="12sp" />
-
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="FOOD AND BEVERAGES"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Pranay Agarwal"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-8446666961"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="pranay.a@moodi.org"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="HORIZONS"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Aditya Krishnakumar"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7709481685"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="aditya.k@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Kshitij Bajaj"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738731312"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="kshitij@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Tanvi Kataria"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738740156"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="tanvi@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="HOSPITALITY AND PR"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Hemant Phalak"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9167842573"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="hemant@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Sanskar Jain"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9167852061"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="sanskar@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="INFORMALS"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Deep Thakkar"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9967301111"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="deep.t@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Sushil Varma"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-8793218208"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="sushil@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="MARKETING"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Aditya Punekar"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9004513263"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="aditya.p@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Amiya Maitreya"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9819933199"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="amiya@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Aniket Hirde"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9594935614"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="aniket@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="MEDIA AND PUBLICITY"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Ketaki Kakade"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9422354256"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="ketaki@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Yash Dhoble"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9167841223"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="yash@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="PRONITES"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Pranay Jhunjhunwala"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9422354256"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="pranay.j@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Siddhant Gandhi"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9769715122"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="siddhant@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="SERVICES"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Anmol Jain"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-7738747301"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="anmol.j@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Anmol Rawat"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9167848190"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="anmol.r@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="OVERALL COORDINATORS"
+                    />
+                <LinearLayout style="@style/CG_Row">
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Akhil Dhoot"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="akhil@moodi.org"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Anmol Sureka"/>
+                        <TextView
+                            style="@style/CG_Contact"
+                            android:text="+91-9967679334"/>
+                        <TextView
+                            style="@style/CG_Mail"
+                            android:text="anmol@moodi.org"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
