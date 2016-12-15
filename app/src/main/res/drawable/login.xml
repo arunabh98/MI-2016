@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@drawable/background_login" />
+    </item>
+    <item
+        android:bottom="230dp"
+        android:left="80dp"
+        android:right="70dp"
+        android:top="40dp">
+        <bitmap android:src="@drawable/mascot" />
+    </item>
+</layer-list>

@@ -51,6 +51,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -78,6 +79,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         SharedPreferences prefs = getSharedPreferences(storeUserDetails, MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         if (miNumberStored != null) {
