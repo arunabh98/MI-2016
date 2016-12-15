@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -67,10 +71,12 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
-
-        new AlertDialog.Builder(getActivity())
+        final SpannableString message =
+                new SpannableString(rawResult.getText());
+        Linkify.addLinks(message, Linkify.ALL);
+        final AlertDialog scanDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Scanned Message")
-                .setMessage(rawResult.getText())
+                .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -78,8 +84,10 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
                         resumeCamera();
                     }
                 })
-                .create()
-                .show();
+                .create();
+
+        scanDialog.show();
+        ((TextView)scanDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void resumeCamera(){
