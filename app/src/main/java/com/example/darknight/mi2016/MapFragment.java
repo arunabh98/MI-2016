@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,8 +85,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         LatLng sacParking = new LatLng(19.135771, 72.914428);
         LatLng sacBackyard = new LatLng(19.134779, 72.912952);
         LatLng osp = new LatLng(19.135572, 72.914017);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(convocationHall));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
 
         mMap.addMarker(new MarkerOptions().position(convocationHall).title("Convocation Hall"));
         mMap.addMarker(new MarkerOptions().position(lectureHall1).title("Lecture Hall Complex (LCH)"));
@@ -230,9 +227,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                             buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
-                        LatLng convocationHall = new LatLng(19.131973, 72.914285);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(convocationHall));
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
                     }
 
                 } else {
@@ -251,16 +245,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
     @Override
     public void onPause() {
-        super.onPause();
-        SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(map));
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.remove(mapFragment);
-        ft.commit();
 
         //stop location updates when Activity is no longer active
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+        super.onPause();
     }
 }

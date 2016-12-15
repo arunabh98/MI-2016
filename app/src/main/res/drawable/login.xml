@@ -4,10 +4,10 @@
         <bitmap android:src="@drawable/background_login" />
     </item>
     <item
-        android:bottom="230dp"
-        android:left="80dp"
-        android:right="70dp"
-        android:top="60dp">
+        android:bottom="240dp"
+        android:left="90dp"
+        android:right="80dp"
+        android:top="70dp">
         <bitmap android:src="@drawable/mascot" />
     </item>
 </layer-list>

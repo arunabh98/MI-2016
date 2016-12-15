@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String NAME = intent.getStringExtra("NAME");
-        String EMAIL = intent.getStringExtra("EMAIL");
+        String NAME = prefs.getString("NAME", null);
+        String EMAIL = prefs.getString("EMAIL", null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,7 +104,8 @@ public class MainActivity extends AppCompatActivity
                         backButtonCount++;
                     }
                 } else {
-                    getSupportFragmentManager().popBackStack();
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         }
