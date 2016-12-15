@@ -22,6 +22,7 @@
             android:textSize="36sp" />
 
         <ImageView
+            android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,6 +42,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/venue_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_place_black_24dp"
@@ -63,6 +65,7 @@
             android:gravity="end">
 
             <ImageView
+                android:id="@+id/time_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_access_time_black_24dp"
