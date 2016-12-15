@@ -51,9 +51,9 @@
         android:text="Log in with MI Number"
         android:textColor="#000"
         android:textSize="15sp"
-        android:drawableLeft="@drawable/mi_logo"
-        android:paddingLeft="10sp"
-        android:paddingRight="54sp"/>
+        android:drawableStart="@drawable/mi_logo"
+        android:paddingStart="9sp"
+        android:paddingEnd="50sp"/>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="11dp"
         android:paddingBottom="15sp"
         android:paddingTop="15sp"
-        android:paddingLeft="15sp"
+        android:paddingStart="15sp"
         android:textSize="15sp"
         android:textAllCaps="true"
         android:layout_alignParentEnd="true"

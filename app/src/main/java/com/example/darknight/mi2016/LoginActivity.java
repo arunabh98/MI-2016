@@ -189,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         animateElement(mi_no, 300, -1000);
                         mi_no.setText(null);
-                        mi_no.setHint("Enter your Contact No.");
+                        mi_no.setHint("Contact No.");
                         animateElement(mi_no, 300, 1000, 0);
                         index = index + 1;
                     }
@@ -298,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mi_no.getHint().equals("Enter your Contact No.")) {
+        if (mi_no.getHint().equals("Contact No.")) {
             index = 0;
             animateElement(mi_no, 300, 0, 1000);
             mi_no.setText(mi_no_text);
