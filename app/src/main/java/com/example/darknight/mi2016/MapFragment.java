@@ -66,7 +66,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.clear();
         LatLng convocationHall = new LatLng(19.131973, 72.914285);
         LatLng gymkhanaGround = new LatLng(19.134446, 72.912217);
         LatLng lectureHall1 = new LatLng(19.130735, 72.916900);
@@ -104,6 +103,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         mMap.addMarker(new MarkerOptions().position(sacParking).title("SAC Parking Lot"));
         mMap.addMarker(new MarkerOptions().position(sacBackyard).title("SAC Backyard"));
         mMap.addMarker(new MarkerOptions().position(osp).title("Old Swimming Pool"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(convocationHall, 16.5f));
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -190,8 +190,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(getActivity(),
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         })
@@ -201,8 +200,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
             } else {
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
             }
         }
@@ -233,7 +231,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(getActivity(), "permission denied", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Permission Denied!", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
