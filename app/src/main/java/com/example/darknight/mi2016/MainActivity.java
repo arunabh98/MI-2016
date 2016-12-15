@@ -20,6 +20,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
+    MainFragment mainFragment;
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
     SharedPreferences prefs;
@@ -82,12 +85,19 @@ public class MainActivity extends AppCompatActivity
         }
         name.setText(NAME);
         email.setText(EMAIL);
+
+        mainFragment = new MainFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
+        transaction.commit();
+
     }
 
     @Override
     public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (miNumberStored == null) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
@@ -95,7 +105,6 @@ public class MainActivity extends AppCompatActivity
                 overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
             }
         } else {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
@@ -135,62 +144,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_schedule) {
 
         } else if (id == R.id.nav_faq) {
-
-            faqsFragment = new FaqsFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
-            transaction.commit();
-
+            openFaq();
         } else if (id == R.id.nav_contact) {
-
-            contactUsFragment = new ContactUsFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
-            transaction.commit();
-
+            openContactUs();
         } else if (id == R.id.nav_map) {
-
-            mapFragment = new MapFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
-            transaction.commit();
-
+            openMap();
         } else if (id == R.id.nav_qr) {
-
-            qrCodeFragment = new QrCodeFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
-            transaction.commit();
-
+            openQrCode();
         } else if (id == R.id.nav_logout) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Logout")
-                    .setMessage("Are you sure you want to Logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            LoginManager.getInstance().logOut();
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.clear();
-                            editor.apply();
-                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
-                            finish();
-                        }
-
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-
+            logout();
         }
 
 
@@ -216,4 +178,77 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void openEvents() {
+
+    }
+
+    public void openHospitality() {
+
+    }
+
+    public void openGoing() {
+
+    }
+
+    public void openSchedule() {
+
+    }
+
+    public void openFaq() {
+        faqsFragment = new FaqsFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openContactUs() {
+        contactUsFragment = new ContactUsFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openMap() {
+        mapFragment = new MapFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+        transaction.commit();
+    }
+
+    private void openQrCode() {
+        qrCodeFragment = new QrCodeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+        transaction.commit();
+    }
+
+    public void logout() {
+        new AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to Logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LoginManager.getInstance().logOut();
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 }
