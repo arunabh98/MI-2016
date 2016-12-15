@@ -26,7 +26,6 @@ public class EventPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle("Events");
         final View rootView = inflater.inflate(R.layout.fragment_event_page, container, false);
         final ImageButton notification = (ImageButton) rootView.findViewById(R.id.icon_button);
         notification.setOnClickListener(new View.OnClickListener() {

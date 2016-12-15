@@ -1,5 +1,8 @@
 package com.example.darknight.mi2016;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +26,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.login.LoginManager;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,17 +43,23 @@ public class MainActivity extends AppCompatActivity
     MainFragment mainFragment;
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
+        prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String NAME = intent.getStringExtra("NAME");
-        String EMAIL = intent.getStringExtra("EMAIL");
+        String NAME = prefs.getString("NAME", null);
+        String EMAIL = prefs.getString("EMAIL", null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,9 +76,10 @@ public class MainActivity extends AppCompatActivity
         navigationBar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
         TextView name = (TextView) header.findViewById(R.id.name);
         TextView email = (TextView) header.findViewById(R.id.email_id);
-        if (getIntent().hasExtra("PROFILE_PIC")) {
-            Bitmap profilePic = BitmapFactory.decodeByteArray(
-                    getIntent().getByteArrayExtra("PROFILE_PIC"), 0, getIntent().getByteArrayExtra("PROFILE_PIC").length);
+        String encodedProfileImage = prefs.getString("PROFILE_PIC", "");
+        if (!encodedProfileImage.equalsIgnoreCase("")) {
+            byte[] b = Base64.decode(encodedProfileImage, Base64.DEFAULT);
+            Bitmap profilePic = BitmapFactory.decodeByteArray(b, 0, b.length);
             ImageView profilepic = (ImageView) header.findViewById(R.id.profile_picture);
             profilepic.setImageBitmap(profilePic);
         }
@@ -104,7 +120,8 @@ public class MainActivity extends AppCompatActivity
                         backButtonCount++;
                     }
                 } else {
-                    getSupportFragmentManager().popBackStack();
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         }
@@ -116,6 +133,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_events) {
+            EventsFragment eventsFragment = new EventsFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.relativelayout_for_fragment, eventsFragment, eventsFragment.getTag());
+            transaction.commit();
 
         } else if (id == R.id.nav_going) {
 
@@ -129,7 +151,10 @@ public class MainActivity extends AppCompatActivity
             openMap();
         } else if (id == R.id.nav_qr) {
             openQrCode();
+        } else if (id == R.id.nav_logout) {
+            logout();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -145,6 +170,11 @@ public class MainActivity extends AppCompatActivity
 
         contactUsFragment.mail(v);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 
@@ -201,6 +231,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void logout() {
+        new AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to Logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LoginManager.getInstance().logOut();
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                        finish();
+                    }
 
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

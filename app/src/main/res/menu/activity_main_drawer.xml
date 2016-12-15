@@ -30,5 +30,9 @@
             android:id="@+id/nav_qr"
             android:icon="@drawable/ic_menu_camera"
             android:title="QR Code Scanner" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
     </group>
 </menu>
