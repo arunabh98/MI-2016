@@ -1,5 +1,8 @@
 package com.example.darknight.mi2016;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.facebook.login.LoginManager;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -42,6 +48,13 @@ public class MainFragment extends Fragment {
         if (miNumberStored == null) {
             LinearLayout mi_number_present = (LinearLayout) view.findViewById(R.id.mi_number_present);
             mi_number_present.setVisibility(View.INVISIBLE);
+            ImageButton register_now = (ImageButton) view.findViewById(R.id.register_now);
+            register_now.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getActivity().finish();
+                }
+            });
         } else {
             LinearLayout mi_number_absent = (LinearLayout) view.findViewById(R.id.mi_number_absent);
             mi_number_absent.setVisibility(View.INVISIBLE);
@@ -138,6 +151,25 @@ public class MainFragment extends Fragment {
     }
 
     public void logout() {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to Logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LoginManager.getInstance().logOut();
+                        SharedPreferences prefs = getActivity().getSharedPreferences("userDetails", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                        getActivity().finish();
+                    }
 
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

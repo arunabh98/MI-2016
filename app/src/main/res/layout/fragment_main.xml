@@ -21,25 +21,35 @@
                 android:orientation="vertical"
                 android:weightSum="5"
                 android:id="@+id/mi_number_present">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                <com.example.darknight.mi2016.AutoResizeTextView
                     android:layout_weight="2"
-                    android:paddingTop="5dp"
-                    android:textSize="12pt"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:text="Your MI number"/>
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:maxLines="1"
                     android:paddingTop="5dp"
-                    android:textSize="20pt"
-                    android:textStyle="bold"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:id="@+id/mi_number"/>
+                    android:text="Your MI number"
+                    android:textSize="100sp"/>
+                <com.example.darknight.mi2016.AutoResizeTextView
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:paddingTop="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/mi_number"
+                    android:textSize="100sp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:drawableStart="@drawable/vinyl_record"
+                    android:drawableEnd="@drawable/vinyl_record"/>
 
             </LinearLayout>
             <LinearLayout
@@ -48,15 +58,34 @@
                 android:orientation="vertical"
                 android:weightSum="5"
                 android:id="@+id/mi_number_absent">
-                <TextView
+                <com.example.darknight.mi2016.AutoResizeTextView
+                    android:layout_weight="2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:maxLines="1"
                     android:paddingTop="5dp"
-                    android:textSize="12pt"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:text="Experience the awesomeness of Mood Indigo"/>
+                    android:text="Experience the awesomeness of Mood Indigo"
+                    android:textSize="100sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="10">
+                    <ImageButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:id="@+id/register_now"
+                        android:background="@color/black"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/register_now_button"/>
+                </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
