@@ -11,8 +11,8 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -79,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
                 .setFontAttrId(R.attr.fontPath)
@@ -118,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
         pb.setScaleY(0.7f);
         pb.setScaleX(0.7f);
         pb.setVisibility(View.GONE);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFC107\">" + getString(R.string.app_name) + "</font>"));
         AppEventsLogger.activateApp(this);
         fb_login_button.setReadPermissions("email");
 
@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
                                     String profilePicUrl = jsonObject.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    pb.setVisibility(View.VISIBLE);
                                     new getDetails_fb().execute(jsonObject.getString("id"), profilePicUrl);
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -439,6 +440,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            pb.setVisibility(View.GONE);
             LoginActivity.this.startMainActivity_fb();
         }
     }

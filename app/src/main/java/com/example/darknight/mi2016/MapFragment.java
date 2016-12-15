@@ -230,6 +230,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                             buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
+                        LatLng convocationHall = new LatLng(19.131973, 72.914285);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(convocationHall));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
                     }
 
                 } else {

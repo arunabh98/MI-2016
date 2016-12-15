@@ -7,7 +7,7 @@
         android:bottom="230dp"
         android:left="80dp"
         android:right="70dp"
-        android:top="40dp">
+        android:top="60dp">
         <bitmap android:src="@drawable/mascot" />
     </item>
 </layer-list>
