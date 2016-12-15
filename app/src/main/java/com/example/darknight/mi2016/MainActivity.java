@@ -1,6 +1,8 @@
 package com.example.darknight.mi2016;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -15,12 +17,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.login.LoginManager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -29,12 +34,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String miNumberStored;
-    int backButtonCount=0;
+    int backButtonCount = 0;
 
     ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity
                 .build()
         );
 
-        SharedPreferences prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
+        prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
         String NAME = prefs.getString("NAME", null);
@@ -67,9 +73,10 @@ public class MainActivity extends AppCompatActivity
         navigationBar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
         TextView name = (TextView) header.findViewById(R.id.name);
         TextView email = (TextView) header.findViewById(R.id.email_id);
-        if (getIntent().hasExtra("PROFILE_PIC")) {
-            Bitmap profilePic = BitmapFactory.decodeByteArray(
-                    getIntent().getByteArrayExtra("PROFILE_PIC"), 0, getIntent().getByteArrayExtra("PROFILE_PIC").length);
+        String encodedProfileImage = prefs.getString("PROFILE_PIC", "");
+        if (!encodedProfileImage.equalsIgnoreCase("")) {
+            byte[] b = Base64.decode(encodedProfileImage, Base64.DEFAULT);
+            Bitmap profilePic = BitmapFactory.decodeByteArray(b, 0, b.length);
             ImageView profilepic = (ImageView) header.findViewById(R.id.profile_picture);
             profilepic.setImageBitmap(profilePic);
         }
@@ -142,12 +149,12 @@ public class MainActivity extends AppCompatActivity
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment,contactUsFragment,contactUsFragment.getTag());
+            transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
             transaction.commit();
 
         } else if (id == R.id.nav_map) {
 
-            mapFragment= new MapFragment();
+            mapFragment = new MapFragment();
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.addToBackStack(null);
@@ -163,14 +170,36 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
             transaction.commit();
 
+        } else if (id == R.id.nav_logout) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to Logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            LoginManager.getInstance().logOut();
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.clear();
+                            editor.apply();
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void call (View v){
+    public void call(View v) {
 
         contactUsFragment.call(v);
     }
