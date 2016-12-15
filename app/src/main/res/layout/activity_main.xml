@@ -24,36 +24,5 @@
             app:itemIconTint="@color/yellow"
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:orientation="vertical"
-        android:background="@color/black"
-        android:weightSum="6">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5">
-            <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/main_menu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:numColumns="3"
-                android:padding="0dp"
-                android:verticalSpacing="2dp"
-                android:horizontalSpacing="2dp"
-                android:clipChildren="true"
-                android:gravity="center"
-                />
-        </LinearLayout>
-    </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

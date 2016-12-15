@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
 
     ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
+    MainFragment mainFragment;
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
 
@@ -69,39 +70,11 @@ public class MainActivity extends AppCompatActivity
         name.setText(NAME);
         email.setText(EMAIL);
 
-
-        GridView gridview = (GridView) findViewById(R.id.main_menu);
-        gridview.setAdapter(new GridAdapter(this));
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                switch (position){
-                    case 0:
-                        openEvents();
-                        break;
-                    case 1:
-                        openHospitality();
-                        break;
-                    case 2:
-                        openMap();
-                        break;
-                    case 3:
-                        openGoing();
-                        break;
-                    case 4:
-                        openSchedule();
-                        break;
-                    case 5:
-                        openFaq();
-                        break;
-                    case 6:
-                        openContactUs();
-                        break;
-
-                }
-            }
-        });
+        mainFragment = new MainFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
+        transaction.commit();
 
     }
 
