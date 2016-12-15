@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.darknight.mi2016.ServerConnection.GsonModels;
 
@@ -43,7 +44,9 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         GsonModels.Event selectedEvent = eventList.get(position);
-        //TODO: inflate event_list_row
+        holder.eventName.setText(selectedEvent.getTitle());
+        holder.eventVenue.setText(selectedEvent.getLocation());
+        holder.eventTime.setText(String.valueOf(selectedEvent.getTime()));
     }
 
     @Override
@@ -53,8 +56,16 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView eventName;
+        private TextView eventVenue;
+        private TextView eventTime;
+
         public ViewHolder(View itemView) {
             super(itemView);
+
+            eventName = (TextView) itemView.findViewById(R.id.event_name);
+            eventVenue = (TextView) itemView.findViewById(R.id.event_venue);
+            eventTime = (TextView) itemView.findViewById(R.id.event_time);
         }
     }
 

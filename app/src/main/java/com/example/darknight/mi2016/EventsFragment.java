@@ -61,7 +61,6 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
             List<GsonModels.Event> eventResponse = response.body();
-            Toast.makeText(getContext(), "No. of responses : " + eventResponse.size(), Toast.LENGTH_SHORT).show();
             eventsListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
