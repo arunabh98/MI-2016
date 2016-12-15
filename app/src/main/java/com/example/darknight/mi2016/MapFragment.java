@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -248,6 +249,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @Override
     public void onPause() {
         super.onPause();
+        SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(map));
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.remove(mapFragment);
+        ft.commit();
 
         //stop location updates when Activity is no longer active
         if (mGoogleApiClient != null) {
