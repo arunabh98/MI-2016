@@ -113,6 +113,9 @@ public class LoginActivity extends AppCompatActivity {
         fb_login_button = (LoginButton) findViewById(R.id.fb_login_button);
         reg_later_button = (Button) findViewById(R.id.register_later);
         mi_no = (EditText) findViewById(R.id.mi_number_input);
+        mi_login_button.setVisibility(View.VISIBLE);
+        fb_login_button.setVisibility(View.VISIBLE);
+        mi_no.setVisibility(View.GONE);
         submit_button = (Button) findViewById(R.id.login_submit);
         pb = (ProgressBar) findViewById(R.id.progress);
         pb.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.green), PorterDuff.Mode.MULTIPLY);
@@ -173,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                 animateElement(submit_button, 300, 1000, 0);
                 mi_login_button.setVisibility(View.GONE);
                 fb_login_button.setVisibility(View.GONE);
-                mi_no.setHint("Enter your MI Number");
+                mi_no.setHint("MI No. (mi-abc-123)");
             }
         });
 
@@ -302,7 +305,7 @@ public class LoginActivity extends AppCompatActivity {
             index = 0;
             animateElement(mi_no, 300, 0, 1000);
             mi_no.setText(mi_no_text);
-            mi_no.setHint("Enter your MI Number");
+            mi_no.setHint("MI No. (mi-abc-123)");
             animateElement(mi_no, 300, -2000, 0);
         } else if (mi_login_button.getVisibility() == View.GONE) {
             mi_login_button.setVisibility(View.VISIBLE);
