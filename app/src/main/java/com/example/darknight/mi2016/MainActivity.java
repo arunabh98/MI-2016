@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_events) {
+            EventsFragment eventsFragment = new EventsFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.relativelayout_for_fragment, eventsFragment, eventsFragment.getTag());
+            transaction.commit();
 
         } else if (id == R.id.nav_going) {
 
