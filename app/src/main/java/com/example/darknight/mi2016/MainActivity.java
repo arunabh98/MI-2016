@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String miNumberStored;
-    int backButtonCount=0;
+    int backButtonCount = 0;
 
     ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
@@ -66,12 +68,47 @@ public class MainActivity extends AppCompatActivity
         }
         name.setText(NAME);
         email.setText(EMAIL);
+
+
+        GridView gridview = (GridView) findViewById(R.id.main_menu);
+        gridview.setAdapter(new GridAdapter(this));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                switch (position){
+                    case 0:
+                        openEvents();
+                        break;
+                    case 1:
+                        openHospitality();
+                        break;
+                    case 2:
+                        openMap();
+                        break;
+                    case 3:
+                        openGoing();
+                        break;
+                    case 4:
+                        openSchedule();
+                        break;
+                    case 5:
+                        openFaq();
+                        break;
+                    case 6:
+                        openContactUs();
+                        break;
+
+                }
+            }
+        });
+
     }
 
     @Override
     public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (miNumberStored == null) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
@@ -79,7 +116,6 @@ public class MainActivity extends AppCompatActivity
                 overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
             }
         } else {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
@@ -113,41 +149,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_schedule) {
 
         } else if (id == R.id.nav_faq) {
-
-            faqsFragment = new FaqsFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
-            transaction.commit();
-
+            openFaq();
         } else if (id == R.id.nav_contact) {
-
-            contactUsFragment = new ContactUsFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment,contactUsFragment,contactUsFragment.getTag());
-            transaction.commit();
-
+            openContactUs();
         } else if (id == R.id.nav_map) {
-
-            mapFragment= new MapFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
-            transaction.commit();
-
+            openMap();
         } else if (id == R.id.nav_qr) {
-
-            qrCodeFragment = new QrCodeFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
-            transaction.commit();
-
+            openQrCode();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -155,7 +163,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void call (View v){
+    public void call(View v) {
 
         contactUsFragment.call(v);
     }
@@ -166,5 +174,57 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    public void openEvents() {
+
+    }
+
+    public void openHospitality() {
+
+    }
+
+    public void openGoing() {
+
+    }
+
+    public void openSchedule() {
+
+    }
+
+    public void openFaq() {
+        faqsFragment = new FaqsFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openContactUs() {
+        contactUsFragment = new ContactUsFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openMap() {
+        mapFragment = new MapFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+        transaction.commit();
+    }
+
+    private void openQrCode() {
+        qrCodeFragment = new QrCodeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+        transaction.commit();
+    }
 
 }
