@@ -1,14 +1,20 @@
 package com.example.darknight.mi2016;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MainFragment extends Fragment {
 
@@ -29,6 +35,20 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("userDetails", MODE_PRIVATE);
+        String miNumberStored = prefs.getString("MI_NUMBER", null);
+
+        if (miNumberStored == null) {
+            LinearLayout mi_number_present = (LinearLayout) view.findViewById(R.id.mi_number_present);
+            mi_number_present.setVisibility(View.INVISIBLE);
+        } else {
+            LinearLayout mi_number_absent = (LinearLayout) view.findViewById(R.id.mi_number_absent);
+            mi_number_absent.setVisibility(View.INVISIBLE);
+            TextView mi_number = (TextView) view.findViewById(R.id.mi_number);
+            mi_number.setText(miNumberStored);
+        }
+
         GridView gridview = (GridView) view.findViewById(R.id.main_menu);
         gridview.setAdapter(new GridAdapter(getContext()));
 
@@ -57,6 +77,8 @@ public class MainFragment extends Fragment {
                     case 6:
                         openContactUs();
                         break;
+                    case 7:
+                        logout();
 
                 }
             }
@@ -115,4 +137,7 @@ public class MainFragment extends Fragment {
         transaction.commit();
     }
 
+    public void logout() {
+
+    }
 }

@@ -19,12 +19,12 @@ public final class GridAdapter extends BaseAdapter {
         mInflater = LayoutInflater.from(context);
 
         mItems.add(new Item("Events", R.drawable.events));
-        mItems.add(new Item("Hospitality", R.drawable.hospitality));
-        mItems.add(new Item("Map", R.drawable.map));
-        mItems.add(new Item("Going", R.drawable.going));
-        mItems.add(new Item("Schedule", R.drawable.schedule));
-        mItems.add(new Item("FAQ", R.drawable.faq));
-        mItems.add(new Item("Contact Us", R.drawable.contactus));
+        mItems.add(new Item("Hospitality", R.drawable.hospitality_256));
+        mItems.add(new Item("Map", R.drawable.map_256));
+        mItems.add(new Item("Going", R.drawable.going_256));
+        mItems.add(new Item("Schedule", R.drawable.schedule_256));
+        mItems.add(new Item("FAQ", R.drawable.faq_256));
+        mItems.add(new Item("Contact Us", R.drawable.contactus_256));
     }
 
     @Override

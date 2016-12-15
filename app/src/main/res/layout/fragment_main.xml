@@ -12,10 +12,54 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="5"
+                android:id="@+id/mi_number_present">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:paddingTop="5dp"
+                    android:textSize="12pt"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:text="Your MI number"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:paddingTop="5dp"
+                    android:textSize="20pt"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/mi_number"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="5"
+                android:id="@+id/mi_number_absent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:paddingTop="5dp"
+                    android:textSize="12pt"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:text="Experience the awesomeness of Mood Indigo"/>
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
