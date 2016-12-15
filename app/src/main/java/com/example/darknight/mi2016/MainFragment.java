@@ -2,6 +2,8 @@ package com.example.darknight.mi2016;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,31 +36,83 @@ public class MainFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 switch (position){
-//                    case 0:
-//                        openEvents();
-//                        break;
-//                    case 1:
-//                        openHospitality();
-//                        break;
-//                    case 2:
-//                        openMap();
-//                        break;
-//                    case 3:
-//                        openGoing();
-//                        break;
-//                    case 4:
-//                        openSchedule();
-//                        break;
-//                    case 5:
-//                        openFaq();
-//                        break;
-//                    case 6:
-//                        openContactUs();
-//                        break;
+                    case 0:
+                        openEvents();
+                        break;
+                    case 1:
+                        openHospitality();
+                        break;
+                    case 2:
+                        openMap();
+                        break;
+                    case 3:
+                        openGoing();
+                        break;
+                    case 4:
+                        openSchedule();
+                        break;
+                    case 5:
+                        openFaq();
+                        break;
+                    case 6:
+                        openContactUs();
+                        break;
 
                 }
             }
         });
+    }
+
+    public void openEvents() {
+
+    }
+
+    public void openHospitality() {
+
+    }
+
+    public void openGoing() {
+
+    }
+
+    public void openSchedule() {
+
+    }
+
+    public void openFaq() {
+        Fragment faqsFragment = new FaqsFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openContactUs() {
+        Fragment contactUsFragment = new ContactUsFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void openMap() {
+        Fragment mapFragment = new MapFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+        transaction.commit();
+    }
+
+    private void openQrCode() {
+        Fragment qrCodeFragment = new QrCodeFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+        transaction.commit();
     }
 
 }
