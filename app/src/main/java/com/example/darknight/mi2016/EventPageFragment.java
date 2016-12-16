@@ -35,16 +35,13 @@ public class EventPageFragment extends Fragment {
                 TextView time = (TextView) rootView.findViewById(R.id.time);
                 ImageView clockIcon = (ImageView) rootView.findViewById(R.id.clock_icon);
                 ImageView locationIcon = (ImageView) rootView.findViewById(R.id.location_icon);
-                if(eventVenue.getCurrentTextColor()==getResources().getColor(R.color.yellow))
-                {
+                if (eventVenue.getCurrentTextColor() == getResources().getColor(R.color.yellow)) {
                     notification.setImageResource(R.drawable.ic_notifications_none_white_24px);
                     eventVenue.setTextColor(getResources().getColor(R.color.white));
                     time.setTextColor(getResources().getColor(R.color.white));
                     clockIcon.setImageResource(R.drawable.ic_access_time_white_24px);
                     locationIcon.setImageResource(R.drawable.ic_place_white_24px);
-                }
-                else
-                {
+                } else {
                     eventVenue.setTextColor(getResources().getColor(R.color.yellow));
                     time.setTextColor(getResources().getColor(R.color.yellow));
                     clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
@@ -54,7 +51,7 @@ public class EventPageFragment extends Fragment {
 
             }
         });
-     return rootView;
+        return rootView;
 
     }
 }
