@@ -46,13 +46,7 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         getActivity().setTitle("Schedule");
         // Inflate the layout for this fragment
         inflatedView = inflater.inflate(R.layout.fragment_schedule, container, false);
-
-        return inflatedView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+        
         scheduleProgressDialog = new ProgressDialog(getContext());
         scheduleProgressDialog.setIndeterminate(true);
         scheduleProgressDialog.setCancelable(false);
@@ -60,6 +54,13 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         RetrofitInterface scheduleretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
         scheduleretrofitInterface.getEvents().enqueue(this);
         scheduleProgressDialog.show();
+
+        return inflatedView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
