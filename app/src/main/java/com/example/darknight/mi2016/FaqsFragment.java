@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -30,10 +29,10 @@ public class FaqsFragment extends Fragment {
     //{"question":"qn11","answer":"ans11"}];
     //ArrayList<Faq> newUsers = Faq.fromJson(jsonArray);
 
-    ArrayList<Faq> items1 = new ArrayList<>(Arrays.asList(new Faq("Qn1","Ans1"),new Faq("Qn2","Ans2"),new Faq("Qn3","Ans3")));
-    ArrayList<Faq> items2 = new ArrayList<>(Arrays.asList(new Faq("Qn21","Ans21"),new Faq("Qn22","Ans22"),new Faq("Qn23","Ans23")));
-    ArrayList<Faq> items3 = new ArrayList<>(Arrays.asList(new Faq("Qn13","Ans13"),new Faq("Qn23","Ans23"),new Faq("Qn33","Ans33")));
-    ArrayList<Faq> items4 = new ArrayList<>(Arrays.asList(new Faq("Qn14","Ans14"),new Faq("Qn42","Ans42"),new Faq("Qn43","Ans43")));
+    ArrayList<Faq> items1 = new ArrayList<>();
+    ArrayList<Faq> items2 = new ArrayList<>();
+    ArrayList<Faq> items3 = new ArrayList<>();
+    ArrayList<Faq> items4 = new ArrayList<>();
 
     private FragmentTabHost tabHost;
 
@@ -45,9 +44,28 @@ public class FaqsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        //populating items1
+        items1.add(new Faq("Qn11", "Ans11"));
+        items1.add(new Faq("Qn12", "Ans12"));
+        items1.add(new Faq("Qn13", "Ans13"));
+        //populating items2
+        items2.add(new Faq("Qn4", "Ans4"));
+        items2.add(new Faq("Qn11", "Ans11"));
+        items2.add(new Faq("Qn11", "Ans11"));
+        //populating items3
+        items3.add(new Faq("Qn4", "Ans4"));
+        items3.add(new Faq("Qn11", "Ans11"));
+        items3.add(new Faq("Qn11", "Ans11"));
+        //populating items4
+        items4.add(new Faq("Qn4", "Ans4"));
+        items4.add(new Faq("Qn11", "Ans11"));
+        items4.add(new Faq("Qn11", "Ans11"));
+
+        //set title
         getActivity().setTitle("FAQ");
 
+        // Inflate the layout for this fragment
         View inflatedView = inflater.inflate(R.layout.fragment_faqs, container, false);
 
         TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.tabLayout);
@@ -93,16 +111,16 @@ public class FaqsFragment extends Fragment {
 
             switch (position) {
                 case 0:
-                    SingleFaqFragment tab1 = new SingleFaqFragment(getContext(),items1);
+                    SingleFaqFragment tab1 = new SingleFaqFragment(getContext(), items1);
                     return tab1;
                 case 1:
-                    SingleFaqFragment tab2 = new SingleFaqFragment(getContext(),items2);
+                    SingleFaqFragment tab2 = new SingleFaqFragment(getContext(), items2);
                     return tab2;
                 case 2:
-                    SingleFaqFragment tab3 =new SingleFaqFragment(getContext(),items3);
+                    SingleFaqFragment tab3 = new SingleFaqFragment(getContext(), items3);
                     return tab3;
                 case 3:
-                    SingleFaqFragment tab4 =new SingleFaqFragment(getContext(),items4);
+                    SingleFaqFragment tab4 = new SingleFaqFragment(getContext(), items4);
                     return tab4;
                 default:
                     return null;
