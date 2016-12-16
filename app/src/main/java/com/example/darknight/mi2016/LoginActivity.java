@@ -11,8 +11,8 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +51,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mi_login_button;
     private LoginButton fb_login_button;
     private Button reg_later_button;
+    private Button reg_now_button;
     private EditText mi_no;
     private Button submit_button;
     private JSONObject Jobject;
@@ -78,6 +80,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/ProximaNova-Condensed.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         SharedPreferences prefs = getSharedPreferences(storeUserDetails, MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         if (miNumberStored != null) {
@@ -103,14 +113,17 @@ public class LoginActivity extends AppCompatActivity {
         mi_login_button = (Button) findViewById(R.id.mi_login_button);
         fb_login_button = (LoginButton) findViewById(R.id.fb_login_button);
         reg_later_button = (Button) findViewById(R.id.register_later);
+        reg_now_button = (Button) findViewById(R.id.register_now);
         mi_no = (EditText) findViewById(R.id.mi_number_input);
+        mi_login_button.setVisibility(View.VISIBLE);
+        fb_login_button.setVisibility(View.VISIBLE);
+        mi_no.setVisibility(View.GONE);
         submit_button = (Button) findViewById(R.id.login_submit);
         pb = (ProgressBar) findViewById(R.id.progress);
         pb.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.green), PorterDuff.Mode.MULTIPLY);
         pb.setScaleY(0.7f);
         pb.setScaleX(0.7f);
         pb.setVisibility(View.GONE);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFC107\">" + getString(R.string.app_name) + "</font>"));
         AppEventsLogger.activateApp(this);
         fb_login_button.setReadPermissions("email");
 
@@ -127,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject jsonObject, GraphResponse response) {
                                 try {
                                     String profilePicUrl = jsonObject.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    pb.setVisibility(View.VISIBLE);
                                     new getDetails_fb().execute(jsonObject.getString("id"), profilePicUrl);
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -164,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                 animateElement(submit_button, 300, 1000, 0);
                 mi_login_button.setVisibility(View.GONE);
                 fb_login_button.setVisibility(View.GONE);
-                mi_no.setHint("Enter your MI Number");
+                mi_no.setHint("MI No. (mi-abc-123)");
             }
         });
 
@@ -180,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         animateElement(mi_no, 300, -1000);
                         mi_no.setText(null);
-                        mi_no.setHint("Enter your Contact No.");
+                        mi_no.setHint("Contact No.");
                         animateElement(mi_no, 300, 1000, 0);
                         index = index + 1;
                     }
@@ -208,6 +222,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        reg_now_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Uri webpage = Uri.parse("https://moodi.org/#/registration");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -289,11 +312,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mi_no.getHint().equals("Enter your Contact No.")) {
+        if (mi_no.getHint().equals("Contact No.")) {
             index = 0;
             animateElement(mi_no, 300, 0, 1000);
             mi_no.setText(mi_no_text);
-            mi_no.setHint("Enter your MI Number");
+            mi_no.setHint("MI No. (mi-abc-123)");
             animateElement(mi_no, 300, -2000, 0);
         } else if (mi_login_button.getVisibility() == View.GONE) {
             mi_login_button.setVisibility(View.VISIBLE);
@@ -431,6 +454,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            pb.setVisibility(View.GONE);
             LoginActivity.this.startMainActivity_fb();
         }
     }

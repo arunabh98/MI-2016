@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Events");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_events, container, false);
     }
@@ -60,7 +62,6 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
             List<GsonModels.Event> eventResponse = response.body();
-            Toast.makeText(getContext(), "No. of responses : " + eventResponse.size(), Toast.LENGTH_SHORT).show();
             eventsListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
@@ -70,7 +71,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
             eventsRecyclerView.setAdapter(eventsListAdapter);
             eventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         } else {
-            Toast.makeText(getContext(), "Response code" + response.code(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Response code " + response.code(), Toast.LENGTH_SHORT).show();
         }
         progressDialog.dismiss();
     }
@@ -78,5 +79,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     @Override
     public void onFailure(Call<List<GsonModels.Event>> call, Throwable t) {
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
+        Log.d("TAG", "onFailure: " + t.toString());
+        progressDialog.dismiss();
     }
 }

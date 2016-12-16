@@ -1,10 +1,13 @@
 package com.example.darknight.mi2016;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.darknight.mi2016.ServerConnection.GsonModels;
 
@@ -41,9 +44,37 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         GsonModels.Event selectedEvent = eventList.get(position);
-        //TODO: inflate event_list_row
+        holder.eventName.setText(selectedEvent.getTitle());
+        holder.eventVenue.setText(selectedEvent.getLocation());
+        String time = String.valueOf(selectedEvent.getTime());
+        if (time.length() == 3)
+            time = "0" + time;
+        holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2));
+        holder.bookmarkIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.eventName.getCurrentTextColor() == Color.parseColor("#FFFFFF")) {
+                    holder.eventName.setTextColor(Color.parseColor("#FFC107"));
+                    holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
+                    holder.eventTime.setTextColor(Color.parseColor("#FFC107"));
+                    holder.venueIcon.setColorFilter(Color.parseColor("#FFC107"));
+                    holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
+                    holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
+                    holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
+                } else {
+                    holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
+                    holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
+                    holder.eventTime.setTextColor(Color.parseColor("#FFFFFF"));
+                    holder.venueIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                    holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                    holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                    holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_none_black_48dp);
+                }
+                //TODO: Add/remove from going list
+            }
+        });
     }
 
     @Override
@@ -53,9 +84,22 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView eventName;
+        private TextView eventVenue;
+        private TextView eventTime;
+        private ImageView venueIcon;
+        private ImageView timeIcon;
+        private ImageView bookmarkIcon;
+
         public ViewHolder(View itemView) {
             super(itemView);
+
+            eventName = (TextView) itemView.findViewById(R.id.event_name);
+            eventVenue = (TextView) itemView.findViewById(R.id.event_venue);
+            eventTime = (TextView) itemView.findViewById(R.id.event_time);
+            venueIcon = (ImageView) itemView.findViewById(R.id.venue_icon);
+            timeIcon = (ImageView) itemView.findViewById(R.id.time_icon);
+            bookmarkIcon = (ImageView) itemView.findViewById(R.id.bookmark);
         }
     }
-
 }

@@ -16,10 +16,10 @@ public class GsonModels {
         private String description;
         private String location;
         private String map_loc;
-        private ArrayList<Boolean> day;
-        private String time;
+        private Day day;
+        private int time;
 
-        public Event(String _id, String category, String title, String short_des, String description, String location, String map_loc, ArrayList<Boolean> day, String time) {
+        public Event(String _id, String category, String title, String short_des, String description, String location, String map_loc, Day day, int time) {
             this._id = _id;
             this.category = category;
             this.title = title;
@@ -87,20 +87,75 @@ public class GsonModels {
             this.map_loc = map_loc;
         }
 
-        public ArrayList<Boolean> getDay() {
+        public Day getDay() {
             return day;
         }
 
-        public void setDay(ArrayList<Boolean> day) {
+        public void setDay(Day day) {
             this.day = day;
         }
 
-        public String getTime() {
+        public int getTime() {
             return time;
         }
 
-        public void setTime(String time) {
+        public void setTime(int time) {
             this.time = time;
+        }
+    }
+    public class Day {
+        private Boolean _0;
+        private Boolean _1;
+        private Boolean _2;
+        private Boolean _3;
+        private Boolean _4;
+
+        public Day(Boolean _0, Boolean _1, Boolean _2, Boolean _3, Boolean _4) {
+            this._0 = _0;
+            this._1 = _1;
+            this._2 = _2;
+            this._3 = _3;
+            this._4 = _4;
+        }
+
+        public Boolean get_0() {
+            return _0;
+        }
+
+        public void set_0(Boolean _0) {
+            this._0 = _0;
+        }
+
+        public Boolean get_1() {
+            return _1;
+        }
+
+        public void set_1(Boolean _1) {
+            this._1 = _1;
+        }
+
+        public Boolean get_2() {
+            return _2;
+        }
+
+        public void set_2(Boolean _2) {
+            this._2 = _2;
+        }
+
+        public Boolean get_3() {
+            return _3;
+        }
+
+        public void set_3(Boolean _3) {
+            this._3 = _3;
+        }
+
+        public Boolean get_4() {
+            return _4;
+        }
+
+        public void set_4(Boolean _4) {
+            this._4 = _4;
         }
     }
     public class Genre {

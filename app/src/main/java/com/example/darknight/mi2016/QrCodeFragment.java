@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -36,8 +39,6 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("QR Fragment","QR code scanner started");
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.CAMERA)
@@ -50,15 +51,13 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
         View qrcodeview = inflater.inflate(R.layout.fragment_qrcode, container, false);
 
         mScannerView = (ZXingScannerView) qrcodeview.findViewById(R.id.scanner_view);
-
-        Log.d("QR Fragment","View Found");
+        getActivity().setTitle("QR Code Scanner");
         return qrcodeview;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("QR Fragment","Resuming");
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
     }
@@ -66,19 +65,18 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("QR Fragment","Pausing");
         mScannerView.stopCamera();           // Stop camera on pause
     }
 
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
-        Log.v("SCAN", rawResult.getText()); // Prints scan results
-        Log.v("SCAN", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
-
-        new AlertDialog.Builder(getActivity())
+        final SpannableString message =
+                new SpannableString(rawResult.getText());
+        Linkify.addLinks(message, Linkify.ALL);
+        final AlertDialog scanDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Scanned Message")
-                .setMessage(rawResult.getText())
+                .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -86,8 +84,10 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
                         resumeCamera();
                     }
                 })
-                .create()
-                .show();
+                .create();
+
+        scanDialog.show();
+        ((TextView)scanDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void resumeCamera(){

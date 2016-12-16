@@ -3,7 +3,7 @@
     <string name="facebook_app_id">1243571392349731</string>
     <string name="fb_login_protocol_scheme">fb1243571392349731</string>
     <string name="register_later">Register later</string>
-    <string name="com_facebook_loginview_log_out_button">Log in with Facebook</string>
+    <string name="com_facebook_loginview_log_out_button">LOG IN WITH FACEBOOK</string>
     <string name="question1">Lorem Ipsum is simply dummy text of the printing and typesetting industry?</string>
     <string name="question2">Lorem Ipsum is simply dummy text of the printing and typesetting industry?</string>
     <string name="answer1">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
@@ -18,7 +18,4 @@
     <string name="time">Time</string>
     <string name="event_info">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of letrashet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Adlus Pagemaker including versions of Lorem Ipsum.</string>
     <string name="title_activity_maps">Map</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
