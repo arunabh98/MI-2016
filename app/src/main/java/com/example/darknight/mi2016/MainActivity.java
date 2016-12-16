@@ -20,8 +20,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -179,10 +177,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void openEvents() {
-
-    }
-
-    public void openHospitality() {
 
     }
 

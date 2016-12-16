@@ -31,7 +31,7 @@
                     android:paddingRight="2dp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:text="Your MI number"
+                    android:text="MI Number"
                     android:textSize="100sp"/>
                 <com.example.darknight.mi2016.AutoResizeTextView
                     android:layout_weight="3"

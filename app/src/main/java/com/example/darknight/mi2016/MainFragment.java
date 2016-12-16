@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,10 +72,10 @@ public class MainFragment extends Fragment {
                         openEvents();
                         break;
                     case 1:
-                        openHospitality();
+                        openMap();
                         break;
                     case 2:
-                        openMap();
+                        openQRCode();
                         break;
                     case 3:
                         openGoing();
@@ -99,10 +98,21 @@ public class MainFragment extends Fragment {
     }
 
     public void openEvents() {
+        EventsFragment eventsFragment = new EventsFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.relativelayout_for_fragment, eventsFragment, eventsFragment.getTag());
+        transaction.commit();
 
     }
 
-    public void openHospitality() {
+    public void openQRCode() {
+        QrCodeFragment qrCodeFragment = new QrCodeFragment();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+        transaction.commit();
 
     }
 
