@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     String miNumberStored;
     int backButtonCount = 0;
 
-    ContactUsFragment contactUsFragment;
+    public ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
     MainFragment mainFragment;
     MapFragment mapFragment;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-
+        contactUsFragment = new ContactUsFragment();
         prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
-                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) == mainFragment) {
                     if (backButtonCount >= 1) {
                         backButtonCount--;
                         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -118,8 +119,13 @@ public class MainActivity extends AppCompatActivity
                         backButtonCount++;
                     }
                 } else {
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    backButtonCount = 0;
+                    mainFragment = new MainFragment();
+                    FragmentManager manager = this.getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                    transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
+                    transaction.commit();
                 }
             }
         }
@@ -144,7 +150,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_faq) {
             openFaq();
         } else if (id == R.id.nav_contact) {
-            openContactUs();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+            transaction.commit();
         } else if (id == R.id.nav_map) {
             openMap();
         } else if (id == R.id.nav_qr) {
@@ -159,15 +169,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void call(View v) {
 
+    public void openContactUs() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+        transaction.commit();
+    }
+
+    public void call(View v) {
         contactUsFragment.call(v);
     }
 
     public void mail(View v) {
-
         contactUsFragment.mail(v);
-
     }
 
     @Override
@@ -194,15 +211,6 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
         transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
-        transaction.commit();
-    }
-
-    public void openContactUs() {
-        contactUsFragment = new ContactUsFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
         transaction.commit();
     }
 

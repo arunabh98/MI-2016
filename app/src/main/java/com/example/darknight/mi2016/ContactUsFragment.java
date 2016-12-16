@@ -28,17 +28,15 @@ public class ContactUsFragment extends Fragment {
         return contactview;
     }
 
-    public void call(View v){
-
-        String uri = "tel:" + ((TextView)v).getText();
+    public void call(View v) {
+        String uri = "tel:" + ((TextView) v).getText();
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
     }
 
-    public void mail(View v){
-
-        String[] email = new String[]{(String)((TextView)v).getText()};
+    public void mail(View v) {
+        String[] email = new String[]{(String) ((TextView) v).getText()};
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, email);

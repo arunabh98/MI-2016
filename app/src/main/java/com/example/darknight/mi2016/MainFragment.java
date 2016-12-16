@@ -67,7 +67,7 @@ public class MainFragment extends Fragment {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         openEvents();
                         break;
@@ -122,8 +122,7 @@ public class MainFragment extends Fragment {
     }
 
     public void openContactUs() {
-        Fragment contactUsFragment = new ContactUsFragment();
-        openFragment(contactUsFragment);
+        ((MainActivity) getActivity()).openContactUs();
     }
 
     public void openMap() {
