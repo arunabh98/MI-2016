@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.darknight.mi2016.faqs.TabView">
+    tools:context="com.example.darknight.mi2016.SingleFaqFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/singlefaqlist"
+        android:background="@color/black">
+
+    </ListView>
 
 </FrameLayout>
