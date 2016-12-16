@@ -99,20 +99,12 @@ public class MainFragment extends Fragment {
 
     public void openEvents() {
         EventsFragment eventsFragment = new EventsFragment();
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.relativelayout_for_fragment, eventsFragment, eventsFragment.getTag());
-        transaction.commit();
-
+        openFragment(eventsFragment);
     }
 
     public void openQRCode() {
         QrCodeFragment qrCodeFragment = new QrCodeFragment();
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
-        transaction.commit();
+        openFragment(qrCodeFragment);
 
     }
 
@@ -126,37 +118,25 @@ public class MainFragment extends Fragment {
 
     public void openFaq() {
         Fragment faqsFragment = new FaqsFragment();
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, faqsFragment, faqsFragment.getTag());
-        transaction.commit();
+        openFragment(faqsFragment);
     }
 
     public void openContactUs() {
         Fragment contactUsFragment = new ContactUsFragment();
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
-        transaction.commit();
+        openFragment(contactUsFragment);
     }
 
     public void openMap() {
         Fragment mapFragment = new MapFragment();
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
-        transaction.commit();
+        openFragment(mapFragment);
     }
 
-    private void openQrCode() {
-        Fragment qrCodeFragment = new QrCodeFragment();
+    public void openFragment(Fragment fragment) {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, qrCodeFragment, qrCodeFragment.getTag());
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag());
         transaction.commit();
     }
 
