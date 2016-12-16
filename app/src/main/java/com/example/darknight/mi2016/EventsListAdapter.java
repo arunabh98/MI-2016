@@ -2,12 +2,10 @@ package com.example.darknight.mi2016;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,11 +48,14 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         GsonModels.Event selectedEvent = eventList.get(position);
         holder.eventName.setText(selectedEvent.getTitle());
         holder.eventVenue.setText(selectedEvent.getLocation());
-        holder.eventTime.setText(String.valueOf(selectedEvent.getTime()));
+        String time = String.valueOf(selectedEvent.getTime());
+        if (time.length() == 3)
+            time = "0" + time;
+        holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2));
         holder.bookmarkIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.eventName.getCurrentTextColor() == Color.parseColor("#FFFFFF")) {
+                if (holder.eventName.getCurrentTextColor() == Color.parseColor("#FFFFFF")) {
                     holder.eventName.setTextColor(Color.parseColor("#FFC107"));
                     holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
                     holder.eventTime.setTextColor(Color.parseColor("#FFC107"));

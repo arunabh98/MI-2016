@@ -71,7 +71,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
             eventsRecyclerView.setAdapter(eventsListAdapter);
             eventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         } else {
-            Toast.makeText(getContext(), "Response code" + response.code(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Response code " + response.code(), Toast.LENGTH_SHORT).show();
         }
         progressDialog.dismiss();
     }
