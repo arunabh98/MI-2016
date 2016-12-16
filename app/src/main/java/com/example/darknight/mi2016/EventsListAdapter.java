@@ -45,7 +45,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        GsonModels.Event selectedEvent = eventList.get(position);
+        final GsonModels.Event selectedEvent = eventList.get(position);
         holder.eventName.setText(selectedEvent.getTitle());
         holder.eventVenue.setText(selectedEvent.getLocation());
         String time = String.valueOf(selectedEvent.getTime());
@@ -63,6 +63,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
+                    BookmarkedEvents.addToGoingList(selectedEvent);
                 } else {
                     holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
                     holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
@@ -71,8 +72,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                     holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                     holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_none_black_48dp);
+                    BookmarkedEvents.removeFromGoingList(selectedEvent);
                 }
-                //TODO: Add/remove from going list
             }
         });
     }

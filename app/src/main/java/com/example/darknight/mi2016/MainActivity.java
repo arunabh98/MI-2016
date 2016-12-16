@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.nav_going) {
+            GoingFragment goingFragment = new GoingFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+            transaction.commit();
 
         } else if (id == R.id.nav_schedule) {
 
