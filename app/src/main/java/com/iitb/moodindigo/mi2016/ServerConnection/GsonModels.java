@@ -90,6 +90,8 @@ public class GsonModels {
             return day;
         }
 
+        public String getActualDay() { return day.getSaneDateBecauseWebValonNeHagDiya(); }
+
         public void setDay(Day day) {
             this.day = day;
         }
@@ -165,6 +167,21 @@ public class GsonModels {
 
         public void set_4(Boolean _4) {
             this._4 = _4;
+        }
+
+        public String getSaneDateBecauseWebValonNeHagDiya() {
+            if (get_0()){
+                return "0";
+            } else if (get_1()) {
+                return "1";
+            } else if (get_2()) {
+                return "2";
+            } else if (get_3()) {
+                return "3";
+            } else if (get_4()) {
+                return "4";
+            } else
+                return "invalid";
         }
 
         @Override
