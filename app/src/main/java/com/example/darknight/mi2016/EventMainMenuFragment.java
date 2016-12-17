@@ -34,6 +34,8 @@ public class EventMainMenuFragment extends Fragment {
         final Button competitions = (Button) getActivity().findViewById(R.id.competitions);
         competitions.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                CompiFragment compiFragment = new CompiFragment();
+                openFragment(compiFragment);
             }
         });
 
