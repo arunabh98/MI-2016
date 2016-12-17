@@ -182,10 +182,10 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         day4List = mergeSort(day4List);
 
         TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Day1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day4"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day 4"));
         final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.scheduleViewPager);
 
         viewPager.setAdapter(new ScheduleFragment.PagerAdapter
