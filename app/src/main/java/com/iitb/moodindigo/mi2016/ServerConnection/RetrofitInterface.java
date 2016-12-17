@@ -8,7 +8,4 @@ import retrofit2.http.GET;
 public interface RetrofitInterface {
     @GET("/api/mi")
     Call<List<GsonModels.Event>> getEvents();
-
-    @GET("/")
-    Call<GsonModels.GenreResponse> getGenres();
 }
