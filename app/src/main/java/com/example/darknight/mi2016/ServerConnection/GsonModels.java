@@ -1,6 +1,5 @@
 package com.example.darknight.mi2016.ServerConnection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,6 +101,16 @@ public class GsonModels {
         public void setTime(int time) {
             this.time = time;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if(obj instanceof Event) {
+                Event event = (Event) obj;
+                if (title.equals(event.title) && day.equals(event.day) && time == event.time)
+                    return true;
+            }
+            return false;
+        }
     }
     public class Day {
         private Boolean _0;
@@ -156,6 +165,16 @@ public class GsonModels {
 
         public void set_4(Boolean _4) {
             this._4 = _4;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if(obj instanceof Day) {
+                Day day = (Day) obj;
+                if(_0 == day._0 && _1 == day._1 && _2 == day._2 && _3 == day._3 && _4 == day._4)
+                    return true;
+            }
+            return false;
         }
     }
     public class Genre {
