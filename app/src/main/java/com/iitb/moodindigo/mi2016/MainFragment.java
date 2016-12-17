@@ -69,37 +69,29 @@ public class MainFragment extends Fragment {
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        openEvents();
-                        break;
-                    case 1:
-                        openMap();
-                        break;
-                    case 2:
-                        openQRCode();
-                        break;
-                    case 3:
-                        openGoing();
-                        break;
-                    case 4:
                         openSchedule();
                         break;
-                    case 5:
+                    case 1:
+                        openGoing();
+                        break;
+                    case 2:
+                        openMap();
+                        break;
+                    case 3:
+                        openQRCode();
+                        break;
+                    case 4:
                         openFaq();
                         break;
-                    case 6:
+                    case 5:
                         openContactUs();
                         break;
-                    case 7:
+                    case 6:
                         logout();
 
                 }
             }
         });
-    }
-
-    public void openEvents() {
-        EventMainMenuFragment eventMainMenuFragment = new EventMainMenuFragment();
-        openFragment(eventMainMenuFragment);
     }
 
     public void openQRCode() {

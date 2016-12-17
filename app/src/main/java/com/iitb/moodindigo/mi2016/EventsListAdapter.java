@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
 import java.util.List;

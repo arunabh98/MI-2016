@@ -15,17 +15,19 @@
             android:id="@+id/event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event Name"
+            android:text="Event Names"
+            android:paddingTop="10dp"
             android:textColor="#FFFFFF"
-            android:textSize="28sp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_notifications_none_black_48dp"
-            android:tint="#FFFFFF" />
+            android:tint="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp" />
     </RelativeLayout>
 
 
@@ -52,7 +54,8 @@
                 android:paddingStart="8dp"
                 android:text="Venue"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="15sp"
+                android:textAlignment="viewStart" />
         </LinearLayout>
 
         <ImageView
@@ -72,7 +75,8 @@
             android:layout_marginStart="32dp"
             android:text="Time"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="15sp"
+            android:layout_alignParentTop="true" />
     </RelativeLayout>
 
     <View

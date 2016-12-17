@@ -39,6 +39,7 @@ public class GoingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("Going");
         return inflater.inflate(R.layout.fragment_going, container, false);
     }
 

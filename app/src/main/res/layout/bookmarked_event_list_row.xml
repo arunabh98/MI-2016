@@ -13,8 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event Name"
+        android:paddingStart="20dp"
+        android:paddingBottom="10dp"
         android:textColor="#FFFFFF"
-        android:textSize="28sp" />
+        android:textSize="20sp" />
 
 
     <RelativeLayout
@@ -30,6 +32,7 @@
                 android:id="@+id/venue_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="20dp"
                 android:src="@drawable/ic_place_black_24dp"
                 android:tint="#FFFFFF" />
 
@@ -40,7 +43,7 @@
                 android:paddingStart="8dp"
                 android:text="Venue"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <ImageView
@@ -48,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="128dp"
+            android:layout_marginEnd="100dp"
             android:src="@drawable/ic_access_time_black_24dp"
             android:tint="#FFFFFF" />
 
@@ -57,10 +60,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/time_icon"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="30dp"
             android:text="Time"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <View

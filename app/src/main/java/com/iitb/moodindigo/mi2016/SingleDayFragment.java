@@ -4,6 +4,8 @@ package com.iitb.moodindigo.mi2016;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,7 +30,7 @@ public class SingleDayFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public SingleDayFragment(Context context, List<GsonModels.Event> eventResponse){
+    public SingleDayFragment(Context context, List<GsonModels.Event> eventResponse) {
         this.eventResponse = eventResponse;
     }
 
@@ -41,7 +43,13 @@ public class SingleDayFragment extends Fragment {
         scheduleListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                //TODO: Launch Event Page
+                Fragment eventPageFragment = new EventPageFragment(getContext(), eventResponse.get(position));
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
+                transaction.commit();
             }
         });
         scheduleRecyclerView.setAdapter(scheduleListAdapter);

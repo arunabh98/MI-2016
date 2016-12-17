@@ -136,9 +136,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_events) {
-            openEvents();
-        } else if (id == R.id.nav_going) {
+        if (id == R.id.nav_going) {
             openGoing();
         } else if (id == R.id.nav_schedule) {
             openSchedule();
@@ -180,15 +178,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-
-    public void openEvents() {
-        EventMainMenuFragment eventsMainMenuFragment = new EventMainMenuFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.relativelayout_for_fragment, eventsMainMenuFragment, eventsMainMenuFragment.getTag());
-        transaction.commit();
     }
 
     public void openGoing() {
