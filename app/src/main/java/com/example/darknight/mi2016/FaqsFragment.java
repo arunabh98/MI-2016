@@ -20,15 +20,6 @@ import java.util.ArrayList;
  */
 public class FaqsFragment extends Fragment {
 
-    //Gson gson = new Gson();
-    //String list = gson.fromJson([{"question":"qn1.1","answer":"ans1.1"},{"question":"qn1.2","answer":"ans1.2"}]);
-
-    //JSONArray jsonArray = new JSONArray();
-
-    //jsonArray.put({"question":"qn11","answer":"ans11"})
-    //{"question":"qn11","answer":"ans11"}];
-    //ArrayList<Faq> newUsers = Faq.fromJson(jsonArray);
-
     ArrayList<Faq> items1 = new ArrayList<>();
     ArrayList<Faq> items2 = new ArrayList<>();
     ArrayList<Faq> items3 = new ArrayList<>();
