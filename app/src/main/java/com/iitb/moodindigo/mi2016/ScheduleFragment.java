@@ -18,6 +18,7 @@ import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.iitb.moodindigo.mi2016.ServerConnection.RetrofitInterface;
 import com.iitb.moodindigo.mi2016.ServerConnection.ServiceGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +33,10 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
 
     private ProgressDialog scheduleProgressDialog;
     private View inflatedView;
+    private List<GsonModels.Event> day1List = new ArrayList<>();
+    private List<GsonModels.Event> day2List = new ArrayList<>();
+    private List<GsonModels.Event> day3List = new ArrayList<>();
+    private List<GsonModels.Event> day4List = new ArrayList<>();
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -85,6 +90,20 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
     }
 
     public void inflateTabs(List<GsonModels.Event> eventList) {
+        for (GsonModels.Event event : eventList) {
+            if (event.getDay().get_1()) {
+                day1List.add(event);
+            }
+            if (event.getDay().get_2()) {
+                day2List.add(event);
+            }
+            if (event.getDay().get_3()) {
+                day3List.add(event);
+            }
+            if (event.getDay().get_4()) {
+                day4List.add(event);
+            }
+        }
         TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Day1"));
         tabLayout.addTab(tabLayout.newTab().setText("Day2"));
@@ -126,16 +145,16 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
 
             switch (position) {
                 case 0:
-                    SingleDayFragment tab1 = new SingleDayFragment(getContext(), Cache.getEventList());
+                    SingleDayFragment tab1 = new SingleDayFragment(getContext(), day1List);
                     return tab1;
                 case 1:
-                    SingleDayFragment tab2 = new SingleDayFragment(getContext(), Cache.getEventList());
+                    SingleDayFragment tab2 = new SingleDayFragment(getContext(), day2List);
                     return tab2;
                 case 2:
-                    SingleDayFragment tab3 = new SingleDayFragment(getContext(), Cache.getEventList());
+                    SingleDayFragment tab3 = new SingleDayFragment(getContext(), day3List);
                     return tab3;
                 case 3:
-                    SingleDayFragment tab4 = new SingleDayFragment(getContext(), Cache.getEventList());
+                    SingleDayFragment tab4 = new SingleDayFragment(getContext(), day4List);
                     return tab4;
                 default:
                     return null;

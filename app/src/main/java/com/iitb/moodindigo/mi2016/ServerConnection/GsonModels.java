@@ -1,5 +1,7 @@
 package com.iitb.moodindigo.mi2016.ServerConnection;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -113,10 +115,15 @@ public class GsonModels {
         }
     }
     public class Day {
+        @SerializedName("0")
         private Boolean _0;
+        @SerializedName("1")
         private Boolean _1;
+        @SerializedName("2")
         private Boolean _2;
+        @SerializedName("3")
         private Boolean _3;
+        @SerializedName("4")
         private Boolean _4;
 
         public Day(Boolean _0, Boolean _1, Boolean _2, Boolean _3, Boolean _4) {
