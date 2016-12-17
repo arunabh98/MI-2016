@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
         transaction.commit();
 
+        NotificationEventReceiver.setupAlarm(getApplicationContext());
     }
 
     @Override
@@ -136,34 +137,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_events) {
-            EventMainMenuFragment eventsMainMenuFragment = new EventMainMenuFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.relativelayout_for_fragment, eventsMainMenuFragment, eventsMainMenuFragment.getTag());
-            transaction.commit();
-
+            openEvents();
         } else if (id == R.id.nav_going) {
-            GoingFragment goingFragment = new GoingFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
-            transaction.commit();
-
+            openGoing();
         } else if (id == R.id.nav_schedule) {
-            ScheduleFragment scheduleFragment = new ScheduleFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
-            transaction.commit();
+            openSchedule();
         } else if (id == R.id.nav_faq) {
             openFaq();
         } else if (id == R.id.nav_contact) {
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
-            transaction.commit();
+            openContactUs();
         } else if (id == R.id.nav_map) {
             openMap();
         } else if (id == R.id.nav_qr) {
@@ -183,7 +165,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
         transaction.commit();
     }
@@ -203,15 +184,28 @@ public class MainActivity extends AppCompatActivity
 
 
     public void openEvents() {
-
+        EventMainMenuFragment eventsMainMenuFragment = new EventMainMenuFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.relativelayout_for_fragment, eventsMainMenuFragment, eventsMainMenuFragment.getTag());
+        transaction.commit();
     }
 
     public void openGoing() {
-
+        GoingFragment goingFragment = new GoingFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+        transaction.commit();
     }
 
     public void openSchedule() {
-
+        ScheduleFragment scheduleFragment = new ScheduleFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+        transaction.commit();
     }
 
     public void openFaq() {
