@@ -2,6 +2,10 @@ package com.iitb.moodindigo.mi2016.ServerConnection;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +22,7 @@ public class GsonModels {
         private String location;
         private String map_loc;
         private Day day;
+        private Date date;
         private int time;
 
         public Event(String _id, String category, String title, String short_des, String description, String location, String map_loc, Day day, int time) {
@@ -92,7 +97,21 @@ public class GsonModels {
             return day;
         }
 
-        public String getActualDay() { return day.getSaneDateBecauseWebValonNeHagDiya(); }
+        public Date getDate() {
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time = String.valueOf(getTime());
+            if (time.length() == 3)
+                time = "0" + time;
+            try {
+                date = dateFormat.parse("2016-12-" + String.valueOf(22 + getActualDay()) + " " + time.substring(0,2) + ":" + time.substring(2,4) + ":00");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return date;
+        }
+
+        public Integer getActualDay() { return day.getSaneDateBecauseWebValonNeHagDiya(); }
 
         public void setDay(Day day) {
             this.day = day;
@@ -182,19 +201,19 @@ public class GsonModels {
             this._4 = _4;
         }
 
-        public String getSaneDateBecauseWebValonNeHagDiya() {
-            if (get_0()){
-                return "0";
-            } else if (get_1()) {
-                return "1";
-            } else if (get_2()) {
-                return "2";
-            } else if (get_3()) {
-                return "3";
-            } else if (get_4()) {
-                return "4";
+        public Integer getSaneDateBecauseWebValonNeHagDiya() {
+            if (get_0() != null && get_0()){
+                return 0;
+            } else if (get_1() != null && get_1()) {
+                return 1;
+            } else if (get_2() != null && get_2()) {
+                return 2;
+            } else if (get_3() != null && get_3()) {
+                return 3;
+            } else if (get_4() != null && get_4()) {
+                return 4;
             } else
-                return "invalid";
+                return -1;
         }
 
         @Override
