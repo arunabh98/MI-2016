@@ -5,9 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class NotificationIntentService extends IntentService {
 
@@ -54,12 +58,15 @@ public class NotificationIntentService extends IntentService {
     private void processStartNotification() {
         // Do something. For example, fetch fresh data from backend to create a rich notification?
 
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Scheduled Notification")
                 .setAutoCancel(true)
                 .setColor(getResources().getColor(R.color.colorAccent))
-                .setContentText("This notification has been triggered by Notification Service")
-                .setSmallIcon(R.drawable.app_icon);
+                .setContentText("Time is: " + currentDateTimeString)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.notification_logo))
+                .setSmallIcon(R.drawable.notification_logo);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 NOTIFICATION_ID,
