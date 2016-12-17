@@ -8,10 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by sajalnarang on 26/11/16.
- */
-
 public class GsonModels {
     public class Event {
         private String _id;
@@ -224,30 +220,6 @@ public class GsonModels {
                     return true;
             }
             return false;
-        }
-    }
-    public class Genre {
-        private String name;
-        private String iconUrl;
-
-        public String getIconUrl() {
-            return iconUrl;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
-    public class GenreResponse {
-        private int count;
-        private List<Genre> genreList;
-
-        public int getCount() {
-            return count;
-        }
-
-        public List<Genre> getGenreList() {
-            return genreList;
         }
     }
 }
