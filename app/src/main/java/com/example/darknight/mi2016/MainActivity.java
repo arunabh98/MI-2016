@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
         transaction.commit();
 
+        NotificationEventReceiver.setupAlarm(getApplicationContext());
     }
 
     @Override
