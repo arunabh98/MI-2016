@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.darknight.mi2016.SquareImageView
+    <com.iitb.moodindigo.mi2016.SquareImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
