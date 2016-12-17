@@ -30,6 +30,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.appindexing.Action;
@@ -292,6 +293,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {
+                LoginManager.getInstance().logOut();
                 Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
