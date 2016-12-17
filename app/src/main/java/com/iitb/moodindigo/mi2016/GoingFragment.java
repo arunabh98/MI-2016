@@ -45,15 +45,15 @@ public class GoingFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         goingSharedPreferences = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE);
-        String goingList = goingSharedPreferences.getString("GOING_LIST", null);
+        final String goingList = goingSharedPreferences.getString("GOING_LIST", null);
         Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
-        final List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
-        BookmarkedEvents.setGoingEventsList(goingListGson);
+        List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
+        Cache.setGoingEventsList(goingListGson);
         goingRecyclerView = (RecyclerView) getActivity().findViewById(R.id.going_events_list);
-        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(goingListGson, new ItemCLickListener() {
+        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(Cache.getGoingEventsList(), new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Fragment eventPageFragment = new EventPageFragment(getContext(), goingListGson.get(position));
+                Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getGoingEventsList().get(position));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.addToBackStack(null);

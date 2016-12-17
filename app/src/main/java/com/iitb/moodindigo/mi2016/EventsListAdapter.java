@@ -72,7 +72,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
-                    BookmarkedEvents.addToGoingList(selectedEvent);
+                    Cache.addToGoingList(selectedEvent);
                 } else {
                     holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
                     holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
@@ -81,9 +81,9 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                     holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                     holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_none_black_48dp);
-                    BookmarkedEvents.removeFromGoingList(selectedEvent);
+                    Cache.removeFromGoingList(selectedEvent);
                 }
-                String goingEventsListJson = (new Gson()).toJson(BookmarkedEvents.getGoingEventsList());
+                String goingEventsListJson = (new Gson()).toJson(Cache.getGoingEventsList());
                 Log.d("TAG", goingEventsListJson);
                 goingSharedPreferencesEditor.putString("GOING_LIST", goingEventsListJson);
                 goingSharedPreferencesEditor.apply();
@@ -118,7 +118,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                 holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                 holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                 holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_none_black_48dp);
-                BookmarkedEvents.removeFromGoingList(selectedEvent);
+                Cache.removeFromGoingList(selectedEvent);
             }
         }
     }

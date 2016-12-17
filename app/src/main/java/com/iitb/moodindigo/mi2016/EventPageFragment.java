@@ -20,7 +20,8 @@ import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import static com.iitb.moodindigo.mi2016.BookmarkedEvents.removeFromGoingList;
+import static com.iitb.moodindigo.mi2016.Cache.addToGoingList;
+import static com.iitb.moodindigo.mi2016.Cache.removeFromGoingList;
 
 
 /**
@@ -58,6 +59,7 @@ public class EventPageFragment extends Fragment {
         final TextView description = (TextView) rootView.findViewById(R.id.description);
         final TextView title = (TextView) rootView.findViewById(R.id.event_name);
         final TextView genre = (TextView) rootView.findViewById(R.id.genre_name);
+        goingSharedPreferencesEditor = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE).edit();
         title.setText(event.getTitle());
         String timeString = String.valueOf(event.getTime());
         if (timeString.length() == 3)
@@ -78,27 +80,22 @@ public class EventPageFragment extends Fragment {
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (goingListGson == null) {
-                    ;
+                if (eventVenue.getCurrentTextColor() != getResources().getColor(R.color.yellow)) {
+                    eventVenue.setTextColor(getResources().getColor(R.color.yellow));
+                    time.setTextColor(getResources().getColor(R.color.yellow));
+                    clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
+                    locationIcon.setImageResource(R.drawable.ic_place_yellow_24px);
+                    notification.setImageResource(R.drawable.ic_notifications_white_24px);
+                    Cache.addToGoingList(event);
                 } else {
-                    if (goingListGson.contains(event)) {
-                        notification.setImageResource(R.drawable.ic_notifications_none_white_24px);
-                        eventVenue.setTextColor(getResources().getColor(R.color.white));
-                        time.setTextColor(getResources().getColor(R.color.white));
-                        clockIcon.setImageResource(R.drawable.ic_access_time_white_24px);
-                        locationIcon.setImageResource(R.drawable.ic_place_white_24px);
-                        BookmarkedEvents.removeFromGoingList(event);
-                    } else {
-                        eventVenue.setTextColor(getResources().getColor(R.color.yellow));
-                        time.setTextColor(getResources().getColor(R.color.yellow));
-                        clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
-                        locationIcon.setImageResource(R.drawable.ic_place_yellow_24px);
-                        notification.setImageResource(R.drawable.ic_notifications_white_24px);
-                        BookmarkedEvents.addToGoingList(event);
-                    }
+                    notification.setImageResource(R.drawable.ic_notifications_none_white_24px);
+                    eventVenue.setTextColor(getResources().getColor(R.color.white));
+                    time.setTextColor(getResources().getColor(R.color.white));
+                    clockIcon.setImageResource(R.drawable.ic_access_time_white_24px);
+                    locationIcon.setImageResource(R.drawable.ic_place_white_24px);
+                    Cache.removeFromGoingList(event);
                 }
-                goingSharedPreferencesEditor = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE).edit();
-                String goingEventsListJson = (new Gson()).toJson(BookmarkedEvents.getGoingEventsList());
+                String goingEventsListJson = (new Gson()).toJson(Cache.getGoingEventsList());
                 goingSharedPreferencesEditor.putString("GOING_LIST", goingEventsListJson);
                 goingSharedPreferencesEditor.apply();
             }

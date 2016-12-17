@@ -1,6 +1,6 @@
 package com.iitb.moodindigo.mi2016.ServerConnection;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by sajalnarang on 26/11/16.
@@ -111,12 +111,23 @@ public class GsonModels {
             }
             return false;
         }
+
+        public boolean compareByTime(Event event) {
+            if(time < event.time)
+                return true;
+            return false;
+        }
     }
     public class Day {
+        @SerializedName("0")
         private Boolean _0;
+        @SerializedName("1")
         private Boolean _1;
+        @SerializedName("2")
         private Boolean _2;
+        @SerializedName("3")
         private Boolean _3;
+        @SerializedName("4")
         private Boolean _4;
 
         public Day(Boolean _0, Boolean _1, Boolean _2, Boolean _3, Boolean _4) {
@@ -175,30 +186,6 @@ public class GsonModels {
                     return true;
             }
             return false;
-        }
-    }
-    public class Genre {
-        private String name;
-        private String iconUrl;
-
-        public String getIconUrl() {
-            return iconUrl;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
-    public class GenreResponse {
-        private int count;
-        private List<Genre> genreList;
-
-        public int getCount() {
-            return count;
-        }
-
-        public List<Genre> getGenreList() {
-            return genreList;
         }
     }
 }
