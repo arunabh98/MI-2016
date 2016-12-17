@@ -51,23 +51,20 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     public void onStart() {
         super.onStart();
         eventsRecyclerView = (RecyclerView) getActivity().findViewById(R.id.event_list);
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Requesting Details");
-        RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
-        retrofitInterface.getEvents().enqueue(this);
-        progressDialog.show();
-    }
-
-    @Override
-    public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
-        if (response.isSuccessful()) {
-            final List<GsonModels.Event> eventResponse = response.body();
-            eventsListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
+        if(Cache.isSendEventRequest()) {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Requesting Details");
+            RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
+            retrofitInterface.getEvents().enqueue(this);
+            progressDialog.show();
+        }
+        else {
+            eventsListAdapter = new EventsListAdapter(Cache.getEventList(), new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
-                    Fragment eventPageFragment = new EventPageFragment(getContext(), eventResponse.get(position));
+                    Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getEventList().get(position));
                     FragmentManager manager = getActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
                     transaction.addToBackStack(null);
@@ -78,6 +75,28 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
             });
             eventsRecyclerView.setAdapter(eventsListAdapter);
             eventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+    }
+
+    @Override
+    public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
+        if (response.isSuccessful()) {
+            Cache.setEventList(response.body());
+            eventsListAdapter = new EventsListAdapter(Cache.getEventList(), new ItemCLickListener() {
+                @Override
+                public void onItemClick(View v, int position) {
+                    Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getEventList().get(position));
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.addToBackStack(null);
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                    transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
+                    transaction.commit();
+                }
+            });
+            eventsRecyclerView.setAdapter(eventsListAdapter);
+            eventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            Cache.setSendEventRequest(false);
         } else {
             Toast.makeText(getContext(), "Response code " + response.code(), Toast.LENGTH_SHORT).show();
         }

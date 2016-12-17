@@ -47,9 +47,9 @@ public class GoingFragment extends Fragment {
         String goingList = goingSharedPreferences.getString("GOING_LIST", null);
         Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
         List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
-        BookmarkedEvents.setGoingEventsList(goingListGson);
+        Cache.setGoingEventsList(goingListGson);
         goingRecyclerView = (RecyclerView) getActivity().findViewById(R.id.going_events_list);
-        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(BookmarkedEvents.getGoingEventsList(), new ItemCLickListener() {
+        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(Cache.getGoingEventsList(), new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 //TODO: Launch event description page
