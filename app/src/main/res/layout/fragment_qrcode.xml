@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.darknight.mi2016.QrCodeFragment">
+    tools:context="com.iitb.moodindigo.mi2016.QrCodeFragment">
 
     <TextView android:text="Point to a QR Sticker to scan"
         android:layout_width="match_parent"

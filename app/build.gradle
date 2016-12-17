@@ -20,7 +20,7 @@ android {
 }
 
 ext {
-    supportLibVersion = '25.0.1'
+    supportLibVersion = '25.1.0'
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.4.1'
     picassoVersion = '2.5.2'
@@ -50,6 +50,5 @@ dependencies {
     compile "me.dm7.barcodescanner:zxing:${zxingVersion}"
     compile "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    compile 'com.android.support:support-v4:25.0.1'
     testCompile 'junit:junit:4.12'
 }

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.darknight.mi2016.MapFragment">
+    tools:context="com.iitb.moodindigo.mi2016.MapFragment">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +10,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.darknight.mi2016.MapsActivity" />
+        tools:context="com.iitb.moodindigo.mi2016.MapsActivity" />
 
 
 </FrameLayout>

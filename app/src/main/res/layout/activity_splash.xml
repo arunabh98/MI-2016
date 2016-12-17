@@ -9,6 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/splash_page"
-    tools:context="com.example.darknight.mi2016.SplashActivity">
+    tools:context="com.iitb.moodindigo.mi2016.SplashActivity">
 
 </RelativeLayout>

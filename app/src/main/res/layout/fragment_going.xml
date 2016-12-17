@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.darknight.mi2016.GoingFragment">
+    tools:context="com.iitb.moodindigo.mi2016.GoingFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/going_events_list"
