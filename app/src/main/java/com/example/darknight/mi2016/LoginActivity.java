@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mi_login_button;
     private LoginButton fb_login_button;
     private Button reg_later_button;
+    private Button reg_now_button;
     private EditText mi_no;
     private Button submit_button;
     private JSONObject Jobject;
@@ -113,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         mi_login_button = (Button) findViewById(R.id.mi_login_button);
         fb_login_button = (LoginButton) findViewById(R.id.fb_login_button);
         reg_later_button = (Button) findViewById(R.id.register_later);
+        reg_now_button = (Button) findViewById(R.id.register_now);
         mi_no = (EditText) findViewById(R.id.mi_number_input);
         mi_login_button.setVisibility(View.VISIBLE);
         fb_login_button.setVisibility(View.VISIBLE);
@@ -221,6 +223,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        reg_now_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Uri webpage = Uri.parse("https://moodi.org/#/registration");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();

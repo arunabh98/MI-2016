@@ -6,7 +6,7 @@
     android:layout_marginTop="?android:attr/actionBarSize">
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/scheduleTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
@@ -15,7 +15,7 @@
         android:background="@color/black"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/scheduleViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/black"/>

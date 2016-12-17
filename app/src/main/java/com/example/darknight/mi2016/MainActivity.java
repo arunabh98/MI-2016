@@ -18,7 +18,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -144,9 +143,19 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.nav_going) {
+            GoingFragment goingFragment = new GoingFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+            transaction.commit();
 
         } else if (id == R.id.nav_schedule) {
-
+            ScheduleFragment scheduleFragment = new ScheduleFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+            transaction.commit();
         } else if (id == R.id.nav_faq) {
             openFaq();
         } else if (id == R.id.nav_contact) {

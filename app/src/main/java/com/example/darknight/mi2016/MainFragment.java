@@ -113,7 +113,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openSchedule() {
-
+        ScheduleFragment scheduleFragment = new ScheduleFragment();
+        openFragment(scheduleFragment);
     }
 
     public void openFaq() {
