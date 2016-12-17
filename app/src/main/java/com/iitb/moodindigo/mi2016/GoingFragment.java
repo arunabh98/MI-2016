@@ -5,15 +5,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -41,21 +43,31 @@ public class GoingFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         goingSharedPreferences = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE);
         String goingList = goingSharedPreferences.getString("GOING_LIST", null);
         Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
-        List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
+        final List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         BookmarkedEvents.setGoingEventsList(goingListGson);
         goingRecyclerView = (RecyclerView) getActivity().findViewById(R.id.going_events_list);
-        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(BookmarkedEvents.getGoingEventsList(), new ItemCLickListener() {
+        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(goingListGson, new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                //TODO: Launch event description page
+                Fragment eventPageFragment = new EventPageFragment(getContext(), goingListGson.get(position));
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
+                transaction.commit();
             }
         });
-        goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
         goingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }
