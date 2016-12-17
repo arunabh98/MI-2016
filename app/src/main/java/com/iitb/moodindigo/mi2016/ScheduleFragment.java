@@ -31,7 +31,6 @@ import retrofit2.Response;
 public class ScheduleFragment extends Fragment implements Callback<List<GsonModels.Event>> {
 
     private ProgressDialog scheduleProgressDialog;
-    private List<GsonModels.Event> eventResponse;
     private View inflatedView;
 
     public ScheduleFragment() {
@@ -47,14 +46,17 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         // Inflate the layout for this fragment
         inflatedView = inflater.inflate(R.layout.fragment_schedule, container, false);
 
-        scheduleProgressDialog = new ProgressDialog(getContext());
-        scheduleProgressDialog.setIndeterminate(true);
-        scheduleProgressDialog.setCancelable(false);
-        scheduleProgressDialog.setMessage("Requesting Details");
-        RetrofitInterface scheduleretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
-        scheduleretrofitInterface.getEvents().enqueue(this);
-        scheduleProgressDialog.show();
-
+        if (Cache.isSendEventRequest()) {
+            scheduleProgressDialog = new ProgressDialog(getContext());
+            scheduleProgressDialog.setIndeterminate(true);
+            scheduleProgressDialog.setCancelable(false);
+            scheduleProgressDialog.setMessage("Requesting Details");
+            RetrofitInterface scheduleretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
+            scheduleretrofitInterface.getEvents().enqueue(this);
+            scheduleProgressDialog.show();
+        } else {
+            inflateTabs(Cache.getEventList());
+        }
         return inflatedView;
     }
 
@@ -66,33 +68,9 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
     @Override
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
-            eventResponse = response.body();
-            TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
-            tabLayout.addTab(tabLayout.newTab().setText("Day1"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day2"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day3"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day4"));
-            final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.scheduleViewPager);
-
-            viewPager.setAdapter(new ScheduleFragment.PagerAdapter
-                    (getFragmentManager(), tabLayout.getTabCount()));
-            viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    viewPager.setCurrentItem(tab.getPosition());
-                }
-
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-
-                }
-
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
-
-                }
-            });
+            Cache.setEventList(response.body());
+            inflateTabs(Cache.getEventList());
+            Cache.setSendEventRequest(false);
         } else {
             Toast.makeText(getContext(), "Response code " + response.code(), Toast.LENGTH_SHORT).show();
         }
@@ -104,6 +82,35 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
         Log.d("TAG", "onFailure: " + t.toString());
         scheduleProgressDialog.dismiss();
+    }
+
+    public void inflateTabs(List<GsonModels.Event> eventList) {
+        TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Day1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day4"));
+        final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.scheduleViewPager);
+
+        viewPager.setAdapter(new ScheduleFragment.PagerAdapter
+                (getFragmentManager(), tabLayout.getTabCount()));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -119,16 +126,16 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
 
             switch (position) {
                 case 0:
-                    SingleDayFragment tab1 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleDayFragment tab1 = new SingleDayFragment(getContext(), Cache.getEventList());
                     return tab1;
                 case 1:
-                    SingleDayFragment tab2 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleDayFragment tab2 = new SingleDayFragment(getContext(), Cache.getEventList());
                     return tab2;
                 case 2:
-                    SingleDayFragment tab3 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleDayFragment tab3 = new SingleDayFragment(getContext(), Cache.getEventList());
                     return tab3;
                 case 3:
-                    SingleDayFragment tab4 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleDayFragment tab4 = new SingleDayFragment(getContext(), Cache.getEventList());
                     return tab4;
                 default:
                     return null;

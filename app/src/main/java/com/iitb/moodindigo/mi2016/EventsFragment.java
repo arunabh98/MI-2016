@@ -51,7 +51,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     public void onStart() {
         super.onStart();
         eventsRecyclerView = (RecyclerView) getActivity().findViewById(R.id.event_list);
-        if(Cache.isSendEventRequest()) {
+        if (Cache.isSendEventRequest()) {
             progressDialog = new ProgressDialog(getContext());
             progressDialog.setIndeterminate(true);
             progressDialog.setCancelable(false);
@@ -59,8 +59,7 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
             RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
             retrofitInterface.getEvents().enqueue(this);
             progressDialog.show();
-        }
-        else {
+        } else {
             eventsListAdapter = new EventsListAdapter(Cache.getEventList(), new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
