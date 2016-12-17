@@ -98,8 +98,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openEvents() {
-        EventsFragment eventsFragment = new EventsFragment();
-        openFragment(eventsFragment);
+        EventMainMenuFragment eventMainMenuFragment = new EventMainMenuFragment();
+        openFragment(eventMainMenuFragment);
     }
 
     public void openQRCode() {
@@ -109,7 +109,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openGoing() {
-
+        GoingFragment goingFragment = new GoingFragment();
+        openFragment(goingFragment);
     }
 
     public void openSchedule() {

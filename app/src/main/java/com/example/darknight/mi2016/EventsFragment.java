@@ -4,6 +4,8 @@ package com.example.darknight.mi2016;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -61,11 +63,17 @@ public class EventsFragment extends Fragment implements Callback<List<GsonModels
     @Override
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
-            List<GsonModels.Event> eventResponse = response.body();
+            final List<GsonModels.Event> eventResponse = response.body();
             eventsListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
                 @Override
                 public void onItemClick(View v, int position) {
-                    //TODO: Launch Event Page
+                    Fragment eventPageFragment = new EventPageFragment(getContext(), eventResponse.get(position));
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.addToBackStack(null);
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                    transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
+                    transaction.commit();
                 }
             });
             eventsRecyclerView.setAdapter(eventsListAdapter);
