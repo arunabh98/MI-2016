@@ -83,7 +83,7 @@ public class NotificationIntentService extends IntentService {
             for (int i = 0; i < goingListGson.size(); i++) {
                 GsonModels.Event event = goingListGson.get(i);
                 Log.d("nihal111", "Minutes left: " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES));
-                if (getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) <= 15) { //Change this to 15*10000 for testing
+                if (getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) <= 30) { // Change this to 30*10000 for testing
                     NOTIFICATION_ID = (int) Long.parseLong(event.get_id().substring(6,11), 16);
                     Log.d("nihal111", "notification ID= " + NOTIFICATION_ID);
                     final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
