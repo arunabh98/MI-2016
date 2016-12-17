@@ -54,7 +54,12 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        if (eventList == null) {
+            return 0;
+        }
+        else {
+            return eventList.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

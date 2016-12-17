@@ -20,6 +20,8 @@ import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import static com.iitb.moodindigo.mi2016.BookmarkedEvents.removeFromGoingList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,7 +99,6 @@ public class EventPageFragment extends Fragment {
                 }
                 goingSharedPreferencesEditor = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE).edit();
                 String goingEventsListJson = (new Gson()).toJson(BookmarkedEvents.getGoingEventsList());
-                Log.d("TAG", goingEventsListJson);
                 goingSharedPreferencesEditor.putString("GOING_LIST", goingEventsListJson);
                 goingSharedPreferencesEditor.apply();
             }
