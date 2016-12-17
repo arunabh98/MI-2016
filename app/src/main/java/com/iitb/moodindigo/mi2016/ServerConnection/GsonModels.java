@@ -113,6 +113,12 @@ public class GsonModels {
             }
             return false;
         }
+
+        public boolean compareByTime(Event event) {
+            if(time < event.time)
+                return true;
+            return false;
+        }
     }
     public class Day {
         @SerializedName("0")
