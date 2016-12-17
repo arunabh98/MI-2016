@@ -29,6 +29,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
     private ItemCLickListener itemCLickListener;
     private SharedPreferences.Editor goingSharedPreferencesEditor;
     private SharedPreferences goingPreferences;
+    private boolean clicked;
 
     public EventsListAdapter(List<GsonModels.Event> eventList, ItemCLickListener itemCLickListener) {
         this.eventList = eventList;
@@ -103,6 +104,21 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                 holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
                 holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
                 holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
+            }
+        }
+
+        if (holder.eventName.getCurrentTextColor() == Color.parseColor("#FFC107")) {
+            if (goingListGson.contains(selectedEvent)) {
+                ;
+            } else {
+                holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
+                holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
+                holder.eventTime.setTextColor(Color.parseColor("#FFFFFF"));
+                holder.venueIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_none_black_48dp);
+                BookmarkedEvents.removeFromGoingList(selectedEvent);
             }
         }
     }
