@@ -28,53 +28,51 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScheduleFragment extends Fragment implements Callback<List<GsonModels.Event>> {
+public class CompiFragment extends Fragment implements Callback<List<GsonModels.Event>> {
 
-    private ProgressDialog scheduleProgressDialog;
-    private List<GsonModels.Event> eventResponse;
+
+    private ProgressDialog compiProgressDialog;
+    private List<GsonModels.Event> compiResponse;
     private View inflatedView;
 
-    public ScheduleFragment() {
+    public CompiFragment() {
         // Required empty public constructor
-
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Schedule");
+        getActivity().setTitle("Competitions");
         // Inflate the layout for this fragment
-        inflatedView = inflater.inflate(R.layout.fragment_schedule, container, false);
+        inflatedView = inflater.inflate(R.layout.fragment_compi, container, false);
 
-        scheduleProgressDialog = new ProgressDialog(getContext());
-        scheduleProgressDialog.setIndeterminate(true);
-        scheduleProgressDialog.setCancelable(false);
-        scheduleProgressDialog.setMessage("Requesting Details");
-        RetrofitInterface scheduleretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
-        scheduleretrofitInterface.getEvents().enqueue(this);
-        scheduleProgressDialog.show();
+        compiProgressDialog = new ProgressDialog(getContext());
+        compiProgressDialog.setIndeterminate(true);
+        compiProgressDialog.setCancelable(false);
+        compiProgressDialog.setMessage("Requesting Details");
+        RetrofitInterface compiretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
+        compiretrofitInterface.getEvents().enqueue(this);
+        compiProgressDialog.show();
 
         return inflatedView;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
-            eventResponse = response.body();
-            TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
-            tabLayout.addTab(tabLayout.newTab().setText("Day1"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day2"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day3"));
-            tabLayout.addTab(tabLayout.newTab().setText("Day4"));
-            final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.scheduleViewPager);
+            compiResponse = response.body();
+            TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.compiTabLayout);
+            tabLayout.addTab(tabLayout.newTab().setText("Dance"));
+            tabLayout.addTab(tabLayout.newTab().setText("Dramatics"));
+            tabLayout.addTab(tabLayout.newTab().setText("Music"));
+            tabLayout.addTab(tabLayout.newTab().setText("Speaking Arts"));
+            tabLayout.addTab(tabLayout.newTab().setText("Literary Arts"));
+            tabLayout.addTab(tabLayout.newTab().setText("Fine Arts"));
+            tabLayout.addTab(tabLayout.newTab().setText("Miscellaneous"));
+            final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.compiViewPager);
 
-            viewPager.setAdapter(new ScheduleFragment.PagerAdapter
+            viewPager.setAdapter(new CompiFragment.PagerAdapter
                     (getFragmentManager(), tabLayout.getTabCount()));
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -96,14 +94,14 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         } else {
             Toast.makeText(getContext(), "Response code " + response.code(), Toast.LENGTH_SHORT).show();
         }
-        scheduleProgressDialog.dismiss();
+        compiProgressDialog.dismiss();
     }
 
     @Override
     public void onFailure(Call<List<GsonModels.Event>> call, Throwable t) {
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
         Log.d("TAG", "onFailure: " + t.toString());
-        scheduleProgressDialog.dismiss();
+        compiProgressDialog.dismiss();
     }
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -119,17 +117,26 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
 
             switch (position) {
                 case 0:
-                    SingleDayFragment tab1 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleCompiFragment tab1 = new SingleCompiFragment(getContext(), compiResponse);
                     return tab1;
                 case 1:
-                    SingleDayFragment tab2 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleCompiFragment tab2 = new SingleCompiFragment(getContext(), compiResponse);
                     return tab2;
                 case 2:
-                    SingleDayFragment tab3 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleCompiFragment tab3 = new SingleCompiFragment(getContext(), compiResponse);
                     return tab3;
                 case 3:
-                    SingleDayFragment tab4 = new SingleDayFragment(getContext(), eventResponse);
+                    SingleCompiFragment tab4 = new SingleCompiFragment(getContext(), compiResponse);
                     return tab4;
+                case 4:
+                    SingleCompiFragment tab5 = new SingleCompiFragment(getContext(), compiResponse);
+                    return tab5;
+                case 5:
+                    SingleCompiFragment tab6 = new SingleCompiFragment(getContext(), compiResponse);
+                    return tab6;
+                case 6:
+                    SingleCompiFragment tab7 = new SingleCompiFragment(getContext(), compiResponse);
+                    return tab7;
                 default:
                     return null;
             }
@@ -140,4 +147,5 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
             return mNumOfTabs;
         }
     }
+
 }
