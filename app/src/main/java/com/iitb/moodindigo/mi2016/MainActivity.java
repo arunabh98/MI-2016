@@ -135,14 +135,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_events) {
-            EventMainMenuFragment eventsMainMenuFragment = new EventMainMenuFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.relativelayout_for_fragment, eventsMainMenuFragment, eventsMainMenuFragment.getTag());
-            transaction.commit();
-
-        } else if (id == R.id.nav_going) {
+        if (id == R.id.nav_going) {
             GoingFragment goingFragment = new GoingFragment();
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
