@@ -50,5 +50,6 @@ dependencies {
     compile "me.dm7.barcodescanner:zxing:${zxingVersion}"
     compile "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.android.support:support-v4:25.1.0'
     testCompile 'junit:junit:4.12'
 }
