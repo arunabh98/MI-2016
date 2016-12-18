@@ -47,7 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="113dp"
-        android:layout_marginEnd="11dp">
+        android:layout_marginEnd="11dp"
+        fab:menu_fab_label="Search"
+        fab:menu_colorNormal="@color/black"
+        fab:menu_colorPressed="@color/colorGray">
         <!--moment.end()-->
 
         <com.github.clans.fab.FloatingActionButton
@@ -57,7 +60,7 @@
             fab:fab_colorNormal="@color/black"
             fab:fab_colorPressed="@color/colorGray"
             fab:fab_size="mini"
-            fab:menu_fab_label="Events" />
+            fab:fab_label="Events" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_eateries"
@@ -66,16 +69,17 @@
             fab:fab_colorNormal="@color/black"
             fab:fab_colorPressed="@color/colorGray"
             fab:fab_size="mini"
-            fab:menu_fab_label="Eateries" />
+            fab:fab_label="Eateries" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_accomodation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_accomodation"
             fab:fab_colorNormal="@color/black"
             fab:fab_colorPressed="@color/colorGray"
             fab:fab_size="mini"
-            fab:menu_fab_label="Accomodation" />
+            fab:fab_label="Accomodation" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_toilets"
@@ -84,15 +88,8 @@
             fab:fab_colorNormal="@color/black"
             fab:fab_colorPressed="@color/colorGray"
             fab:fab_size="mini"
-            fab:menu_fab_label="Toilets" />
+            fab:fab_label="Toilets" />
 
     </com.github.clans.fab.FloatingActionMenu>
-
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--  floating action menu with buttons -->
-    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

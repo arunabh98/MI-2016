@@ -21,10 +21,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +60,7 @@ import static com.iitb.moodindigo.mi2016.R.id.map;
  * A simple {@link Fragment} subclass.
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleMap.OnCameraMoveListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener, Callback<GsonModels.DistanceMatrix> {
+        GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener, Callback<GsonModels.DistanceMatrix>, View.OnClickListener {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final String GOOGLE_API_KEY = "AIzaSyBXDe7lj28A5q8uYwy9uMb3xGielAqsWTE";
@@ -80,6 +78,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     private TextView titleTextView;
     private TextView distanceTextView;
     private TextView timeTextView;
+    private FloatingActionMenu fabMenu;
+    private com.github.clans.fab.FloatingActionButton fabEvents;
+    private com.github.clans.fab.FloatingActionButton fabEateries;
+    private com.github.clans.fab.FloatingActionButton fabAccomodation;
+    private com.github.clans.fab.FloatingActionButton fabToilets;
+    private List<Place> eventList = new ArrayList<>();
+    private List<Place> eateriesList = new ArrayList<>();
+    private List<Place> accomodationList = new ArrayList<>();
+    private List<Place> toiletList = new ArrayList<>();
 
     public MapFragment() {
         // Required empty public constructor
@@ -119,24 +126,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
             }
         });
-        final FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.frame_layout);
-        final FloatingActionMenu fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
+        fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
         fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!fabMenu.isOpened()) {
-                    frameLayout.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            fabMenu.toggle(true);
-                            frameLayout.setOnTouchListener(null);
-                            return true;
-                        }
-                    });
-                }
                 fabMenu.toggle(true);
             }
         });
+        fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
+        fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
+        fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
+        fabToilets = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_toilets);
+
+        fabEvents.setOnClickListener(this);
+        fabEateries.setOnClickListener(this);
+        fabAccomodation.setOnClickListener(this);
+        fabToilets.setOnClickListener(this);
+
         directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,6 +189,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                if(fabMenu.isOpened()) {
+                    fabMenu.toggle(true);
+                }
+            }
+        });
+
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             checkLocationPermission();
         } else {
@@ -192,90 +207,65 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
         directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
 
-        LatLng convocationHall = new LatLng(19.131973, 72.914285);
-        LatLng gymkhanaGround = new LatLng(19.134446, 72.912217);
-        LatLng lectureHall1 = new LatLng(19.130735, 72.916900);
-        LatLng som = new LatLng(19.131651, 72.915758);
-        LatLng ncc = new LatLng(19.133572, 72.913399);
-        LatLng sac = new LatLng(19.135422, 72.913674);
-        LatLng fck = new LatLng(19.130480, 72.915724);
-        LatLng nsp = new LatLng(19.135574, 72.912930);
-        LatLng kv = new LatLng(19.129113, 72.918408);
-        LatLng LTPCSA = new LatLng(19.132348, 72.915785);
-        LatLng openAirTheatre = new LatLng(19.135045, 72.913401);
-        LatLng mbLawns = new LatLng(19.132635, 72.915716);
-        LatLng ppl = new LatLng(19.130005, 72.916704);
-        LatLng h10TPoint = new LatLng(19.129574, 72.915394);
-        LatLng pcsaBackLawns = new LatLng(19.132030, 72.915920);
-        LatLng sacParking = new LatLng(19.135771, 72.914428);
-        LatLng sacBackyard = new LatLng(19.134779, 72.912952);
-        LatLng osp = new LatLng(19.135572, 72.914017);
+        toiletList.add(new Place(new LatLng(19.12541, 72.909201), "Near Padmavati Devi Temple"));
+        toiletList.add(new Place(new LatLng(19.125455, 72.916304), "Main Gate"));
+        toiletList.add(new Place(new LatLng(19.130289, 72.915922), "Kresit Building T1"));
+        toiletList.add(new Place(new LatLng(19.130688, 72.915843), "Kresit Building T2"));
+        toiletList.add(new Place(new LatLng(19.130476, 72.916369), "LCH T1"));
+        toiletList.add(new Place(new LatLng(19.130973, 72.91634), "LCH T2"));
+        toiletList.add(new Place(new LatLng(19.130968, 72.916986), "LCH T3"));
+        toiletList.add(new Place(new LatLng(19.130571, 72.917032), "LCH T4"));
+        toiletList.add(new Place(new LatLng(19.130214, 72.916565), "Physics Department"));
+        toiletList.add(new Place(new LatLng(19.130281, 72.917738), "Chemistry Department"));
+        toiletList.add(new Place(new LatLng(19.130565, 72.917287), "LCH T5"));
+        toiletList.add(new Place(new LatLng(19.131034, 72.917275), "LCH T6"));
+        toiletList.add(new Place(new LatLng(19.131168, 72.916496), "MEMS Department"));
+        toiletList.add(new Place(new LatLng(19.13122, 72.91781), "HSS Department"));
+        toiletList.add(new Place(new LatLng(19.131673, 72.916578), "GG Building"));
+        toiletList.add(new Place(new LatLng(19.13188, 72.916441), "Electrical Department"));
+        toiletList.add(new Place(new LatLng(19.131903, 72.917321), "CTARA Department"));
+        toiletList.add(new Place(new LatLng(19.132589, 72.91649), "Civil Department"));
+        toiletList.add(new Place(new LatLng(19.13235, 72.917319), "VMCC"));
+        toiletList.add(new Place(new LatLng(19.131741, 72.91582), "SOM"));
+        toiletList.add(new Place(new LatLng(19.133325, 72.91644), "Mechanical Department"));
+        toiletList.add(new Place(new LatLng(19.135648, 72.913701), "SAC"));
+        toiletList.add(new Place(new LatLng(19.135568, 72.912728), "Swimming Pool"));
+        toiletList.add(new Place(new LatLng(19.136331, 72.913784), "Hostel 1 A"));
+        toiletList.add(new Place(new LatLng(19.136575, 72.912584), "Hostel 2 A"));
+        toiletList.add(new Place(new LatLng(19.136365, 72.911449), "Hostel 3 A"));
+        toiletList.add(new Place(new LatLng(19.135798, 72.911416), "Gymkhana Indoor"));
+        toiletList.add(new Place(new LatLng(19.135754, 72.912397), "Gymkhana Badminton"));
+        toiletList.add(new Place(new LatLng(19.136492, 72.910099), "Hostel 4 A"));
+        toiletList.add(new Place(new LatLng(19.135555, 72.910177), "Tansa A"));
+        toiletList.add(new Place(new LatLng(19.135771, 72.909998), "Tansa B"));
+        toiletList.add(new Place(new LatLng(19.135187, 72.909738), "Hostel 5 A"));
+        toiletList.add(new Place(new LatLng(19.135584, 72.908264), "Hostel 9 A"));
+        toiletList.add(new Place(new LatLng(19.134359, 72.907746), "Hostel 7 A"));
+        toiletList.add(new Place(new LatLng(19.135829, 72.907155), "Hostel 6 A"));
+        toiletList.add(new Place(new LatLng(19.135463, 72.904687), "Hostel 12 B1"));
+        toiletList.add(new Place(new LatLng(19.134532, 72.904711), "Hostel 13 A1"));
+        toiletList.add(new Place(new LatLng(19.134768, 72.905867), "Hostel 14 B1"));
 
-        List<Place> toiletList = new ArrayList<>();
-        toiletList.add(new Place(new LatLng(19.12541, 72.909201), "Near Padmavati Devi Temple", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.125455, 72.916304), "Main Gate", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130289, 72.915922), "Kresit Building T1", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130688, 72.915843), "Kresit Building T2", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130476, 72.916369), "LCH T1", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130973, 72.91634), "LCH T2", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130968, 72.916986), "LCH T3", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130571, 72.917032), "LCH T4", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130214, 72.916565), "Physics Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130281, 72.917738), "Chemistry Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.130565, 72.917287), "LCH T5", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.131034, 72.917275), "LCH T6", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.131168, 72.916496), "MEMS Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.13122, 72.91781), "HSS Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.131673, 72.916578), "GG Building", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.13188, 72.916441), "Electrical Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.131903, 72.917321), "CTARA Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.132589, 72.91649), "Civil Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.13235, 72.917319), "VMCC", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.131741, 72.91582), "SOM", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.133325, 72.91644), "Mechanical Department", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135648, 72.913701), "SAC", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135568, 72.912728), "Swimming Pool", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.136331, 72.913784), "Hostel 1 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.136575, 72.912584), "Hostel 2 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.136365, 72.911449), "Hostel 3 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135798, 72.911416), "Gymkhana Indoor", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135754, 72.912397), "Gymkhana Badminton", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.136492, 72.910099), "Hostel 4 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135555, 72.910177), "Tansa A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135771, 72.909998), "Tansa B", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135187, 72.909738), "Hostel 5 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135584, 72.908264), "Hostel 9 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.134359, 72.907746), "Hostel 7 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135829, 72.907155), "Hostel 6 A", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.135463, 72.904687), "Hostel 12 B1", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.134532, 72.904711), "Hostel 13 A1", "TOILET"));
-        toiletList.add(new Place(new LatLng(19.134768, 72.905867), "Hostel 14 B1", "TOILET"));
+        eventList.add(new Place(new LatLng(19.131973, 72.914285), "Convocation Hall"));
+        eventList.add(new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)"));
+        eventList.add(new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)"));
+        eventList.add(new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds"));
+        eventList.add(new Place(new LatLng(19.133572, 72.913399), "NCC Grounds"));
+        eventList.add(new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)"));
+        eventList.add(new Place(new LatLng(19.135574, 72.912930), "New Swimming Pool"));
+        eventList.add(new Place(new LatLng(19.129113, 72.918408), "Kendriya Vidyalaya (KV)"));
+        eventList.add(new Place(new LatLng(19.135422, 72.913674), "Student Activity Center (SAC)"));
+        eventList.add(new Place(new LatLng(19.131651, 72.915758), "Shailesh J. Mehta School of Management (SOM)"));
+        eventList.add(new Place(new LatLng(19.135045, 72.913401), "Open Air Theatre (OAT)"));
+        eventList.add(new Place(new LatLng(19.132635, 72.915716), "MB Lawns"));
+        eventList.add(new Place(new LatLng(19.130005, 72.916704), "Physics Parking Lot"));
+        eventList.add(new Place(new LatLng(19.129574, 72.915394), "H10 T-Point"));
+        eventList.add(new Place(new LatLng(19.132030, 72.915920), "PCSA Backlawns"));
+        eventList.add(new Place(new LatLng(19.135771, 72.914428), "SAC Parking Lot"));
+        eventList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
+        eventList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
 
-        for (Place place : toiletList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_logo)));
-            marker.setTag(place);
-        }
-
-        mMap.addMarker(new MarkerOptions().position(convocationHall).title("Convocation Hall"));
-        mMap.addMarker(new MarkerOptions().position(lectureHall1).title("Lecture Hall Complex (LCH)"));
-        mMap.addMarker(new MarkerOptions().position(LTPCSA).title("PC Saxena Auditorium (LT PCSA)"));
-        mMap.addMarker(new MarkerOptions().position(gymkhanaGround).title("Gymkhana Grounds"));
-        mMap.addMarker(new MarkerOptions().position(ncc).title("NCC Grounds"));
-        mMap.addMarker(new MarkerOptions().position(fck).title("FC Kohli Auditorium (FCK)"));
-        mMap.addMarker(new MarkerOptions().position(nsp).title("New Swimming Pool"));
-        mMap.addMarker(new MarkerOptions().position(kv).title("Kendriya Vidyalaya (KV)"));
-        mMap.addMarker(new MarkerOptions().position(sac).title("Student Activity Center (SAC)"));
-        mMap.addMarker(new MarkerOptions().position(som).title("Shailesh J. Mehta School of Management (SOM)"));
-        mMap.addMarker(new MarkerOptions().position(openAirTheatre).title("Open Air Theatre (OAT)"));
-        mMap.addMarker(new MarkerOptions().position(mbLawns).title("MB Lawns"));
-        mMap.addMarker(new MarkerOptions().position(ppl).title("Physics Parking Lot"));
-        mMap.addMarker(new MarkerOptions().position(h10TPoint).title("H10 T-Point"));
-        mMap.addMarker(new MarkerOptions().position(pcsaBackLawns).title("PCSA Backlawns"));
-        mMap.addMarker(new MarkerOptions().position(sacParking).title("SAC Parking Lot"));
-        mMap.addMarker(new MarkerOptions().position(sacBackyard).title("SAC Backyard"));
-        mMap.addMarker(new MarkerOptions().position(osp).title("Old Swimming Pool"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(convocationHall, 16.5f));
-
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.131973, 72.914285), 16.5f));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCameraMoveListener(this);
         directionsAndLocationButton.performClick();
@@ -465,6 +455,36 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     public void onCameraMove() {
         if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
             directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
+        }
+        if(fabMenu.isOpened()) {
+            fabMenu.toggle(true);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mMap.clear();
+        List<Place> placeList = new ArrayList<>();
+        int iconDrawable = 0;
+        switch (v.getId()) {
+            case R.id.fab_event:
+                placeList = eventList;
+                break;
+            case R.id.fab_eateries:
+                placeList = eateriesList;
+                break;
+            case R.id.fab_accomodation:
+                placeList = accomodationList;
+                iconDrawable = R.drawable.ic_accomodation;
+                break;
+            case R.id.fab_toilets:
+                placeList = toiletList;
+                iconDrawable = R.drawable.blue_logo;
+                break;
+        }
+        for (Place place : placeList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(iconDrawable)));
+            marker.setTag(place);
         }
     }
 }

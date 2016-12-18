@@ -9,12 +9,10 @@ import com.google.android.gms.maps.model.LatLng;
 public class Place {
     private LatLng latLng;
     private String title;
-    private String type;
 
-    public Place(LatLng latLng, String title, String type) {
+    public Place(LatLng latLng, String title) {
         this.latLng = latLng;
         this.title = title;
-        this.type = type;
     }
 
     public LatLng getLatLng() {
@@ -31,13 +29,5 @@ public class Place {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
