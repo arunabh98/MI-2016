@@ -75,10 +75,10 @@ public class MainFragment extends Fragment {
                         openGoing();
                         break;
                     case 2:
-                        openQRCode();
+                        openMap();
                         break;
                     case 3:
-                        openMap();
+                        openQRCode();
                         break;
                     case 4:
                         openFaq();
