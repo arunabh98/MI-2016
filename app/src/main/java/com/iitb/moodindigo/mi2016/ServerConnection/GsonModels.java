@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class GsonModels {
     public class Event {
@@ -220,6 +220,64 @@ public class GsonModels {
                     return true;
             }
             return false;
+        }
+    }
+    public class DistanceMatrix {
+        ArrayList<String> destination_addresses;
+        ArrayList<String> origin_addresses;
+        ArrayList<Rows> rows;
+        String status;
+
+        public ArrayList<Rows> getRows() {
+            return rows;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+    }
+
+    public class Rows {
+        ArrayList<Element> elements;
+
+        public ArrayList<Element> getElements() {
+            return elements;
+        }
+    }
+
+    public class Element {
+        Distance distance;
+        Duration duration;
+        String status;
+
+        public Distance getDistance() {
+            return distance;
+        }
+
+        public Duration getDuration() {
+            return duration;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+    }
+
+    public class Distance {
+        String text;
+        int value;
+
+        public String getText() {
+            return text;
+        }
+    }
+
+    public class Duration {
+        String text;
+        int value;
+
+        public String getText() {
+            return text;
         }
     }
 }
