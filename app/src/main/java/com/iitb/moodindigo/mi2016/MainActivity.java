@@ -189,11 +189,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void openSchedule() {
-        ScheduleFragment scheduleFragment = new ScheduleFragment();
+        DaysFragment daysFragment = new DaysFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack(null);
-        transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+        transaction.replace(R.id.relativelayout_for_fragment, daysFragment, daysFragment.getTag());
         transaction.commit();
     }
 

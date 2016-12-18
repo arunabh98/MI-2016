@@ -3,15 +3,14 @@ package com.iitb.moodindigo.mi2016;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
@@ -25,32 +24,42 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.iitb.moodindigo.mi2016.Utils.mergeSort;
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScheduleFragment extends Fragment implements Callback<List<GsonModels.Event>> {
+public class DaysFragment extends Fragment implements Callback<List<GsonModels.Event>>,View.OnClickListener{
 
     private ProgressDialog scheduleProgressDialog;
-    private View inflatedView;
     private List<GsonModels.Event> day1List = new ArrayList<>();
     private List<GsonModels.Event> day2List = new ArrayList<>();
     private List<GsonModels.Event> day3List = new ArrayList<>();
     private List<GsonModels.Event> day4List = new ArrayList<>();
+    View daysView;
+    Button day1;
+    Button day2;
+    Button day3;
+    Button day4;
 
-    public ScheduleFragment() {
+    public DaysFragment() {
         // Required empty public constructor
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         getActivity().setTitle("Schedule");
         // Inflate the layout for this fragment
-        inflatedView = inflater.inflate(R.layout.fragment_schedule, container, false);
+        daysView = inflater.inflate(R.layout.fragment_days, container, false);
+        day1 = (Button) daysView.findViewById(R.id.day1);
+        day2 = (Button) daysView.findViewById(R.id.day2);
+        day3 = (Button) daysView.findViewById(R.id.day3);
+        day4 = (Button) daysView.findViewById(R.id.day4);
+
+        day1.setOnClickListener(this);
+        day2.setOnClickListener(this);
+        day3.setOnClickListener(this);
+        day4.setOnClickListener(this);
 
         if (Cache.isSendEventRequest()) {
             scheduleProgressDialog = new ProgressDialog(getContext());
@@ -63,12 +72,8 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         } else {
             inflateTabs(Cache.getEventList());
         }
-        return inflatedView;
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        return daysView;
     }
 
     @Override
@@ -105,67 +110,41 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
                 day4List.add(event);
             }
         }
-        day1List = mergeSort(day1List);
-        day2List = mergeSort(day2List);
-        day3List = mergeSort(day3List);
-        day4List = mergeSort(day4List);
+        day1List = Utils.mergeSort(day1List);
+        day2List = Utils.mergeSort(day2List);
+        day3List = Utils.mergeSort(day3List);
+        day4List = Utils.mergeSort(day4List);
 
-        TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Day 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day 3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Day 4"));
-        final ViewPager viewPager = (ViewPager) inflatedView.findViewById(R.id.scheduleViewPager);
-
-        viewPager.setAdapter(new ScheduleFragment.PagerAdapter
-                (getFragmentManager(), tabLayout.getTabCount()));
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
-    public class PagerAdapter extends FragmentStatePagerAdapter {
-        int mNumOfTabs;
-
-        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
-            super(fm);
-            this.mNumOfTabs = NumOfTabs;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.day1:
+                CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(day1List,1);
+                openFragment(categoryGroupFragment1);
+                break;
+            case R.id.day2:
+                CategoryGroupFragment categoryGroupFragment2 = new CategoryGroupFragment(day2List,2);
+                openFragment(categoryGroupFragment2);
+                break;
+            case R.id.day3:
+                CategoryGroupFragment categoryGroupFragment3 = new CategoryGroupFragment(day3List,3);
+                openFragment(categoryGroupFragment3);
+                break;
+            case R.id.day4:
+                CategoryGroupFragment categoryGroupFragment4 = new CategoryGroupFragment(day4List,4);
+                openFragment(categoryGroupFragment4);
+                break;
         }
+    }
 
-        @Override
-        public Fragment getItem(int position) {
-
-            switch (position) {
-                case 0:
-                    return new SingleDayFragment(getContext(), day1List);
-                case 1:
-                    return new SingleDayFragment(getContext(), day2List);
-                case 2:
-                    return new SingleDayFragment(getContext(), day3List);
-                case 3:
-                    return new SingleDayFragment(getContext(), day4List);
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return mNumOfTabs;
-        }
+    public void openFragment(Fragment fragment) {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag());
+        transaction.commit();
     }
 }

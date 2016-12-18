@@ -106,8 +106,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openSchedule() {
-        ScheduleFragment scheduleFragment = new ScheduleFragment();
-        openFragment(scheduleFragment);
+        DaysFragment daysFragment = new DaysFragment();
+        openFragment(daysFragment);
     }
 
     public void openFaq() {
