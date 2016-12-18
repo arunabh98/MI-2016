@@ -15,20 +15,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -45,7 +45,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.iitb.moodindigo.mi2016.ServerConnection.RetrofitInterface;
-import com.iitb.moodindigo.mi2016.ServerConnection.ServiceGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ import static com.iitb.moodindigo.mi2016.R.id.map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks,
+public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleMap.OnCameraMoveListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener, Callback<GsonModels.DistanceMatrix> {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -120,10 +119,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
             }
         });
+        final FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.frame_layout);
+        final FloatingActionMenu fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
         directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+                if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
                     if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
                         return;
@@ -136,7 +137,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                         directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
                     }
                 } else {
-                    if(selectedPlace != null) {
+                    if (selectedPlace != null) {
                         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude + "&mode=w");
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                         startActivity(mapIntent);
@@ -165,6 +166,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            checkLocationPermission();
+        } else {
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        }
+
+        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+
         LatLng convocationHall = new LatLng(19.131973, 72.914285);
         LatLng gymkhanaGround = new LatLng(19.134446, 72.912217);
         LatLng lectureHall1 = new LatLng(19.130735, 72.916900);
@@ -224,7 +235,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         toiletList.add(new Place(new LatLng(19.134532, 72.904711), "Hostel 13 A1", "TOILET"));
         toiletList.add(new Place(new LatLng(19.134768, 72.905867), "Hostel 14 B1", "TOILET"));
 
-        for(Place place : toiletList) {
+        for (Place place : toiletList) {
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_logo)));
             marker.setTag(place);
         }
@@ -250,6 +261,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(convocationHall, 16.5f));
 
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnCameraMoveListener(this);
+        directionsAndLocationButton.performClick();
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -358,23 +371,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(getActivity(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         if (mGoogleApiClient == null) {
                             buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
                     }
-
-                } else {
-                    Toast.makeText(getActivity(), "Permission Denied!", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -440,5 +443,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     public void onFailure(Call<GsonModels.DistanceMatrix> call, Throwable t) {
         Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
         Log.d("TAG", "onFailure: " + t.toString());
+    }
+
+    @Override
+    public void onCameraMove() {
+        if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+            directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
+        }
     }
 }

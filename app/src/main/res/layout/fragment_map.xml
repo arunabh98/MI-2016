@@ -1,5 +1,6 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,11 +34,65 @@
         android:id="@+id/directions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
         android:layout_marginBottom="48dp"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:clickable="true"
-        android:src="@drawable/ic_my_location_black_24dp"
-        android:tint="@color/colorAccent"
-        android:layout_gravity="bottom|end"/>
+        android:src="@drawable/ic_my_location_black_24dp" />
+
+    <!--Ignore material design guidelines for a moment-->
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="108.5dp"
+        android:layout_marginEnd="7.5dp">
+        <!--moment.end()-->
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/black"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_size="mini"
+            fab:menu_fab_label="Events" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_eateries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/black"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_size="mini"
+            fab:menu_fab_label="Eateries" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_accomodation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/black"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_size="mini"
+            fab:menu_fab_label="Accomodation" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_toilets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/black"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_size="mini"
+            fab:menu_fab_label="Toilets" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--  floating action menu with buttons -->
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

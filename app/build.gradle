@@ -28,6 +28,7 @@ ext {
     circleImageViewVersion = '2.1.0'
     zxingVersion = '1.9'
     calligraphyVersion = '2.2.0'
+    fabVersion = '1.6.4'
 }
 
 dependencies {
@@ -49,6 +50,7 @@ dependencies {
     compile "com.google.android.gms:play-services-location:${playServicesVersion}"
     compile "me.dm7.barcodescanner:zxing:${zxingVersion}"
     compile "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+    compile "com.github.clans:fab:${fabVersion}"
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     testCompile 'junit:junit:4.12'
 }
