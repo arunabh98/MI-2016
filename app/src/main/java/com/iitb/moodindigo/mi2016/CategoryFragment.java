@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
@@ -41,17 +42,20 @@ public class CategoryFragment extends Fragment {
         categoryListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                Cache.setListPosition(position);
                 Fragment eventPageFragment = new EventPageFragment(getContext(), eventResponse.get(position));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("category");
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
                 transaction.commit();
             }
         });
         categoryRecyclerView.setAdapter(categoryListAdapter);
-        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager llm = (LinearLayoutManager) new LinearLayoutManager(getContext());
+        categoryRecyclerView.setLayoutManager(llm);
+        llm.scrollToPosition(Cache.getListPosition());
 
         return singledayview;
     }

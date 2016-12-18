@@ -113,7 +113,12 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
         day2List = mergeSort(day2List);
         day3List = mergeSort(day3List);
         day4List = mergeSort(day4List);
-
+        Log.e("Schedule", day1List.toString());
+        Cache.setDaysList1(day1List);
+        Cache.setDaysList2(day2List);
+        Cache.setDaysList3(day3List);
+        Cache.setDaysList4(day4List);
+        Log.e("Cahe", Cache.getDaysList1().toString());
         TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.scheduleTabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Day 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Day 2"));

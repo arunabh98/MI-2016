@@ -64,6 +64,7 @@ public class CategoryGroupFragment extends Fragment {
         viewPager.setAdapter(new CategoryGroupFragment.PagerAdapter
                 (getFragmentManager(), tabLayout.getTabCount()));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setCurrentItem(Cache.getCategoryPosition(), true);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

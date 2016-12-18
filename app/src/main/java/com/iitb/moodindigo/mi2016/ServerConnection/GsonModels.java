@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class GsonModels {
     public class Event {
@@ -137,7 +136,7 @@ public class GsonModels {
             return false;
         }
     }
-    public class Day {
+    public static class Day {
         @SerializedName("0")
         private Boolean _0;
         @SerializedName("1")
