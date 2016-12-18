@@ -239,8 +239,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         eventList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
         eventList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
 
-        accomodationList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
-        accomodationList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
+        accomodationList.add(new Place(new LatLng(19.137878, 72.912871), "Hostel 1"));
+        accomodationList.add(new Place(new LatLng(19.136357, 72.912555), "Hostel 2"));
+        accomodationList.add(new Place(new LatLng(19.136231, 72.911482), "Hostel 3"));
+        accomodationList.add(new Place(new LatLng(19.136142, 72.910456), "Hostel 4"));
+        accomodationList.add(new Place(new LatLng(19.135235, 72.910237), "Hostel 5"));
+        accomodationList.add(new Place(new LatLng(19.135361, 72.907071), "Hostel 6"));
+        accomodationList.add(new Place(new LatLng(19.134910, 72.908062), "Hostel 7"));
+        accomodationList.add(new Place(new LatLng(19.133758, 72.911147), "Hostel 8"));
+        accomodationList.add(new Place(new LatLng(19.134966, 72.908400), "Hostel 9"));
+        accomodationList.add(new Place(new LatLng(19.128322, 72.915731), "Hostel 10"));
+        accomodationList.add(new Place(new LatLng(19.133495, 72.912053), "Hostel 11"));
+        accomodationList.add(new Place(new LatLng(19.134811, 72.905217), "Hostel 12, 13, 14"));
+        accomodationList.add(new Place(new LatLng(19.137539, 72.914096), "Hostel 15"));
+        accomodationList.add(new Place(new LatLng(19.137731, 72.912796), "Hostel 16"));
 
         eateriesList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
         eateriesList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
