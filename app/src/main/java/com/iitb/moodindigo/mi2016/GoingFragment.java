@@ -4,21 +4,22 @@ package com.iitb.moodindigo.mi2016;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,10 +28,12 @@ import java.util.List;
  */
 public class GoingFragment extends Fragment {
 
-    private RecyclerView goingRecyclerView;
-    private BookmarkedEventsListAdapter bookmarkedEventsListAdapter;
     private SharedPreferences goingSharedPreferences;
-    private TextView noEventsSelected;
+    private View goingview;
+    private List<GsonModels.Event> goingday1list = new ArrayList<>();
+    private List<GsonModels.Event> goingday2list = new ArrayList<>();
+    private List<GsonModels.Event> goingday3list = new ArrayList<>();
+    private List<GsonModels.Event> goingday4list = new ArrayList<>();
 
     public GoingFragment() {
         // Required empty public constructor
@@ -42,7 +45,8 @@ public class GoingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getActivity().setTitle("Going");
-        return inflater.inflate(R.layout.fragment_going, container, false);
+        goingview = (View) inflater.inflate(R.layout.fragment_going, container, false);
+        return goingview;
     }
 
     @Override
@@ -52,33 +56,102 @@ public class GoingFragment extends Fragment {
         Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
         List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         Cache.setGoingEventsList(goingListGson);
-        goingRecyclerView = (RecyclerView) getActivity().findViewById(R.id.going_events_list);
-        noEventsSelected = (TextView) getActivity().findViewById(R.id.no_events_selected);
-        bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(Cache.getGoingEventsList(), new ItemCLickListener() {
+        generateDays(Cache.getGoingEventsList());
+
+        TabLayout tabLayout = (TabLayout) goingview.findViewById(R.id.goingTabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Day1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Day4"));
+        final ViewPager viewPager = (ViewPager) goingview.findViewById(R.id.goingViewPager);
+        viewPager.setAdapter(new GoingFragment.PagerAdapter
+                (getFragmentManager(), tabLayout.getTabCount()));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setCurrentItem(Cache.getGoingdayPosition(), true);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onItemClick(View v, int position) {
-                Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getGoingEventsList().get(position));
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.addToBackStack("going");
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-                transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
-                transaction.commit();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        if (bookmarkedEventsListAdapter.getItemCount() == 0) {
-            goingRecyclerView.setVisibility(View.GONE);
-            noEventsSelected.setVisibility(View.VISIBLE);
-        } else {
-            goingRecyclerView.setVisibility(View.VISIBLE);
-            noEventsSelected.setVisibility(View.GONE);
-            goingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
-        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    public void generateDays(List<GsonModels.Event> eventList){
+        if(eventList!=null) {
+            for (GsonModels.Event event : eventList) {
+                if (event.getDay().get_1()) {
+                    goingday1list.add(event);
+                } else if (event.getDay().get_2()) {
+                    goingday2list.add(event);
+                } else if (event.getDay().get_3()) {
+                    goingday3list.add(event);
+                } else if (event.getDay().get_4()) {
+                    goingday4list.add(event);
+                }
+            }
+        }
+        if (!goingday1list.isEmpty()) {
+            goingday1list = Utils.mergeSort(goingday1list);
+        }
+        if (!goingday2list.isEmpty()) {
+            goingday2list = Utils.mergeSort(goingday2list);
+        }
+        if (!goingday3list.isEmpty()) {
+            goingday3list = Utils.mergeSort(goingday3list);
+        }
+        if (!goingday4list.isEmpty()) {
+            goingday4list = Utils.mergeSort(goingday4list);
+        }
+
+        Log.d("Going Fragment",goingday1list.toString());
+        Log.d("Going Fragment",goingday2list.toString());
+        Log.d("Going Fragment",goingday3list.toString());
+        Log.d("Going Fragment",goingday4list.toString());
+    }
+
+    public class PagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
+
+        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+            super(fm);
+            this.mNumOfTabs = NumOfTabs;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+            switch (position) {
+                case 0:
+                    return new GoingDayFragment(goingday1list);
+                case 1:
+                    return new GoingDayFragment(goingday2list);
+                case 2:
+                    return new GoingDayFragment(goingday3list);
+                case 3:
+                    return new GoingDayFragment(goingday4list);
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return mNumOfTabs;
+        }
     }
 }

@@ -1,26 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.iitb.moodindigo.mi2016.GoingFragment">
+    android:layout_marginTop="?android:attr/actionBarSize">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/going_events_list"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/goingTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/goingViewPager"
         android:layout_width="match_parent"
-        android:id="@+id/no_events_selected"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textSize="20sp"
-        android:text="You have not selected any events. Click the bell button next to Events to have some Fun!!"
-        android:textColor="#FFF"/>
+        android:layout_height="wrap_content"
+        android:background="#000"/>
 
-</FrameLayout>
+</android.support.design.widget.AppBarLayout>

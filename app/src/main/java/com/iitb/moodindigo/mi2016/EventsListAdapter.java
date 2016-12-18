@@ -95,7 +95,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         });
         goingPreferences = context.getSharedPreferences("GOING", Context.MODE_PRIVATE);
         String goingList = goingPreferences.getString("GOING_LIST", null);
-        Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
+        Type type = new TypeToken<List<GsonModels.Event>>() {
+        }.getType();
         List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         if (goingListGson == null) {
             ;

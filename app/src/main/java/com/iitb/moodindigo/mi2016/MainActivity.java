@@ -189,38 +189,38 @@ public class MainActivity extends AppCompatActivity
                     backButtonCount = 0;
                     if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
                         FragmentManager.BackStackEntry fragment = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
-                            if (fragment.getName().equals("category")) {
-                                List<GsonModels.Event> daysList = new ArrayList<>();
-                                int day = 0;
-                                if (Cache.getDay().get_1()) {
-                                    daysList = Cache.getDaysList1();
-                                    day = 1;
-                                } else if (Cache.getDay().get_2()) {
-                                    daysList = Cache.getDaysList2();
-                                    day = 2;
-                                } else if (Cache.getDay().get_3()) {
-                                    daysList = Cache.getDaysList3();
-                                    day = 3;
-                                } else if (Cache.getDay().get_4()) {
-                                    daysList = Cache.getDaysList4();
-                                    day = 4;
-                                }
-                                CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(daysList, day);
-                                FragmentManager manager = getSupportFragmentManager();
-                                FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.addToBackStack(null);
-                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                                transaction.replace(R.id.relativelayout_for_fragment, categoryGroupFragment1, categoryGroupFragment1.getTag());
-                                transaction.commit();
-                            } else if (fragment.getName().equals("going")) {
-                                GoingFragment goingFragment = new GoingFragment();
-                                FragmentManager manager = getSupportFragmentManager();
-                                FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                                transaction.addToBackStack(null);
-                                transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
-                                transaction.commit();
+                        if (fragment.getName().equals("category")) {
+                            List<GsonModels.Event> daysList = new ArrayList<>();
+                            int day = 0;
+                            if (Cache.getDay().get_1()) {
+                                daysList = Cache.getDaysList1();
+                                day = 1;
+                            } else if (Cache.getDay().get_2()) {
+                                daysList = Cache.getDaysList2();
+                                day = 2;
+                            } else if (Cache.getDay().get_3()) {
+                                daysList = Cache.getDaysList3();
+                                day = 3;
+                            } else if (Cache.getDay().get_4()) {
+                                daysList = Cache.getDaysList4();
+                                day = 4;
                             }
+                            CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(daysList, day);
+                            FragmentManager manager = getSupportFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            transaction.addToBackStack(null);
+                            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                            transaction.replace(R.id.relativelayout_for_fragment, categoryGroupFragment1, categoryGroupFragment1.getTag());
+                            transaction.commit();
+                        } else if (fragment.getName().equals("going")) {
+                            GoingFragment goingFragment = new GoingFragment();
+                            FragmentManager manager = getSupportFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                            transaction.addToBackStack(null);
+                            transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+                            transaction.commit();
+                        }
                     } else if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof CategoryGroupFragment) {
                         DaysFragment daysFragment = new DaysFragment();
                         FragmentManager manager = this.getSupportFragmentManager();
@@ -260,7 +260,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             logout();
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -289,25 +289,29 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
         try {
-            if (Jobject.getString("message").equals("not_registered")) {
-                LoginManager.getInstance().logOut();
-                Toast.makeText(LoginActivity.this, "Looks like you have not registered for Mood Indigo. Click Register Now to register.", Toast.LENGTH_SHORT).show();
-            } else if (Jobject != null) {
-                Log.e("dffdsf", Jobject.getString("MI_NUMBER"));
-                for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
-                    intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
-                    editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
+            if (Jobject != null) {
+                if (Jobject.getString("message").equals("not_registered")) {
+                    LoginManager.getInstance().logOut();
+                    Toast.makeText(LoginActivity.this, "Looks like you have not registered for Mood Indigo. Click Register Now to register.", Toast.LENGTH_SHORT).show();
+                } else if (Jobject != null) {
+                    for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
+                        intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
+                        editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
+                    }
+                    intent.putExtra("FB_ID", Jobject.getString("fb_id"));
+                    ByteArrayOutputStream _bs = new ByteArrayOutputStream();
+                    profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
+                    intent.putExtra("PROFILE_PIC", _bs.toByteArray());
+                    String encodedImage = Base64.encodeToString(_bs.toByteArray(), Base64.DEFAULT);
+                    editor.putString("PROFILE_PIC", encodedImage);
+                    editor.putString("FB_ID", Jobject.getString("fb_id"));
+                    editor.apply();
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                } else {
+                    LoginManager.getInstance().logOut();
+                    Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
                 }
-                intent.putExtra("FB_ID", Jobject.getString("fb_id"));
-                ByteArrayOutputStream _bs = new ByteArrayOutputStream();
-                profilePic.compress(Bitmap.CompressFormat.PNG, 100, _bs);
-                intent.putExtra("PROFILE_PIC", _bs.toByteArray());
-                String encodedImage = Base64.encodeToString(_bs.toByteArray(), Base64.DEFAULT);
-                editor.putString("PROFILE_PIC", encodedImage);
-                editor.putString("FB_ID", Jobject.getString("fb_id"));
-                editor.apply();
-                startActivity(intent);
-                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {
                 LoginManager.getInstance().logOut();
                 Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
@@ -315,11 +319,12 @@ public class LoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
     public void onBackPressed() {
-        if (mi_no.getHint() != null) {
+        if (mi_no.getHint() != null && mi_no != null) {
             if (mi_no.getHint().equals("Contact No.")) {
                 index = 0;
                 animateElement(mi_no, 300, 0, 1000);
