@@ -2,6 +2,10 @@ package com.iitb.moodindigo.mi2016;
 
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +44,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
@@ -130,9 +136,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (fabMenu.isOpened()) {
+                    displayAll();
+                }
                 fabMenu.toggle(true);
             }
         });
+        createCustomAnimation();
+
         fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
         fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
         fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
@@ -153,7 +164,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                     }
                     currentLocation = getLastKnownLocation();
                     if (currentLocation != null) {
-                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 15);
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 17);
                         mMap.moveCamera(cameraUpdate);
                         mMap.animateCamera(cameraUpdate);
                         directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
@@ -188,11 +199,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_style);
+        mMap.setMapStyle(style);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                if(fabMenu.isOpened()) {
+                if (fabMenu.isOpened()) {
                     fabMenu.toggle(true);
                 }
             }
@@ -206,6 +219,31 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         }
 
         directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+
+        eventList.add(new Place(new LatLng(19.131973, 72.914285), "Convocation Hall"));
+        eventList.add(new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)"));
+        eventList.add(new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)"));
+        eventList.add(new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds"));
+        eventList.add(new Place(new LatLng(19.133572, 72.913399), "NCC Grounds"));
+        eventList.add(new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)"));
+        eventList.add(new Place(new LatLng(19.135574, 72.912930), "New Swimming Pool"));
+        eventList.add(new Place(new LatLng(19.129113, 72.918408), "Kendriya Vidyalaya (KV)"));
+        eventList.add(new Place(new LatLng(19.135422, 72.913674), "Student Activity Center (SAC)"));
+        eventList.add(new Place(new LatLng(19.131651, 72.915758), "SJM SOM"));
+        eventList.add(new Place(new LatLng(19.135045, 72.913401), "Open Air Theatre (OAT)"));
+        eventList.add(new Place(new LatLng(19.132635, 72.915716), "MB Lawns"));
+        eventList.add(new Place(new LatLng(19.130005, 72.916704), "Physics Parking Lot"));
+        eventList.add(new Place(new LatLng(19.129574, 72.915394), "H10 T-Point"));
+        eventList.add(new Place(new LatLng(19.132030, 72.915920), "PCSA Backlawns"));
+        eventList.add(new Place(new LatLng(19.135771, 72.914428), "SAC Parking Lot"));
+        eventList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
+        eventList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
+
+        accomodationList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
+        accomodationList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
+
+        eateriesList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
+        eateriesList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
 
         toiletList.add(new Place(new LatLng(19.12541, 72.909201), "Near Padmavati Devi Temple"));
         toiletList.add(new Place(new LatLng(19.125455, 72.916304), "Main Gate"));
@@ -246,29 +284,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         toiletList.add(new Place(new LatLng(19.134532, 72.904711), "Hostel 13 A1"));
         toiletList.add(new Place(new LatLng(19.134768, 72.905867), "Hostel 14 B1"));
 
-        eventList.add(new Place(new LatLng(19.131973, 72.914285), "Convocation Hall"));
-        eventList.add(new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)"));
-        eventList.add(new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)"));
-        eventList.add(new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds"));
-        eventList.add(new Place(new LatLng(19.133572, 72.913399), "NCC Grounds"));
-        eventList.add(new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)"));
-        eventList.add(new Place(new LatLng(19.135574, 72.912930), "New Swimming Pool"));
-        eventList.add(new Place(new LatLng(19.129113, 72.918408), "Kendriya Vidyalaya (KV)"));
-        eventList.add(new Place(new LatLng(19.135422, 72.913674), "Student Activity Center (SAC)"));
-        eventList.add(new Place(new LatLng(19.131651, 72.915758), "Shailesh J. Mehta School of Management (SOM)"));
-        eventList.add(new Place(new LatLng(19.135045, 72.913401), "Open Air Theatre (OAT)"));
-        eventList.add(new Place(new LatLng(19.132635, 72.915716), "MB Lawns"));
-        eventList.add(new Place(new LatLng(19.130005, 72.916704), "Physics Parking Lot"));
-        eventList.add(new Place(new LatLng(19.129574, 72.915394), "H10 T-Point"));
-        eventList.add(new Place(new LatLng(19.132030, 72.915920), "PCSA Backlawns"));
-        eventList.add(new Place(new LatLng(19.135771, 72.914428), "SAC Parking Lot"));
-        eventList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
-        eventList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
-
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.131973, 72.914285), 16.5f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.131973, 72.914285), 17));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCameraMoveListener(this);
         directionsAndLocationButton.performClick();
+
+        displayAll();
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -299,7 +320,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16.5f));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
 
         //stop location updates
         if (mGoogleApiClient != null) {
@@ -456,9 +477,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
             directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
         }
-        if(fabMenu.isOpened()) {
-            fabMenu.toggle(true);
-        }
     }
 
     @Override
@@ -469,21 +487,73 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         switch (v.getId()) {
             case R.id.fab_event:
                 placeList = eventList;
+                iconDrawable = R.drawable.ic_local_play_white_24dp;
                 break;
             case R.id.fab_eateries:
                 placeList = eateriesList;
+                iconDrawable = R.drawable.ic_local_dining_white_24dp;
                 break;
             case R.id.fab_accomodation:
                 placeList = accomodationList;
-                iconDrawable = R.drawable.ic_accomodation;
+                iconDrawable = R.drawable.ic_hotel_white_24dp;
                 break;
             case R.id.fab_toilets:
                 placeList = toiletList;
-                iconDrawable = R.drawable.blue_logo;
+                iconDrawable = R.drawable.ic_toilet_white_24dp;
                 break;
         }
         for (Place place : placeList) {
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(iconDrawable)));
+            marker.setTag(place);
+        }
+    }
+
+    private void createCustomAnimation() {
+        AnimatorSet set = new AnimatorSet();
+
+        ObjectAnimator scaleOutX = ObjectAnimator.ofFloat(fabMenu.getMenuIconView(), "scaleX", 1.0f, 0.2f);
+        ObjectAnimator scaleOutY = ObjectAnimator.ofFloat(fabMenu.getMenuIconView(), "scaleY", 1.0f, 0.2f);
+
+        ObjectAnimator scaleInX = ObjectAnimator.ofFloat(fabMenu.getMenuIconView(), "scaleX", 0.2f, 1.0f);
+        ObjectAnimator scaleInY = ObjectAnimator.ofFloat(fabMenu.getMenuIconView(), "scaleY", 0.2f, 1.0f);
+
+        scaleOutX.setDuration(50);
+        scaleOutY.setDuration(50);
+
+        scaleInX.setDuration(150);
+        scaleInY.setDuration(150);
+
+        scaleInX.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                fabMenu.getMenuIconView().setImageResource(fabMenu.isOpened()
+                        ? R.drawable.ic_search_white_24dp : R.drawable.ic_close_white_24dp);
+            }
+        });
+
+        set.play(scaleOutX).with(scaleOutY);
+        set.play(scaleInX).with(scaleInY).after(scaleOutX);
+        set.setInterpolator(new OvershootInterpolator(2));
+
+        fabMenu.setIconToggleAnimatorSet(set);
+    }
+
+    public void displayAll() {
+        mMap.clear();
+        for (Place place : eventList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_play_white_24dp)));
+            marker.setTag(place);
+        }
+        for (Place place : eateriesList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_dining_white_24dp)));
+            marker.setTag(place);
+        }
+        for (Place place : accomodationList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hotel_white_24dp)));
+            marker.setTag(place);
+        }
+        for (Place place : toiletList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_toilet_white_24dp)));
             marker.setTag(place);
         }
     }

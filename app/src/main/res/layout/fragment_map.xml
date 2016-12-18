@@ -48,47 +48,51 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="113dp"
         android:layout_marginEnd="11dp"
-        fab:menu_fab_label="Search"
-        fab:menu_colorNormal="@color/black"
-        fab:menu_colorPressed="@color/colorGray">
+        app:menu_icon="@drawable/ic_search_white_24dp"
+        fab:menu_colorNormal="@color/colorGray"
+        fab:menu_colorPressed="@color/colorGray"
+        fab:menu_fab_label="Clear Filters">
         <!--moment.end()-->
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/black"
+            android:src="@drawable/ic_local_play_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
             fab:fab_colorPressed="@color/colorGray"
-            fab:fab_size="mini"
-            fab:fab_label="Events" />
+            fab:fab_label="Events"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_eateries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/black"
+            android:src="@drawable/ic_local_dining_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
             fab:fab_colorPressed="@color/colorGray"
-            fab:fab_size="mini"
-            fab:fab_label="Eateries" />
+            fab:fab_label="Eateries"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_accomodation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_accomodation"
-            fab:fab_colorNormal="@color/black"
+            android:src="@drawable/ic_hotel_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
             fab:fab_colorPressed="@color/colorGray"
-            fab:fab_size="mini"
-            fab:fab_label="Accomodation" />
+            fab:fab_label="Accomodation"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_toilets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/black"
+            android:src="@drawable/ic_toilet_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
             fab:fab_colorPressed="@color/colorGray"
-            fab:fab_size="mini"
-            fab:fab_label="Toilets" />
+            fab:fab_label="Toilets"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
