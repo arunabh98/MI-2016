@@ -116,7 +116,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openContactUs() {
-        ((MainActivity) getActivity()).openContactUs();
+        Fragment contactUsFragment = new ContactUsFragment();
+        openFragment(contactUsFragment);
     }
 
     public void openMap() {
