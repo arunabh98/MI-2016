@@ -16,7 +16,13 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/goingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black" />
+        android:id="@+id/no_events_selected"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textSize="20sp"
+        android:text="You have not selected any events. Click the bell button next to Events to have some Fun!!"
+        android:textColor="#FFF"/>
 
 </android.support.design.widget.AppBarLayout>

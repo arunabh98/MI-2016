@@ -22,23 +22,6 @@
         android:drawableEnd="@drawable/arrow1"
         android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/mi_number_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/register_later"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="18dp"
-        android:layout_toStartOf="@+id/login_submit"
-        android:backgroundTint="#a9a8a2"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:hint="MI-ABC-101"
-        android:textColor="#a9a8a2"
-        android:textColorHint="#a9a8a2"
-        android:textSize="27sp"
-        android:visibility="gone" />
-
     <ProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleLarge"
@@ -46,35 +29,42 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <Button
-        android:id="@+id/register_later"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-light"
-        android:text="Register Later"
-        android:textAllCaps="false"
-        android:textColor="@color/grey"
-        android:textSize="22sp"
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="26dp" />
+        android:id="@+id/linearLayout">
 
-    <Button
-        android:id="@+id/mi_login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#DEB951"
-        android:drawableStart="@drawable/mi_logo"
-        android:paddingEnd="50sp"
-        android:paddingStart="9sp"
-        android:text="Log in with MI Number"
-        android:textColor="#000"
-        android:textSize="15sp"
-        android:layout_above="@+id/register_later"
-        android:layout_marginBottom="23dp"
-        android:layout_alignEnd="@+id/fb_login_button"
-        android:layout_alignStart="@+id/fb_login_button" />
+        <Button
+            android:id="@+id/register_later"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif-light"
+            android:text="Register Later"
+            android:textAllCaps="false"
+            android:textColor="@color/grey"
+            android:textSize="22sp"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/register_now"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif-light"
+            android:text="Register Now"
+            android:textAllCaps="false"
+            android:textColor="@color/grey"
+            android:textSize="22sp"
+            style="?android:attr/buttonBarButtonStyle"/>
+    </LinearLayout>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
@@ -88,23 +78,41 @@
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="8dp"
         android:layout_above="@+id/mi_login_button"
+        android:layout_marginBottom="14dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:id="@+id/register_now"
+        android:id="@+id/mi_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#DEB951"
+        android:drawableStart="@drawable/mi_logo"
+        android:paddingEnd="50sp"
+        android:paddingStart="9sp"
+        android:text="Log in with MI Number"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignEnd="@+id/fb_login_button"
+        android:layout_marginBottom="24dp"
+        android:layout_alignStart="@+id/fb_login_button" />
+
+
+    <EditText
+        android:id="@+id/mi_number_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#a9a8a2"
+        android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:text="Register Now"
-        android:textAllCaps="false"
-        android:textColor="@color/grey"
-        android:textSize="22sp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="225dp"
-        android:layout_below="@+id/mi_login_button" />
+        android:textColor="#a9a8a2"
+        android:textColorHint="#a9a8a2"
+        android:textSize="27sp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_marginBottom="20dp"
+        android:layout_alignEnd="@+id/fb_login_button"
+        android:layout_alignStart="@+id/fb_login_button" />
 
 </RelativeLayout>

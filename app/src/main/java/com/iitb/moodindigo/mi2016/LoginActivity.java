@@ -289,7 +289,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
         try {
-            if (Jobject != null) {
+            if (Jobject.getString("message").equals("not_registered")) {
+                LoginManager.getInstance().logOut();
+                Toast.makeText(LoginActivity.this, "Looks like you have not registered for Mood Indigo. Click Register Now to register.", Toast.LENGTH_SHORT).show();
+            } else if (Jobject != null) {
+                Log.e("dffdsf", Jobject.getString("MI_NUMBER"));
                 for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
                     intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
                     editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
@@ -315,26 +319,36 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mi_no.getHint().equals("Contact No.")) {
-            index = 0;
-            animateElement(mi_no, 300, 0, 1000);
-            mi_no.setText(mi_no_text);
-            mi_no.setHint("MI No. (mi-abc-123)");
-            animateElement(mi_no, 300, -2000, 0);
-        } else if (mi_login_button.getVisibility() == View.GONE) {
-            mi_login_button.setVisibility(View.VISIBLE);
-            animateElement(fb_login_button, 300, 0);
+        if (mi_no.getHint() != null) {
+            if (mi_no.getHint().equals("Contact No.")) {
+                index = 0;
+                animateElement(mi_no, 300, 0, 1000);
+                mi_no.setText(mi_no_text);
+                mi_no.setHint("MI No. (mi-abc-123)");
+                animateElement(mi_no, 300, -2000, 0);
+            } else if (mi_login_button.getVisibility() == View.GONE) {
+                mi_login_button.setVisibility(View.VISIBLE);
+                animateElement(fb_login_button, 300, 0);
 
-            fb_login_button.setVisibility(View.VISIBLE);
-            animateElement(mi_login_button, 300, 0);
+                fb_login_button.setVisibility(View.VISIBLE);
+                animateElement(mi_login_button, 300, 0);
 
-            animateElement(mi_no, 300, 2000);
+                animateElement(mi_no, 300, 2000);
 
-            animateElement(submit_button, 300, 2000);
-            mi_no.setVisibility(View.GONE);
-            submit_button.setVisibility(View.GONE);
+                animateElement(submit_button, 300, 2000);
+                mi_no.setVisibility(View.GONE);
+                submit_button.setVisibility(View.GONE);
+            } else {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+            }
         } else {
-            super.onBackPressed();
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
         }
     }
 
