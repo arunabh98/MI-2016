@@ -253,6 +253,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         accomodationList.add(new Place(new LatLng(19.134811, 72.905217), "Hostel 12, 13, 14"));
         accomodationList.add(new Place(new LatLng(19.137539, 72.914096), "Hostel 15"));
         accomodationList.add(new Place(new LatLng(19.137731, 72.912796), "Hostel 16"));
+        accomodationList.add(new Place(new LatLng(19.135883, 72.910248), "Tansa House"));
+        accomodationList.add(new Place(new LatLng(19.135305, 72.913685), "Hospitality Desk"));
 
         eateriesList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
         eateriesList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
