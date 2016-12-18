@@ -115,6 +115,11 @@ public class DaysFragment extends Fragment implements Callback<List<GsonModels.E
         day3List = Utils.mergeSort(day3List);
         day4List = Utils.mergeSort(day4List);
 
+        Cache.setDaysList1(day1List);
+        Cache.setDaysList2(day2List);
+        Cache.setDaysList3(day3List);
+        Cache.setDaysList4(day4List);
+
     }
 
     @Override

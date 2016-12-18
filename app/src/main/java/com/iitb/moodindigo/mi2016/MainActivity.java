@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -175,6 +176,14 @@ public class MainActivity extends AppCompatActivity
                                 transaction.commit();
                             }
                         }
+                    } else if(getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof CategoryGroupFragment) {
+                        Log.e("Hello", Cache.getDaysList1().toString());
+                        DaysFragment daysFragment = new DaysFragment();
+                        FragmentManager manager = this.getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                        transaction.replace(R.id.relativelayout_for_fragment, daysFragment, daysFragment.getTag());
+                        transaction.commit();
                     } else {
                         mainFragment = new MainFragment();
                         FragmentManager manager = this.getSupportFragmentManager();
