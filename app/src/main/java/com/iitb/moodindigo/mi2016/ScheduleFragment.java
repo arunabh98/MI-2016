@@ -33,6 +33,8 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
 
     private ProgressDialog scheduleProgressDialog;
     private View inflatedView;
+    private boolean inflatedViews = false;
+    Response<List<GsonModels.Event>> responseList;
     private List<GsonModels.Event> day1List = new ArrayList<>();
     private List<GsonModels.Event> day2List = new ArrayList<>();
     private List<GsonModels.Event> day3List = new ArrayList<>();
@@ -145,6 +147,8 @@ public class ScheduleFragment extends Fragment implements Callback<List<GsonMode
     @Override
     public void onResponse(Call<List<GsonModels.Event>> call, Response<List<GsonModels.Event>> response) {
         if (response.isSuccessful()) {
+            inflatedViews = true;
+            responseList = response;
             Cache.setEventList(response.body());
             inflateTabs(Cache.getEventList());
             Cache.setSendEventRequest(false);

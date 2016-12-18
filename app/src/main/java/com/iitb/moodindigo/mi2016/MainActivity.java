@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     public ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
     MainFragment mainFragment;
+    EventPageFragment eventPageFragment;
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
     SharedPreferences prefs;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         }
         name.setText(NAME);
         email.setText(EMAIL);
-
+        eventPageFragment = new EventPageFragment();
         mainFragment = new MainFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -120,12 +121,35 @@ public class MainActivity extends AppCompatActivity
                     }
                 } else {
                     backButtonCount = 0;
-                    mainFragment = new MainFragment();
-                    FragmentManager manager = this.getSupportFragmentManager();
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                    transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
-                    transaction.commit();
+                    if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
+                        FragmentManager.BackStackEntry fragment = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
+                        if (fragment.getName() != null) {
+                            if (fragment.getName().equals("schedule")) {
+                                ScheduleFragment scheduleFragment = new ScheduleFragment();
+                                FragmentManager manager = getSupportFragmentManager();
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                                transaction.addToBackStack(null);
+                                transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+                                transaction.commit();
+                            } else if (fragment.getName().equals("going")) {
+                                GoingFragment goingFragment = new GoingFragment();
+                                FragmentManager manager = getSupportFragmentManager();
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                                transaction.addToBackStack(null);
+                                transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+                                transaction.commit();
+                            }
+                        }
+                    } else {
+                        mainFragment = new MainFragment();
+                        FragmentManager manager = this.getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                        transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
+                        transaction.commit();
+                    }
                 }
             }
         }

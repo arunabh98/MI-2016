@@ -57,7 +57,7 @@ public class GoingFragment extends Fragment {
                 Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getGoingEventsList().get(position));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("going");
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
                 transaction.commit();
