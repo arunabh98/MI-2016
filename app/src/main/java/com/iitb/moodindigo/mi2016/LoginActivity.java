@@ -319,26 +319,36 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mi_no.getHint().equals("Contact No.")) {
-            index = 0;
-            animateElement(mi_no, 300, 0, 1000);
-            mi_no.setText(mi_no_text);
-            mi_no.setHint("MI No. (mi-abc-123)");
-            animateElement(mi_no, 300, -2000, 0);
-        } else if (mi_login_button.getVisibility() == View.GONE) {
-            mi_login_button.setVisibility(View.VISIBLE);
-            animateElement(fb_login_button, 300, 0);
+        if (mi_no.getHint() != null) {
+            if (mi_no.getHint().equals("Contact No.")) {
+                index = 0;
+                animateElement(mi_no, 300, 0, 1000);
+                mi_no.setText(mi_no_text);
+                mi_no.setHint("MI No. (mi-abc-123)");
+                animateElement(mi_no, 300, -2000, 0);
+            } else if (mi_login_button.getVisibility() == View.GONE) {
+                mi_login_button.setVisibility(View.VISIBLE);
+                animateElement(fb_login_button, 300, 0);
 
-            fb_login_button.setVisibility(View.VISIBLE);
-            animateElement(mi_login_button, 300, 0);
+                fb_login_button.setVisibility(View.VISIBLE);
+                animateElement(mi_login_button, 300, 0);
 
-            animateElement(mi_no, 300, 2000);
+                animateElement(mi_no, 300, 2000);
 
-            animateElement(submit_button, 300, 2000);
-            mi_no.setVisibility(View.GONE);
-            submit_button.setVisibility(View.GONE);
+                animateElement(submit_button, 300, 2000);
+                mi_no.setVisibility(View.GONE);
+                submit_button.setVisibility(View.GONE);
+            } else {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+            }
         } else {
-            super.onBackPressed();
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
         }
     }
 
