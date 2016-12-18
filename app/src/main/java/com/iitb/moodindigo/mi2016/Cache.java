@@ -20,6 +20,8 @@ public class Cache {
     private static GsonModels.Day day;
     private static int categoryPosition;
     private static int listPosition;
+    private static int goingdayPosition;
+    private static int goinglistPosition;
 
     public static List<GsonModels.Event> getGoingEventsList() {
         return goingEventsList;
@@ -41,6 +43,27 @@ public class Cache {
     }
     public static int getCategoryPosition() {
         return categoryPosition;
+    }
+    public static int getGoingdayPosition() { return goingdayPosition; }
+    public static int getGoinglistPosition() { return goinglistPosition; }
+
+    public static void setGoingdayPosition(GsonModels.Day day){
+        if (day.get_1()) {
+            Cache.goingdayPosition =0;
+        }
+        else if (day.get_2()) {
+            Cache.goingdayPosition =1;
+        }
+        else if (day.get_3()) {
+            Cache.goingdayPosition =2;
+        }
+        else if (day.get_4()) {
+            Cache.goingdayPosition =3;
+        }
+    }
+
+    public static void setGoinglistPosition(int goinglistPosition){
+        Cache.goinglistPosition = goinglistPosition;
     }
 
     public static void setGoingEventsList(List<GsonModels.Event> goingEventsList) {

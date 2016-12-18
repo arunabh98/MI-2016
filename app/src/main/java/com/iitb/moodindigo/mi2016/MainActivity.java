@@ -162,10 +162,6 @@ public class MainActivity extends AppCompatActivity
                     if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
                         FragmentManager.BackStackEntry fragment = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
                             if (fragment.getName().equals("category")) {
-                                GsonModels.Day day1 = new GsonModels.Day(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE);
-                                GsonModels.Day day2 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
-                                GsonModels.Day day3 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
-                                GsonModels.Day day4 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE);
                                 List<GsonModels.Event> daysList = new ArrayList<>();
                                 int day = 0;
                                 if (Cache.getDay().get_1()) {
