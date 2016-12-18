@@ -289,7 +289,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         SharedPreferences.Editor editor = getSharedPreferences(storeUserDetails, MODE_PRIVATE).edit();
         try {
-            if (Jobject != null) {
+            if (Jobject.getString("message").equals("not_registered")) {
+                LoginManager.getInstance().logOut();
+                Toast.makeText(LoginActivity.this, "Looks like you have not registered for Mood Indigo. Click Register Now to register.", Toast.LENGTH_SHORT).show();
+            } else if (Jobject != null) {
+                Log.e("dffdsf", Jobject.getString("MI_NUMBER"));
                 for (int userDetail = 0; userDetail < userDetailsList.length; userDetail++) {
                     intent.putExtra(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));
                     editor.putString(userDetailsList[userDetail], Jobject.getString(userDetailsList[userDetail].toLowerCase()));

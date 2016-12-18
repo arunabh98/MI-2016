@@ -31,6 +31,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
     private SharedPreferences goingPreferences;
     private boolean clicked;
 
+
     public EventsListAdapter(List<GsonModels.Event> eventList, ItemCLickListener itemCLickListener) {
         this.eventList = eventList;
         this.itemCLickListener = itemCLickListener;
