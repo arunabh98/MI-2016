@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +30,7 @@ public class GoingFragment extends Fragment {
     private RecyclerView goingRecyclerView;
     private BookmarkedEventsListAdapter bookmarkedEventsListAdapter;
     private SharedPreferences goingSharedPreferences;
+    private TextView noEventsSelected;
 
     public GoingFragment() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class GoingFragment extends Fragment {
         List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         Cache.setGoingEventsList(goingListGson);
         goingRecyclerView = (RecyclerView) getActivity().findViewById(R.id.going_events_list);
+        noEventsSelected = (TextView) getActivity().findViewById(R.id.no_events_selected);
         bookmarkedEventsListAdapter = new BookmarkedEventsListAdapter(Cache.getGoingEventsList(), new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
@@ -63,8 +66,15 @@ public class GoingFragment extends Fragment {
                 transaction.commit();
             }
         });
-        goingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
+        if (bookmarkedEventsListAdapter.getItemCount() == 0) {
+            goingRecyclerView.setVisibility(View.GONE);
+            noEventsSelected.setVisibility(View.VISIBLE);
+        } else {
+            goingRecyclerView.setVisibility(View.VISIBLE);
+            noEventsSelected.setVisibility(View.GONE);
+            goingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
+        }
     }
 
     @Override

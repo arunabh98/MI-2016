@@ -18,6 +18,16 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/event_description"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Event Description"
+        android:paddingStart="20dp"
+        android:paddingBottom="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,8 +52,9 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:text="Venue"
+                android:paddingTop="3dp"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <ImageView
@@ -63,7 +74,8 @@
             android:layout_marginStart="30dp"
             android:text="Time"
             android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+            android:paddingTop="3dp"
+            android:textSize="17sp" />
     </RelativeLayout>
 
     <View

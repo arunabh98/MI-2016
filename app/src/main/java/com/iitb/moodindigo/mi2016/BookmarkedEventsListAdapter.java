@@ -46,6 +46,7 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
         GsonModels.Event selectedEvent = eventList.get(position);
         holder.eventName.setText(selectedEvent.getTitle());
         holder.eventVenue.setText(selectedEvent.getLocation());
+        holder.eventDescripiton.setText(selectedEvent.getShort_des());
         String time = String.valueOf(selectedEvent.getTime());
         if (time.length() == 3)
             time = "0" + time;
@@ -67,6 +68,7 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
         private TextView eventName;
         private TextView eventVenue;
         private TextView eventTime;
+        private TextView eventDescripiton;
         private ImageView venueIcon;
         private ImageView timeIcon;
 
@@ -75,6 +77,7 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
 
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             eventVenue = (TextView) itemView.findViewById(R.id.event_venue);
+            eventDescripiton = (TextView) itemView.findViewById(R.id.event_description);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
             venueIcon = (ImageView) itemView.findViewById(R.id.venue_icon);
             timeIcon = (ImageView) itemView.findViewById(R.id.time_icon);

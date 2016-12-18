@@ -13,12 +13,21 @@
 
         <TextView
             android:id="@+id/event_name"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Event Names"
             android:paddingTop="10dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/event_description"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Event Description"
+            android:paddingTop="47dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/bookmark"
@@ -33,7 +42,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -53,8 +63,9 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:text="Venue"
+                android:paddingTop="3dp"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textAlignment="viewStart" />
         </LinearLayout>
 
@@ -63,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="128dp"
+            android:layout_marginEnd="70dp"
             android:src="@drawable/ic_access_time_black_24dp"
             android:tint="#FFFFFF" />
 
@@ -74,8 +85,9 @@
             android:layout_alignStart="@id/time_icon"
             android:layout_marginStart="32dp"
             android:text="Time"
+            android:paddingTop="3dp"
             android:textColor="#FFFFFF"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:layout_alignParentTop="true" />
     </RelativeLayout>
 

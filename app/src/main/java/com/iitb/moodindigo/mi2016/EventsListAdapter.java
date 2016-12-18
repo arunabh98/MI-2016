@@ -57,6 +57,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         final GsonModels.Event selectedEvent = eventList.get(position);
         holder.eventName.setText(selectedEvent.getTitle());
         holder.eventVenue.setText(selectedEvent.getLocation());
+        holder.eventDescription.setText(selectedEvent.getShort_des());
         String time = String.valueOf(selectedEvent.getTime());
         if (time.length() == 3)
             time = "0" + time;
@@ -68,6 +69,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                     holder.eventName.setTextColor(Color.parseColor("#FFC107"));
                     holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
                     holder.eventTime.setTextColor(Color.parseColor("#FFC107"));
+                    holder.eventDescription.setTextColor(Color.parseColor("#FFC107"));
                     holder.venueIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
                     holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
@@ -76,6 +78,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                 } else {
                     holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
                     holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
+                    holder.eventDescription.setTextColor(Color.parseColor("#FFFFFF"));
                     holder.eventTime.setTextColor(Color.parseColor("#FFFFFF"));
                     holder.venueIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                     holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
@@ -98,6 +101,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         } else {
             if (goingListGson.contains(selectedEvent)) {
                 holder.eventName.setTextColor(Color.parseColor("#FFC107"));
+                holder.eventDescription.setTextColor(Color.parseColor("#FFC107"));
                 holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
                 holder.eventTime.setTextColor(Color.parseColor("#FFC107"));
                 holder.venueIcon.setColorFilter(Color.parseColor("#FFC107"));
@@ -113,6 +117,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
             } else {
                 holder.eventName.setTextColor(Color.parseColor("#FFFFFF"));
                 holder.eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
+                holder.eventDescription.setTextColor(Color.parseColor("#FFFFFF"));
                 holder.eventTime.setTextColor(Color.parseColor("#FFFFFF"));
                 holder.venueIcon.setColorFilter(Color.parseColor("#FFFFFF"));
                 holder.timeIcon.setColorFilter(Color.parseColor("#FFFFFF"));
@@ -134,6 +139,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         private TextView eventVenue;
         private TextView eventTime;
         private ImageView venueIcon;
+        private TextView eventDescription;
         private ImageView timeIcon;
         private ImageView bookmarkIcon;
 
@@ -144,6 +150,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
             eventVenue = (TextView) itemView.findViewById(R.id.event_venue);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
             venueIcon = (ImageView) itemView.findViewById(R.id.venue_icon);
+            eventDescription = (TextView) itemView.findViewById(R.id.event_description);
             timeIcon = (ImageView) itemView.findViewById(R.id.time_icon);
             bookmarkIcon = (ImageView) itemView.findViewById(R.id.bookmark);
         }
