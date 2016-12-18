@@ -26,43 +26,52 @@ public class Cache {
     public static List<GsonModels.Event> getGoingEventsList() {
         return goingEventsList;
     }
+
     public static List<GsonModels.Event> getDaysList1() {
         return daysList1;
     }
+
     public static List<GsonModels.Event> getDaysList2() {
         return daysList2;
     }
+
     public static List<GsonModels.Event> getDaysList3() {
         return daysList3;
     }
+
     public static List<GsonModels.Event> getDaysList4() {
         return daysList4;
     }
+
     public static GsonModels.Day getDay() {
         return day;
     }
+
     public static int getCategoryPosition() {
         return categoryPosition;
     }
-    public static int getGoingdayPosition() { return goingdayPosition; }
-    public static int getGoinglistPosition() { return goinglistPosition; }
 
-    public static void setGoingdayPosition(GsonModels.Day day){
+    public static int getGoingdayPosition() {
+        return goingdayPosition;
+    }
+
+    public static int getGoinglistPosition() {
+        return goinglistPosition;
+    }
+
+    public static void setGoingdayPosition(GsonModels.Day day) {
         if (day.get_1()) {
-            Cache.goingdayPosition =0;
-        }
-        else if (day.get_2()) {
-            Cache.goingdayPosition =1;
-        }
-        else if (day.get_3()) {
-            Cache.goingdayPosition =2;
-        }
-        else if (day.get_4()) {
-            Cache.goingdayPosition =3;
+            Cache.goingdayPosition = 0;
+        } else if (day.get_2()) {
+            Cache.goingdayPosition = 1;
+        } else if (day.get_3()) {
+            Cache.goingdayPosition = 2;
+        } else if (day.get_4()) {
+            Cache.goingdayPosition = 3;
         }
     }
 
-    public static void setGoinglistPosition(int goinglistPosition){
+    public static void setGoinglistPosition(int goinglistPosition) {
         Cache.goinglistPosition = goinglistPosition;
     }
 
@@ -75,7 +84,12 @@ public class Cache {
     }
 
     public static void addToGoingList(GsonModels.Event event) {
-        goingEventsList.add(event);
+        if (goingEventsList == null) {
+            goingEventsList = new ArrayList<>();
+            goingEventsList.add(event);
+        } else {
+            goingEventsList.add(event);
+        }
     }
 
     public static void removeFromGoingList(GsonModels.Event event) {
@@ -100,7 +114,12 @@ public class Cache {
     }
 
     public static void addToEventList(GsonModels.Event event) {
-        eventList.add(event);
+        if (eventList == null) {
+            eventList = new ArrayList<>();
+            eventList.add(event);
+        } else {
+            eventList.add(event);
+        }
     }
 
     public static void removeFromEventList(GsonModels.Event event) {
@@ -110,12 +129,15 @@ public class Cache {
     public static void setDaysList1(List<GsonModels.Event> daysList1) {
         Cache.daysList1 = daysList1;
     }
+
     public static void setDaysList2(List<GsonModels.Event> daysList2) {
         Cache.daysList2 = daysList2;
     }
+
     public static void setDaysList3(List<GsonModels.Event> daysList3) {
         Cache.daysList3 = daysList3;
     }
+
     public static void setDaysList4(List<GsonModels.Event> daysList4) {
         Cache.daysList4 = daysList4;
     }
@@ -128,7 +150,7 @@ public class Cache {
         return listPosition;
     }
 
-    public static void setCategoryPosition (String category) {
+    public static void setCategoryPosition(String category) {
         if (category.equalsIgnoreCase("proshows")) {
             categoryPosition = 0;
         } else if (category.equalsIgnoreCase("workshops")) {

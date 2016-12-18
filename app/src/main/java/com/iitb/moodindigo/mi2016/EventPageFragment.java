@@ -69,10 +69,9 @@ public class EventPageFragment extends Fragment {
         eventVenue.setText(event.getLocation());
         genre.setText(event.getCategory());
         getActivity().setTitle("Event");
-        Log.e("Event", event.getDay().toString());
-        Log.e("Event", event.getCategory());
         Cache.setDay(event.getDay());
         Cache.setCategoryPosition(event.getCategory());
+        Cache.setGoingdayPosition(event.getDay());
         if (goingListGson == null) {
             ;
         } else if (goingListGson.contains(event)) {

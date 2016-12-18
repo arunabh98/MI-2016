@@ -67,7 +67,7 @@ public class GoingFragment extends Fragment {
         viewPager.setAdapter(new GoingFragment.PagerAdapter
                 (getFragmentManager(), tabLayout.getTabCount()));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        viewPager.setCurrentItem(Cache.getCategoryPosition(), true);
+        viewPager.setCurrentItem(Cache.getGoingdayPosition(), true);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -92,24 +92,31 @@ public class GoingFragment extends Fragment {
     }
 
     public void generateDays(List<GsonModels.Event> eventList){
-        for (GsonModels.Event event : eventList) {
-            if (event.getDay().get_1()) {
-                goingday1list.add(event);
-            }
-            else if (event.getDay().get_2()) {
-                goingday2list.add(event);
-            }
-            else if (event.getDay().get_3()) {
-                goingday3list.add(event);
-            }
-            else if (event.getDay().get_4()) {
-                goingday4list.add(event);
+        if(eventList!=null) {
+            for (GsonModels.Event event : eventList) {
+                if (event.getDay().get_1()) {
+                    goingday1list.add(event);
+                } else if (event.getDay().get_2()) {
+                    goingday2list.add(event);
+                } else if (event.getDay().get_3()) {
+                    goingday3list.add(event);
+                } else if (event.getDay().get_4()) {
+                    goingday4list.add(event);
+                }
             }
         }
-        goingday1list = Utils.mergeSort(goingday1list);
-        goingday2list = Utils.mergeSort(goingday2list);
-        goingday3list = Utils.mergeSort(goingday3list);
-        goingday4list = Utils.mergeSort(goingday4list);
+        if (!goingday1list.isEmpty()) {
+            goingday1list = Utils.mergeSort(goingday1list);
+        }
+        if (!goingday2list.isEmpty()) {
+            goingday2list = Utils.mergeSort(goingday2list);
+        }
+        if (!goingday3list.isEmpty()) {
+            goingday3list = Utils.mergeSort(goingday3list);
+        }
+        if (!goingday4list.isEmpty()) {
+            goingday4list = Utils.mergeSort(goingday4list);
+        }
 
         Log.d("Going Fragment",goingday1list.toString());
         Log.d("Going Fragment",goingday2list.toString());
