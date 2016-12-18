@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
@@ -101,8 +100,42 @@ public class MainActivity extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
-                super.onBackPressed();
-                overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) == mainFragment) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+                } else {
+                    backButtonCount = 0;
+                    if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
+                        FragmentManager.BackStackEntry fragment = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
+                        if (fragment.getName() != null) {
+                            if (fragment.getName().equals("schedule")) {
+                                ScheduleFragment scheduleFragment = new ScheduleFragment();
+                                FragmentManager manager = getSupportFragmentManager();
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                                transaction.addToBackStack(null);
+                                transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+                                transaction.commit();
+                            } else if (fragment.getName().equals("going")) {
+                                GoingFragment goingFragment = new GoingFragment();
+                                FragmentManager manager = getSupportFragmentManager();
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                                transaction.addToBackStack(null);
+                                transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+                                transaction.commit();
+                            }
+                        }
+                    } else {
+                        mainFragment = new MainFragment();
+                        FragmentManager manager = this.getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                        transaction.replace(R.id.relativelayout_for_fragment, mainFragment, mainFragment.getTag());
+                        transaction.commit();
+                    }
+                }
             }
         } else {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -159,7 +192,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.nav_going) {
             openGoing();
         } else if (id == R.id.nav_schedule) {
@@ -175,6 +207,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             logout();
         }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -268,5 +301,9 @@ public class MainActivity extends AppCompatActivity
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    public String getMiNumber() {
+        return this.miNumberStored;
     }
 }
