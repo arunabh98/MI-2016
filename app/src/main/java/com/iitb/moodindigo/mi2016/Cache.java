@@ -39,6 +39,7 @@ public class Cache {
     }
 
     public static List<GsonModels.Event> getEventList() {
+
         return eventList;
     }
 

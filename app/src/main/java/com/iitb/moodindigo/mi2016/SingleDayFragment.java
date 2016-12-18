@@ -43,7 +43,7 @@ public class SingleDayFragment extends Fragment {
         scheduleListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Fragment eventPageFragment = new EventPageFragment(getContext(), Cache.getEventList().get(position));
+                Fragment eventPageFragment = new EventPageFragment(getContext(), eventResponse.get(position));
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.addToBackStack(null);
