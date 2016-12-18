@@ -46,8 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="108.5dp"
-        android:layout_marginEnd="7.5dp">
+        android:layout_marginBottom="113dp"
+        android:layout_marginEnd="11dp">
         <!--moment.end()-->
 
         <com.github.clans.fab.FloatingActionButton

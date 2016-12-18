@@ -121,6 +121,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         });
         final FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.frame_layout);
         final FloatingActionMenu fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
+        fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!fabMenu.isOpened()) {
+                    frameLayout.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            fabMenu.toggle(true);
+                            frameLayout.setOnTouchListener(null);
+                            return true;
+                        }
+                    });
+                }
+                fabMenu.toggle(true);
+            }
+        });
         directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
