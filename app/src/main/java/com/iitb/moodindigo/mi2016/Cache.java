@@ -17,6 +17,9 @@ public class Cache {
     private static List<GsonModels.Event> daysList2 = new ArrayList<>();
     private static List<GsonModels.Event> daysList3 = new ArrayList<>();
     private static List<GsonModels.Event> daysList4 = new ArrayList<>();
+    private static GsonModels.Day day;
+    private static int categoryPosition;
+    private static int listPosition;
 
     public static List<GsonModels.Event> getGoingEventsList() {
         return goingEventsList;
@@ -33,9 +36,19 @@ public class Cache {
     public static List<GsonModels.Event> getDaysList4() {
         return daysList4;
     }
+    public static GsonModels.Day getDay() {
+        return day;
+    }
+    public static int getCategoryPosition() {
+        return categoryPosition;
+    }
 
     public static void setGoingEventsList(List<GsonModels.Event> goingEventsList) {
         Cache.goingEventsList = goingEventsList;
+    }
+
+    public static void setListPosition(int listPosition) {
+        Cache.listPosition = listPosition;
     }
 
     public static void addToGoingList(GsonModels.Event event) {
@@ -82,5 +95,27 @@ public class Cache {
     }
     public static void setDaysList4(List<GsonModels.Event> daysList4) {
         Cache.daysList4 = daysList4;
+    }
+
+    public static void setDay(GsonModels.Day day) {
+        Cache.day = day;
+    }
+
+    public static int getListPosition() {
+        return listPosition;
+    }
+
+    public static void setCategoryPosition (String category) {
+        if (category.equalsIgnoreCase("proshows")) {
+            categoryPosition = 0;
+        } else if (category.equalsIgnoreCase("workshops")) {
+            categoryPosition = 1;
+        } else if (category.equalsIgnoreCase("competitions")) {
+            categoryPosition = 2;
+        } else if (category.equalsIgnoreCase("informals")) {
+            categoryPosition = 3;
+        } else if (category.equalsIgnoreCase("concerts")) {
+            categoryPosition = 4;
+        }
     }
 }

@@ -27,6 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -157,27 +161,56 @@ public class MainActivity extends AppCompatActivity
                     backButtonCount = 0;
                     if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
                         FragmentManager.BackStackEntry fragment = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
-                        if (fragment.getName() != null) {
-                            if (fragment.getName().equals("schedule")) {
-                                ScheduleFragment scheduleFragment = new ScheduleFragment();
-                                FragmentManager manager = getSupportFragmentManager();
-                                FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                                transaction.addToBackStack(null);
-                                transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
-                                transaction.commit();
-                            } else if (fragment.getName().equals("going")) {
-                                GoingFragment goingFragment = new GoingFragment();
-                                FragmentManager manager = getSupportFragmentManager();
-                                FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                                transaction.addToBackStack(null);
-                                transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
-                                transaction.commit();
-                            }
+//                            if (fragment.getName().equals("schedule")) {
+//                                ScheduleFragment scheduleFragment = new ScheduleFragment();
+//                                FragmentManager manager = getSupportFragmentManager();
+//                                FragmentTransaction transaction = manager.beginTransaction();
+//                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//                                transaction.addToBackStack(null);
+//                                transaction.replace(R.id.relativelayout_for_fragment, scheduleFragment, scheduleFragment.getTag());
+//                                transaction.commit();
+//                            } else if (fragment.getName().equals("going")) {
+//                                GoingFragment goingFragment = new GoingFragment();
+//                                FragmentManager manager = getSupportFragmentManager();
+//                                FragmentTransaction transaction = manager.beginTransaction();
+//                                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+//                                transaction.addToBackStack(null);
+//                                transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+//                                transaction.commit();
+//                            }
+                        Log.e("Hello", Cache.getDaysList2().toString());
+                        Log.e("Hello", Cache.getDay().toString());
+                        Log.e("Hello", String.valueOf(Cache.getCategoryPosition()));
+                        GsonModels.Day day1 = new GsonModels.Day(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE);
+                        GsonModels.Day day2 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
+                        GsonModels.Day day3 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
+                        GsonModels.Day day4 = new GsonModels.Day(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.TRUE);
+                        List<GsonModels.Event> daysList = new ArrayList<>();
+                        int day = 0;
+                        if (Cache.getDay().get_1()) {
+                            daysList = Cache.getDaysList1();
+                            day = 1;
+                        } else if (Cache.getDay().get_2()) {
+                            daysList = Cache.getDaysList2();
+                            day = 2;
+                        } else if (Cache.getDay().get_3()) {
+                            daysList = Cache.getDaysList3();
+                            day = 3;
+                        } else if (Cache.getDay().get_4()) {
+                            daysList = Cache.getDaysList4();
+                            day = 4;
                         }
-                    } else if(getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof CategoryGroupFragment) {
-                        Log.e("Hello", Cache.getDaysList1().toString());
+                        CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(daysList, day);
+                        FragmentManager manager = getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.addToBackStack(null);
+                        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                        transaction.replace(R.id.relativelayout_for_fragment, categoryGroupFragment1, categoryGroupFragment1.getTag());
+                        transaction.commit();
+                    } else if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof CategoryGroupFragment) {
+                        Log.e("Hello", Cache.getDaysList2().toString());
+                        Log.e("Hello", Cache.getDay().toString());
+                        Log.e("Hello", String.valueOf(Cache.getCategoryPosition()));
                         DaysFragment daysFragment = new DaysFragment();
                         FragmentManager manager = this.getSupportFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
