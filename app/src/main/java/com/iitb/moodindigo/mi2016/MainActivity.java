@@ -224,6 +224,15 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
+    public void openContactUsFromFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, contactUsFragment, contactUsFragment.getTag());
+        transaction.commit();
+    }
+
     public void call(View v) {
         contactUsFragment.call(v);
     }
