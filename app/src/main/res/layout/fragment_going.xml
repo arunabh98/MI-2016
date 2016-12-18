@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.iitb.moodindigo.mi2016.GoingFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/going_events_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/no_events_selected"
+        android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:textSize="20sp"
+        android:text="You have not selected any events. Click the bell button next to Events to have some Fun!!"
+        android:textColor="#FFF"/>
+
+</FrameLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Department">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -43,7 +44,7 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="fontPath">fonts/ProximaNova-Bold.otf</item>
     </style>
 
@@ -53,7 +54,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textColor">#deb951</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:onClick">call</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -65,7 +66,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textColor">#deb951</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:onClick">mail</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>

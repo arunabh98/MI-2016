@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.iitb.moodindigo.mi2016.DaysFragment"
+    android:layout_marginTop="?android:attr/actionBarSize"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <Button
+        android:text="Day 1"
+        android:background="@color/black"
+        android:id="@+id/day1"
+        style="@style/Department_Header"/>
+
+    <Button
+        android:text="Day 2"
+        android:background="@color/black"
+        android:id="@+id/day2"
+        style="@style/Department_Header"/>
+
+    <Button
+        android:text="Day 3"
+        android:background="@color/black"
+        android:id="@+id/day3"
+        style="@style/Department_Header"/>
+
+    <Button
+        android:text="Day 4"
+        android:background="@color/black"
+        android:id="@+id/day4"
+        style="@style/Department_Header"/>
+
+</LinearLayout>

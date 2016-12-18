@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.darknight.mi2016.MainActivity">
+    tools:context="com.iitb.moodindigo.mi2016.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#000"
         android:id="@+id/relativelayout_for_fragment">
     </RelativeLayout>
 
