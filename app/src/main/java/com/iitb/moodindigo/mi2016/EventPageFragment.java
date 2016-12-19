@@ -46,7 +46,8 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         goingPreferences = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE);
         final String goingList = goingPreferences.getString("GOING_LIST", null);
-        Type type = new TypeToken<List<GsonModels.Event>>() {}.getType();
+        Type type = new TypeToken<List<GsonModels.Event>>() {
+        }.getType();
         final List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         final View rootView = inflater.inflate(R.layout.fragment_event_page, container, false);
         final ImageButton notification = (ImageButton) rootView.findViewById(R.id.icon_button);
@@ -73,9 +74,12 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
             eventImage.setImageResource(R.drawable.concerts);
         }
         String timeString = String.valueOf(event.getTime());
-        if (timeString.length() == 3)
+        if (timeString.length() == 3 || timeString.length() == 7)
             timeString = "0" + timeString;
-        time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2));
+        if (timeString.length() == 4)
+            time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2, 4));
+        if (timeString.length() == 8)
+            time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + "-" + timeString.substring(4, 6) + ":" + timeString.substring(6, 8));
         description.setText(event.getDescription());
         eventVenue.setText(event.getLocation());
         genre.setText(event.getCategory());
