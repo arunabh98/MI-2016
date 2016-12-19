@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+
                 } else {
                     backButtonCount = 0;
                     if (getSupportFragmentManager().findFragmentById(R.id.relativelayout_for_fragment) instanceof EventPageFragment) {
