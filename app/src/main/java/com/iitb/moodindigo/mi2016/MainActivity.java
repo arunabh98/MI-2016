@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        if (miNumberStored == null) {
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+        }
         View header = navigationView.getHeaderView(0);
         LinearLayout navigationBar = (LinearLayout) header.findViewById(R.id.cover_picture);
         navigationBar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
