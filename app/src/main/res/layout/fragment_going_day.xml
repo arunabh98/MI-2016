@@ -19,7 +19,7 @@
         android:gravity="center"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
-        android:text="You have not selected any events for this day. Click the bell button next to Events to recieve notifications before the event starts."
+        android:text="You have not selected any events for this day. Click the bell button next to Events to receive notifications before the event starts."
         android:textColor="#FFF"
         android:textSize="20sp" />
 
