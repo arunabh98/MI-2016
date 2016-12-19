@@ -21,7 +21,7 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         PendingIntent alarmIntent = getStartPendingIntent(context);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 getTriggerAt(new Date()),
-                1000 * 60 * 15, //Change this to 1000 * 60 for testing => runs every minute
+                1000 * 60, //Change this to 1000 * 60 for testing => runs every minute
                 alarmIntent);
     }
 
