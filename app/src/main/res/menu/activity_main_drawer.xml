@@ -8,7 +8,7 @@
             android:title="Schedule" />
         <item
             android:id="@+id/nav_going"
-            android:icon="@drawable/going"
+            android:icon="@drawable/ic_bookmark_border_white_48dp"
             android:title="Going" />
         <item
             android:id="@+id/nav_map"
@@ -28,7 +28,7 @@
             android:title="Contact Us" />
         <item
             android:id="@+id/nav_dev"
-            android:icon="@drawable/ic_dev"
+            android:icon="@drawable/ic_developer_mode_white_48dp"
             android:title="Developers" />
         <item
             android:id="@+id/nav_logout"

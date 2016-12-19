@@ -20,12 +20,12 @@ public final class GridAdapter extends BaseAdapter {
 
         String miNumber = ((MainActivity) context).getMiNumber();
         mItems.add(new Item("Schedule", R.drawable.schedule_256));
-        mItems.add(new Item("Going", R.drawable.going_256));
+        mItems.add(new Item("Going", R.drawable.ic_bookmark_border_white_48dp));
         mItems.add(new Item("Map", R.drawable.map_256));
         mItems.add(new Item("QR Scanner", R.drawable.ic_menu_camera));
         mItems.add(new Item("FAQ", R.drawable.faq_256));
         mItems.add(new Item("Contact Us", R.drawable.contactus_256));
-        mItems.add(new Item("Developers", R.drawable.ic_dev));
+        mItems.add(new Item("Developers", R.drawable.ic_developer_mode_white_48dp));
         if (miNumber != null) {
             mItems.add(new Item("Logout", R.drawable.logout_256));
         }
