@@ -1,4 +1,6 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,5 +14,86 @@
         android:layout_height="match_parent"
         tools:context="com.iitb.moodindigo.mi2016.MapsActivity" />
 
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
+        app:layout_behavior="com.iitb.moodindigo.mi2016.UserLockBottomSheetBehavior">
 
-</FrameLayout>
+        <include
+            layout="@layout/content_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true" />
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/directions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:clickable="true"
+        android:src="@drawable/ic_my_location_black_24dp" />
+
+    <!--Ignore material design guidelines for a moment-->
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="113dp"
+        android:layout_marginEnd="11dp"
+        app:menu_icon="@drawable/ic_search_white_24dp"
+        fab:menu_colorNormal="@color/colorGray"
+        fab:menu_colorPressed="@color/colorGray"
+        fab:menu_fab_label="Clear Filters">
+        <!--moment.end()-->
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_local_play_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_label="Events"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_eateries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_local_dining_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_label="Eateries"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_accomodation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_hotel_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_label="Accomodation"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_toilets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_toilet_white_24dp"
+            fab:fab_colorNormal="@color/colorGray"
+            fab:fab_colorPressed="@color/colorGray"
+            fab:fab_label="Toilets"
+            fab:fab_size="mini" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -21,4 +21,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_expand_me">Place Title</string>
+    <string name="text_welcome_message">Lalalala</string>
 </resources>
