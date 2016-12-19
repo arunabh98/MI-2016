@@ -113,7 +113,7 @@
 
                         <TextView
                             style="@style/Dev_Mail"
-                            android:text="sarthak@gmail.com" />
+                            android:text="sarthak201098@gmail.com" />
                         <!--TODO-->
                     </LinearLayout>
 

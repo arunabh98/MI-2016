@@ -56,10 +56,23 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
         final ImageView clockIcon = (ImageView) rootView.findViewById(R.id.clock_icon);
         final ImageView locationIcon = (ImageView) rootView.findViewById(R.id.location_icon);
         final TextView description = (TextView) rootView.findViewById(R.id.description);
+        final ImageView eventImage = (ImageView) rootView.findViewById(R.id.event_image);
         final TextView title = (TextView) rootView.findViewById(R.id.event_name);
         final TextView genre = (TextView) rootView.findViewById(R.id.genre_name);
         goingSharedPreferencesEditor = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE).edit();
         title.setText(event.getTitle());
+        String category = event.getCategory();
+        if (category.equalsIgnoreCase("proshows")) {
+            eventImage.setImageResource(R.drawable.proshows);
+        } else if (category.equalsIgnoreCase("workshops")) {
+            eventImage.setImageResource(R.drawable.workshops);
+        } else if (category.equalsIgnoreCase("competitions")) {
+            eventImage.setImageResource(R.drawable.compi);
+        } else if (category.equalsIgnoreCase("informals")) {
+            eventImage.setImageResource(R.drawable.informals);
+        } else if (category.equalsIgnoreCase("concerts")) {
+            eventImage.setImageResource(R.drawable.concerts);
+        }
         String timeString = String.valueOf(event.getTime());
         if (timeString.length() == 3)
             timeString = "0" + timeString;

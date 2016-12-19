@@ -667,10 +667,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         currentLocation = getLastKnownLocation();
         mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
         RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
-        retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
-                selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
-                "walking",
-                GOOGLE_API_KEY).enqueue(MapFragment.this);
+        if(currentLocation != null) {
+            retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
+                    selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
+                    "walking",
+                    GOOGLE_API_KEY).enqueue(MapFragment.this);
+        }
     }
 
     public GsonModels.Event getLaunchEvent() {
