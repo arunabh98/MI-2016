@@ -125,7 +125,7 @@
 
                         <TextView
                             style="@style/Dev_Contact"
-                            android:text="+91-" />
+                            android:text="+91-9821427822" />
                         <!--TODO-->
 
                         <TextView
@@ -179,8 +179,7 @@
 
                         <TextView
                             style="@style/Dev_Mail"
-                            android:text="parag@gmail.com" />
-                        <!--TODO-->
+                            android:text="paragkale96@gmail.com" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CG_Holder">
