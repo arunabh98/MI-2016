@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/day1" />
         </FrameLayout>
 
@@ -59,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/day2" />
         </FrameLayout>
 
@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/day3" />
         </FrameLayout>
 
@@ -116,7 +116,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/day4" />
         </FrameLayout>
 
