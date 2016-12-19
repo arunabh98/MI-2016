@@ -57,9 +57,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:alpha="0.4"
+                android:scaleType="centerCrop"
                 android:src="@drawable/day2" />
         </FrameLayout>
 
@@ -90,9 +90,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:alpha="0.4"
+                android:scaleType="centerCrop"
                 android:src="@drawable/day3" />
         </FrameLayout>
 
@@ -114,9 +114,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:alpha="0.4"
+                android:scaleType="centerCrop"
                 android:src="@drawable/day4" />
         </FrameLayout>
 

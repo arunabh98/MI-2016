@@ -43,12 +43,12 @@ public class CategoryFragment extends Fragment {
         FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
         if (!fragment.getName().equals("back")) {
             int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-            int pos=-1;
-            Log.d("current hour",Integer.toString(hour));
-            hour = hour*100;
-            for(GsonModels.Event event:eventResponse){
+            int pos = -1;
+            Log.d("current hour", Integer.toString(hour));
+            hour = hour * 100;
+            for (GsonModels.Event event : eventResponse) {
                 pos++;
-                if(event.getTime()>=hour){
+                if (event.getTime() >= hour) {
                     break;
                 }
             }

@@ -27,36 +27,70 @@ public class Cache {
         return goingEventsList;
     }
 
+    public static void setGoingEventsList(List<GsonModels.Event> goingEventsList) {
+        Cache.goingEventsList = goingEventsList;
+    }
+
     public static List<GsonModels.Event> getDaysList1() {
         return daysList1;
+    }
+
+    public static void setDaysList1(List<GsonModels.Event> daysList1) {
+        Cache.daysList1 = daysList1;
     }
 
     public static List<GsonModels.Event> getDaysList2() {
         return daysList2;
     }
 
+    public static void setDaysList2(List<GsonModels.Event> daysList2) {
+        Cache.daysList2 = daysList2;
+    }
+
     public static List<GsonModels.Event> getDaysList3() {
         return daysList3;
+    }
+
+    public static void setDaysList3(List<GsonModels.Event> daysList3) {
+        Cache.daysList3 = daysList3;
     }
 
     public static List<GsonModels.Event> getDaysList4() {
         return daysList4;
     }
 
+    public static void setDaysList4(List<GsonModels.Event> daysList4) {
+        Cache.daysList4 = daysList4;
+    }
+
     public static GsonModels.Day getDay() {
         return day;
+    }
+
+    public static void setDay(GsonModels.Day day) {
+        Cache.day = day;
     }
 
     public static int getCategoryPosition() {
         return categoryPosition;
     }
 
-    public static int getGoingdayPosition() {
-        return goingdayPosition;
+    public static void setCategoryPosition(String category) {
+        if (category.equalsIgnoreCase("proshows")) {
+            categoryPosition = 0;
+        } else if (category.equalsIgnoreCase("workshops")) {
+            categoryPosition = 1;
+        } else if (category.equalsIgnoreCase("competitions")) {
+            categoryPosition = 2;
+        } else if (category.equalsIgnoreCase("informals")) {
+            categoryPosition = 3;
+        } else if (category.equalsIgnoreCase("concerts")) {
+            categoryPosition = 4;
+        }
     }
 
-    public static int getGoinglistPosition() {
-        return goinglistPosition;
+    public static int getGoingdayPosition() {
+        return goingdayPosition;
     }
 
     public static void setGoingdayPosition(GsonModels.Day day) {
@@ -71,16 +105,12 @@ public class Cache {
         }
     }
 
+    public static int getGoinglistPosition() {
+        return goinglistPosition;
+    }
+
     public static void setGoinglistPosition(int goinglistPosition) {
         Cache.goinglistPosition = goinglistPosition;
-    }
-
-    public static void setGoingEventsList(List<GsonModels.Event> goingEventsList) {
-        Cache.goingEventsList = goingEventsList;
-    }
-
-    public static void setListPosition(int listPosition) {
-        Cache.listPosition = listPosition;
     }
 
     public static void addToGoingList(GsonModels.Event event) {
@@ -126,41 +156,11 @@ public class Cache {
         eventList.remove(event);
     }
 
-    public static void setDaysList1(List<GsonModels.Event> daysList1) {
-        Cache.daysList1 = daysList1;
-    }
-
-    public static void setDaysList2(List<GsonModels.Event> daysList2) {
-        Cache.daysList2 = daysList2;
-    }
-
-    public static void setDaysList3(List<GsonModels.Event> daysList3) {
-        Cache.daysList3 = daysList3;
-    }
-
-    public static void setDaysList4(List<GsonModels.Event> daysList4) {
-        Cache.daysList4 = daysList4;
-    }
-
-    public static void setDay(GsonModels.Day day) {
-        Cache.day = day;
-    }
-
     public static int getListPosition() {
         return listPosition;
     }
 
-    public static void setCategoryPosition(String category) {
-        if (category.equalsIgnoreCase("proshows")) {
-            categoryPosition = 0;
-        } else if (category.equalsIgnoreCase("workshops")) {
-            categoryPosition = 1;
-        } else if (category.equalsIgnoreCase("competitions")) {
-            categoryPosition = 2;
-        } else if (category.equalsIgnoreCase("informals")) {
-            categoryPosition = 3;
-        } else if (category.equalsIgnoreCase("concerts")) {
-            categoryPosition = 4;
-        }
+    public static void setListPosition(int listPosition) {
+        Cache.listPosition = listPosition;
     }
 }

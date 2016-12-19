@@ -1,26 +1,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_marginTop="?attr/actionBarSize"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context="com.iitb.moodindigo.mi2016.GoingDayFragment">
-
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/going_events_list"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    android:layout_marginTop="?attr/actionBarSize"
+    tools:context="com.iitb.moodindigo.mi2016.GoingDayFragment">
 
-<TextView
-    android:layout_width="match_parent"
-    android:id="@+id/no_events_selected"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:textSize="20sp"
-    android:text="You have not selected any events for this day. Click the bell button next to Events to recieve notifications before the event starts."
-    android:textColor="#FFF"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/going_events_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:id="@+id/no_events_selected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="You have not selected any events for this day. Click the bell button next to Events to recieve notifications before the event starts."
+        android:textColor="#FFF"
+        android:textSize="20sp" />
 
 </FrameLayout>

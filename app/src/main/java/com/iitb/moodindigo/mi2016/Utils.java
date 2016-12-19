@@ -42,7 +42,7 @@ public class Utils {
     }
 
     public static void merge(List<GsonModels.Event> left, List<GsonModels.Event> right,
-                              List<GsonModels.Event> whole) {
+                             List<GsonModels.Event> whole) {
 
         int leftIndex = 0;
         int rightIndex = 0;

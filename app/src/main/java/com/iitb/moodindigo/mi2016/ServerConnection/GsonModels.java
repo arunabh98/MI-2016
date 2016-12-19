@@ -9,6 +9,125 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class GsonModels {
+    public static class Day {
+        @SerializedName("0")
+        private Boolean _0;
+        @SerializedName("1")
+        private Boolean _1;
+        @SerializedName("2")
+        private Boolean _2;
+        @SerializedName("3")
+        private Boolean _3;
+        @SerializedName("4")
+        private Boolean _4;
+
+        public Day(Boolean _0, Boolean _1, Boolean _2, Boolean _3, Boolean _4) {
+            this._0 = _0;
+            this._1 = _1;
+            this._2 = _2;
+            this._3 = _3;
+            this._4 = _4;
+        }
+
+        public Day(int date) {
+            switch (date) {
+                case 0:
+                    this._0 = false;
+                    this._1 = true;
+                    this._2 = false;
+                    this._3 = false;
+                    this._4 = false;
+                    break;
+                case 1:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = true;
+                    this._3 = false;
+                    this._4 = false;
+                    break;
+                case 2:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = false;
+                    this._3 = true;
+                    this._4 = false;
+                    break;
+                case 3:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = false;
+                    this._3 = false;
+                    this._4 = true;
+                    break;
+            }
+        }
+
+        public Boolean get_0() {
+            return _0;
+        }
+
+        public void set_0(Boolean _0) {
+            this._0 = _0;
+        }
+
+        public Boolean get_1() {
+            return _1;
+        }
+
+        public void set_1(Boolean _1) {
+            this._1 = _1;
+        }
+
+        public Boolean get_2() {
+            return _2;
+        }
+
+        public void set_2(Boolean _2) {
+            this._2 = _2;
+        }
+
+        public Boolean get_3() {
+            return _3;
+        }
+
+        public void set_3(Boolean _3) {
+            this._3 = _3;
+        }
+
+        public Boolean get_4() {
+            return _4;
+        }
+
+        public void set_4(Boolean _4) {
+            this._4 = _4;
+        }
+
+        public Integer getSaneDateBecauseWebValonNeHagDiya() {
+            if (get_0() != null && get_0()) {
+                return 0;
+            } else if (get_1() != null && get_1()) {
+                return 1;
+            } else if (get_2() != null && get_2()) {
+                return 2;
+            } else if (get_3() != null && get_3()) {
+                return 3;
+            } else if (get_4() != null && get_4()) {
+                return 4;
+            } else
+                return -1;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Day) {
+                Day day = (Day) obj;
+                if (_0 == day._0 && _1 == day._1 && _2 == day._2 && _3 == day._3 && _4 == day._4)
+                    return true;
+            }
+            return false;
+        }
+    }
+
     public class Event {
         private String _id;
         private String category;
@@ -93,6 +212,10 @@ public class GsonModels {
             return day;
         }
 
+        public void setDay(Day day) {
+            this.day = day;
+        }
+
         public Date getDate() {
             Date date = new Date();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -100,17 +223,15 @@ public class GsonModels {
             if (time.length() == 3)
                 time = "0" + time;
             try {
-                date = dateFormat.parse("2016-12-" + String.valueOf(22 + getActualDay()) + " " + time.substring(0,2) + ":" + time.substring(2,4) + ":00");
+                date = dateFormat.parse("2016-12-" + String.valueOf(22 + getActualDay()) + " " + time.substring(0, 2) + ":" + time.substring(2, 4) + ":00");
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             return date;
         }
 
-        public Integer getActualDay() { return day.getSaneDateBecauseWebValonNeHagDiya(); }
-
-        public void setDay(Day day) {
-            this.day = day;
+        public Integer getActualDay() {
+            return day.getSaneDateBecauseWebValonNeHagDiya();
         }
 
         public int getTime() {
@@ -123,7 +244,7 @@ public class GsonModels {
 
         @Override
         public boolean equals(Object obj) {
-            if(obj instanceof Event) {
+            if (obj instanceof Event) {
                 Event event = (Event) obj;
                 if (title.equals(event.title) && day.equals(event.day) && time == event.time)
                     return true;
@@ -132,129 +253,12 @@ public class GsonModels {
         }
 
         public boolean compareByTime(Event event) {
-            if(time < event.time)
+            if (time < event.time)
                 return true;
             return false;
         }
     }
-    public static class Day {
-        @SerializedName("0")
-        private Boolean _0;
-        @SerializedName("1")
-        private Boolean _1;
-        @SerializedName("2")
-        private Boolean _2;
-        @SerializedName("3")
-        private Boolean _3;
-        @SerializedName("4")
-        private Boolean _4;
 
-        public Day(Boolean _0, Boolean _1, Boolean _2, Boolean _3, Boolean _4) {
-            this._0 = _0;
-            this._1 = _1;
-            this._2 = _2;
-            this._3 = _3;
-            this._4 = _4;
-        }
-
-        public Boolean get_0() {
-            return _0;
-        }
-
-        public void set_0(Boolean _0) {
-            this._0 = _0;
-        }
-
-        public Boolean get_1() {
-            return _1;
-        }
-
-        public void set_1(Boolean _1) {
-            this._1 = _1;
-        }
-
-        public Boolean get_2() {
-            return _2;
-        }
-
-        public void set_2(Boolean _2) {
-            this._2 = _2;
-        }
-
-        public Boolean get_3() {
-            return _3;
-        }
-
-        public void set_3(Boolean _3) {
-            this._3 = _3;
-        }
-
-        public Boolean get_4() {
-            return _4;
-        }
-
-        public void set_4(Boolean _4) {
-            this._4 = _4;
-        }
-
-        public Integer getSaneDateBecauseWebValonNeHagDiya() {
-            if (get_0() != null && get_0()){
-                return 0;
-            } else if (get_1() != null && get_1()) {
-                return 1;
-            } else if (get_2() != null && get_2()) {
-                return 2;
-            } else if (get_3() != null && get_3()) {
-                return 3;
-            } else if (get_4() != null && get_4()) {
-                return 4;
-            } else
-                return -1;
-        }
-
-        public Day(int date){
-            switch (date){
-                case 0:
-                    this._0 = false;
-                    this._1 = true;
-                    this._2 = false;
-                    this._3 = false;
-                    this._4 = false;
-                    break;
-                case 1:
-                    this._0 = false;
-                    this._1 = false;
-                    this._2 = true;
-                    this._3 = false;
-                    this._4 = false;
-                    break;
-                case 2:
-                    this._0 = false;
-                    this._1 = false;
-                    this._2 = false;
-                    this._3 = true;
-                    this._4 = false;
-                    break;
-                case 3:
-                    this._0 = false;
-                    this._1 = false;
-                    this._2 = false;
-                    this._3 = false;
-                    this._4 = true;
-                    break;
-            }
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if(obj instanceof Day) {
-                Day day = (Day) obj;
-                if(_0 == day._0 && _1 == day._1 && _2 == day._2 && _3 == day._3 && _4 == day._4)
-                    return true;
-            }
-            return false;
-        }
-    }
     public class DistanceMatrix {
         ArrayList<String> destination_addresses;
         ArrayList<String> origin_addresses;

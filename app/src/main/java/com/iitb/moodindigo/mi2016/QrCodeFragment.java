@@ -27,10 +27,11 @@ import static com.iitb.moodindigo.mi2016.MapFragment.MY_PERMISSIONS_REQUEST_LOCA
 /**
  * A simple {@link Fragment * ment} subclass
  */
-public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultHandler{
+public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
-    private ZXingScannerView mScannerView;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 99;
+    private ZXingScannerView mScannerView;
+
     public QrCodeFragment() {
         // Required empty public constructor
     }
@@ -87,12 +88,13 @@ public class QrCodeFragment extends Fragment implements ZXingScannerView.ResultH
                 .create();
 
         scanDialog.show();
-        ((TextView)scanDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) scanDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void resumeCamera(){
+    private void resumeCamera() {
         mScannerView.resumeCameraPreview(this);
     }
+
     private void checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {

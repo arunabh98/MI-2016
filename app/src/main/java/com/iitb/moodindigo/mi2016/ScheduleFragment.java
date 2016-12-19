@@ -33,10 +33,10 @@ import static com.iitb.moodindigo.mi2016.Utils.mergeSort;
  */
 public class ScheduleFragment extends Fragment implements Callback<List<GsonModels.Event>> {
 
+    Response<List<GsonModels.Event>> responseList;
     private ProgressDialog scheduleProgressDialog;
     private View inflatedView;
     private boolean inflatedViews = false;
-    Response<List<GsonModels.Event>> responseList;
     private List<GsonModels.Event> day1List = new ArrayList<>();
     private List<GsonModels.Event> day2List = new ArrayList<>();
     private List<GsonModels.Event> day3List = new ArrayList<>();

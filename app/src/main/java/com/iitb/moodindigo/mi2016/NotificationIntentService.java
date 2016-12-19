@@ -22,9 +22,9 @@ import java.util.concurrent.TimeUnit;
 
 public class NotificationIntentService extends IntentService {
 
-    private static int NOTIFICATION_ID = 1;
     private static final String ACTION_START = "ACTION_START";
     private static final String ACTION_DELETE = "ACTION_DELETE";
+    private static int NOTIFICATION_ID = 1;
 
     public NotificationIntentService() {
         super(NotificationIntentService.class.getSimpleName());
@@ -40,6 +40,11 @@ public class NotificationIntentService extends IntentService {
         Intent intent = new Intent(context, NotificationIntentService.class);
         intent.setAction(ACTION_DELETE);
         return intent;
+    }
+
+    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -62,11 +67,6 @@ public class NotificationIntentService extends IntentService {
         // Log something?
     }
 
-    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
-    }
-
     private void processStartNotification() {
         // Do something. For example, fetch fresh data from backend to create a rich notification?
 
@@ -82,8 +82,8 @@ public class NotificationIntentService extends IntentService {
                 GsonModels.Event event = goingListGson.get(i);
                 Log.d("nihal111", "Minutes left: " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES));
                 long timediff = getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES);
-                if (timediff <= 30 && timediff >0) { // Change this to 30*10000 for testing
-                    NOTIFICATION_ID = (int) Long.parseLong(event.get_id().substring(6,11), 16);
+                if (timediff <= 30 && timediff > 0) { // Change this to 30*10000 for testing
+                    NOTIFICATION_ID = (int) Long.parseLong(event.get_id().substring(6, 11), 16);
                     Log.d("nihal111", "notification ID= " + NOTIFICATION_ID);
                     final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                     builder.setContentTitle("Mood Indigo: " + event.getTitle())

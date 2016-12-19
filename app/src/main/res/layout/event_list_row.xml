@@ -15,8 +15,8 @@
             android:id="@+id/event_name"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Event Names"
             android:paddingTop="10dp"
+            android:text="Event Names"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
@@ -24,8 +24,8 @@
             android:id="@+id/event_description"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Event Description"
             android:paddingTop="50dp"
+            android:text="Event Description"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
@@ -33,10 +33,10 @@
             android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_notifications_none_black_48dp"
-            android:tint="#FFFFFF"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp" />
+            android:layout_marginEnd="18dp"
+            android:src="@drawable/ic_notifications_none_black_48dp"
+            android:tint="#FFFFFF" />
     </RelativeLayout>
 
 
@@ -62,11 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
-                android:text="Venue"
                 android:paddingTop="3dp"
+                android:text="Venue"
+                android:textAlignment="viewStart"
                 android:textColor="#FFFFFF"
-                android:textSize="17sp"
-                android:textAlignment="viewStart" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <ImageView
@@ -82,13 +82,13 @@
             android:id="@+id/event_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignStart="@id/time_icon"
             android:layout_marginStart="32dp"
-            android:text="Time"
             android:paddingTop="3dp"
+            android:text="Time"
             android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:layout_alignParentTop="true" />
+            android:textSize="17sp" />
     </RelativeLayout>
 
     <View

@@ -27,11 +27,11 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="23dp"
+        android:layout_weight="0.35"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Guest User"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/yellow"
-        android:layout_weight="0.35" />
+        android:textColor="@color/yellow" />
 
     <TextView
         android:id="@+id/email_id"

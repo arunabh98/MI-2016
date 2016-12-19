@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/black">
+    android:background="@color/black"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/qn"
-        android:text="TempQn"
-        style="@style/Question"/>
-    <TextView
+        style="@style/Question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="TempQn" />
+
+    <TextView
         android:id="@+id/ans"
-        android:text="TempAns"
-        style="@style/Answer"/>
+        style="@style/Answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TempAns" />
 
 </LinearLayout>

@@ -37,10 +37,12 @@ public class UserLockBottomSheetBehavior<V extends View> extends BottomSheetBeha
     }
 
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dx, int dy, int[] consumed) {}
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dx, int dy, int[] consumed) {
+    }
 
     @Override
-    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target) {}
+    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target) {
+    }
 
     @Override
     public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, V child, View target, float velocityX, float velocityY) {

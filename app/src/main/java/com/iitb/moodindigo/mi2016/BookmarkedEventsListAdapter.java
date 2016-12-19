@@ -57,8 +57,7 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
     public int getItemCount() {
         if (eventList == null) {
             return 0;
-        }
-        else {
+        } else {
             return eventList.size();
         }
     }
