@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     MapFragment mapFragment;
     QrCodeFragment qrCodeFragment;
     SharedPreferences prefs;
+    DevelopersFragment developersFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity
                 .build()
         );
         contactUsFragment = new ContactUsFragment();
+        developersFragment = new DevelopersFragment();
         prefs = getSharedPreferences("userDetails", MODE_PRIVATE);
         miNumberStored = prefs.getString("MI_NUMBER", null);
         setContentView(R.layout.activity_main);
@@ -260,6 +262,8 @@ public class MainActivity extends AppCompatActivity
             openMap();
         } else if (id == R.id.nav_qr) {
             openQrCode();
+        } else if (id == R.id.nav_dev) {
+            openDev();
         } else if (id == R.id.nav_logout) {
             logout();
         }
@@ -268,6 +272,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openDev() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.relativelayout_for_fragment, developersFragment, developersFragment.getTag());
+        transaction.commit();
     }
 
 
@@ -294,6 +306,14 @@ public class MainActivity extends AppCompatActivity
 
     public void mail(View v) {
         contactUsFragment.mail(v);
+    }
+
+    public void callDev(View v) {
+        developersFragment.call(v);
+    }
+
+    public void mailDev(View v) {
+        developersFragment.mail(v);
     }
 
     @Override
@@ -369,5 +389,14 @@ public class MainActivity extends AppCompatActivity
 
     public String getMiNumber() {
         return this.miNumberStored;
+    }
+
+    public void openDevelopersFromFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, developersFragment, developersFragment.getTag());
+        transaction.commit();
     }
 }

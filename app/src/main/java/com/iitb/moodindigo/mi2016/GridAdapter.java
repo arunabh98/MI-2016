@@ -25,6 +25,7 @@ public final class GridAdapter extends BaseAdapter {
         mItems.add(new Item("QR Scanner", R.drawable.ic_menu_camera));
         mItems.add(new Item("FAQ", R.drawable.faq_256));
         mItems.add(new Item("Contact Us", R.drawable.contactus_256));
+        mItems.add(new Item("Developers", R.drawable.ic_dev));
         if (miNumber !=  null) {
             mItems.add(new Item("Logout", R.drawable.logout_256));
         }
