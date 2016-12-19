@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
@@ -17,7 +16,6 @@ import com.google.gson.reflect.TypeToken;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -89,7 +87,7 @@ public class NotificationIntentService extends IntentService {
                     final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                     builder.setContentTitle("Mood Indigo: " + event.getTitle())
                             .setAutoCancel(true)
-                            .setColor(getResources().getColor(R.color.colorAccent))
+                            .setColor(getResources().getColor(R.color.yellow))
                             .setContentText("Event is about to start in " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) + " minutes.")
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.notification_logo))
                             .setSmallIcon(R.drawable.notification_logo);
