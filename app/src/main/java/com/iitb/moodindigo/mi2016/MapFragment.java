@@ -548,6 +548,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(iconDrawable)).anchor(0.5f, 0.5f));
             marker.setTag(place);
         }
+        fabMenu.close(true);
     }
 
     private void createCustomAnimation() {
@@ -599,7 +600,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_toilet_white_24dp)).anchor(half, half));
             marker.setTag(place);
         }
-        fabMenu.close(true);
     }
 
     public void launchEventOnMap(GsonModels.Event event) {
