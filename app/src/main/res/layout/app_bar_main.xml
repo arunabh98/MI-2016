@@ -8,11 +8,10 @@
     tools:context="com.iitb.moodindigo.mi2016.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/relativelayout_for_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
-        android:id="@+id/relativelayout_for_fragment">
-    </RelativeLayout>
+        android:background="#000"></RelativeLayout>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,12 +20,12 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="@color/yellow"
-            app:subtitleTextColor="@color/yellow"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:subtitleTextColor="@color/yellow"
+            app:titleTextColor="@color/yellow" />
 
     </android.support.design.widget.AppBarLayout>
 

@@ -17,6 +17,6 @@
         android:id="@+id/goingViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"/>
+        android:background="#000" />
 
 </android.support.design.widget.AppBarLayout>

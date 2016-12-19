@@ -24,7 +24,7 @@ public class SingleFaqFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public SingleFaqFragment(Context context,ArrayList<Faq> items){
+    public SingleFaqFragment(Context context, ArrayList<Faq> items) {
 
         itemsAdapter = new faqAdapter(context, items);
 
@@ -36,13 +36,13 @@ public class SingleFaqFragment extends Fragment {
         // Inflate the layout for this fragment
         View single_faq_page = (View) inflater.inflate(R.layout.fragment_singlefaq, container, false);
 
-        ListView faqlist= (ListView) single_faq_page.findViewById(R.id.singlefaqlist);
+        ListView faqlist = (ListView) single_faq_page.findViewById(R.id.singlefaqlist);
         faqlist.setAdapter(itemsAdapter);
 
-        return  single_faq_page;
+        return single_faq_page;
     }
 
-    public class faqAdapter extends ArrayAdapter<Faq>{
+    public class faqAdapter extends ArrayAdapter<Faq> {
         public faqAdapter(Context context, ArrayList<Faq> faq_items) {
             super(context, 0, faq_items);
         }

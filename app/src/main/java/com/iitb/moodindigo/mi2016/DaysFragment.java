@@ -27,18 +27,18 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DaysFragment extends Fragment implements Callback<List<GsonModels.Event>>,View.OnClickListener{
+public class DaysFragment extends Fragment implements Callback<List<GsonModels.Event>>, View.OnClickListener {
 
-    private ProgressDialog scheduleProgressDialog;
-    private List<GsonModels.Event> day1List = new ArrayList<>();
-    private List<GsonModels.Event> day2List = new ArrayList<>();
-    private List<GsonModels.Event> day3List = new ArrayList<>();
-    private List<GsonModels.Event> day4List = new ArrayList<>();
     View daysView;
     Button day1;
     Button day2;
     Button day3;
     Button day4;
+    private ProgressDialog scheduleProgressDialog;
+    private List<GsonModels.Event> day1List = new ArrayList<>();
+    private List<GsonModels.Event> day2List = new ArrayList<>();
+    private List<GsonModels.Event> day3List = new ArrayList<>();
+    private List<GsonModels.Event> day4List = new ArrayList<>();
 
     public DaysFragment() {
         // Required empty public constructor
@@ -126,19 +126,19 @@ public class DaysFragment extends Fragment implements Callback<List<GsonModels.E
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.day1:
-                CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(day1List,1);
+                CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(day1List, 1);
                 openFragment(categoryGroupFragment1);
                 break;
             case R.id.day2:
-                CategoryGroupFragment categoryGroupFragment2 = new CategoryGroupFragment(day2List,2);
+                CategoryGroupFragment categoryGroupFragment2 = new CategoryGroupFragment(day2List, 2);
                 openFragment(categoryGroupFragment2);
                 break;
             case R.id.day3:
-                CategoryGroupFragment categoryGroupFragment3 = new CategoryGroupFragment(day3List,3);
+                CategoryGroupFragment categoryGroupFragment3 = new CategoryGroupFragment(day3List, 3);
                 openFragment(categoryGroupFragment3);
                 break;
             case R.id.day4:
-                CategoryGroupFragment categoryGroupFragment4 = new CategoryGroupFragment(day4List,4);
+                CategoryGroupFragment categoryGroupFragment4 = new CategoryGroupFragment(day4List, 4);
                 openFragment(categoryGroupFragment4);
                 break;
         }

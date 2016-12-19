@@ -420,6 +420,11 @@ public class LoginActivity extends AppCompatActivity {
         client.disconnect();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     private class getDetails extends AsyncTask<String, Void, Void> {
 
         @Override
@@ -482,10 +487,5 @@ public class LoginActivity extends AppCompatActivity {
             pb.setVisibility(View.GONE);
             LoginActivity.this.startMainActivity_fb();
         }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

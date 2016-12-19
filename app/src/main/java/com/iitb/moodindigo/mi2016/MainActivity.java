@@ -36,10 +36,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public ContactUsFragment contactUsFragment;
     String miNumberStored;
     int backButtonCount = 0;
-
-    public ContactUsFragment contactUsFragment;
     FaqsFragment faqsFragment;
     MainFragment mainFragment;
     EventPageFragment eventPageFragment;

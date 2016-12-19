@@ -19,7 +19,7 @@ public class MatrixGenerator {
 
     private static Retrofit retrofit;
 
-    public static <S> S createService(Class<S> serviceClass){
+    public static <S> S createService(Class<S> serviceClass) {
         retrofit = retrofitBuilder.client(clientBuilder.build()).build();
         return retrofit.create(serviceClass);
     }

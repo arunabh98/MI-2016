@@ -5,9 +5,9 @@
     tools:context="com.iitb.moodindigo.mi2016.SingleFaqFragment">
 
     <ListView
+        android:id="@+id/singlefaqlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/singlefaqlist"
         android:background="@color/black">
 
     </ListView>

@@ -2,7 +2,6 @@ package com.iitb.moodindigo.mi2016;
 
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,8 +22,8 @@ import java.util.List;
  */
 public class CategoryGroupFragment extends Fragment {
 
-    private List<GsonModels.Event> dayList = new ArrayList<>();
     View categorygroupview;
+    private List<GsonModels.Event> dayList = new ArrayList<>();
     private Integer day;
     private List<GsonModels.Event> compi = new ArrayList<>();
     private List<GsonModels.Event> workshops = new ArrayList<>();
@@ -36,19 +35,19 @@ public class CategoryGroupFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public CategoryGroupFragment(List<GsonModels.Event> dayList, Integer day){
-        Log.d("Category Group","Constructor");
+    public CategoryGroupFragment(List<GsonModels.Event> dayList, Integer day) {
+        Log.d("Category Group", "Constructor");
         this.dayList = dayList;
         this.day = day;
         generatecategories(dayList);
-        Log.d("Category Group","generated");
+        Log.d("Category Group", "generated");
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Day "+Integer.toString(day));
+        getActivity().setTitle("Day " + Integer.toString(day));
         // Inflate the layout for this fragment
         categorygroupview = (View) inflater.inflate(R.layout.fragment_category_group, container, false);
         TabLayout tabLayout = (TabLayout) categorygroupview.findViewById(R.id.categoryTabLayout);
@@ -59,7 +58,7 @@ public class CategoryGroupFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Concerts"));
         final ViewPager viewPager = (ViewPager) categorygroupview.findViewById(R.id.categoryViewPager);
 
-        Log.d("Category Group"," OnCreate");
+        Log.d("Category Group", " OnCreate");
 
         viewPager.setAdapter(new CategoryGroupFragment.PagerAdapter
                 (getFragmentManager(), tabLayout.getTabCount()));
@@ -84,7 +83,7 @@ public class CategoryGroupFragment extends Fragment {
         return categorygroupview;
     }
 
-    public void generatecategories(List<GsonModels.Event> eventList){
+    public void generatecategories(List<GsonModels.Event> eventList) {
         for (GsonModels.Event event : eventList) {
             if (event.getCategory().equals("Proshows")) {
                 proshows.add(event);
@@ -102,12 +101,12 @@ public class CategoryGroupFragment extends Fragment {
                 concerts.add(event);
             }
         }
-            Log.d("Category Group",eventList.toString());
-            Log.d("Category Group",proshows.toString());
-            Log.d("Category Group",workshops.toString());
-            Log.d("Category Group",compi.toString());
-            Log.d("Category Group",informals.toString());
-            Log.d("Category Group",concerts.toString());
+        Log.d("Category Group", eventList.toString());
+        Log.d("Category Group", proshows.toString());
+        Log.d("Category Group", workshops.toString());
+        Log.d("Category Group", compi.toString());
+        Log.d("Category Group", informals.toString());
+        Log.d("Category Group", concerts.toString());
     }
 
     public class PagerAdapter extends FragmentStatePagerAdapter {

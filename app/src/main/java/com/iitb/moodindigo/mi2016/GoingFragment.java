@@ -54,7 +54,8 @@ public class GoingFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         goingSharedPreferences = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE);
         final String goingList = goingSharedPreferences.getString("GOING_LIST", null);
-        Type type = new TypeToken<List<GsonModels.Event>>(){}.getType();
+        Type type = new TypeToken<List<GsonModels.Event>>() {
+        }.getType();
         List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         Cache.setGoingEventsList(goingListGson);
         generateDays(Cache.getGoingEventsList());
@@ -74,16 +75,15 @@ public class GoingFragment extends Fragment {
         if (!fragment.getName().equals("goingback")) {
             Integer date = Calendar.getInstance().get(Calendar.DATE);
             Log.d("time", Integer.toString(date));
-            if(date>22 && date <27){
-                date=date-23;
-            }
-            else {
+            if (date > 22 && date < 27) {
+                date = date - 23;
+            } else {
                 date = 0;
             }
             GsonModels.Day day = new GsonModels.Day(date);
             Cache.setGoingdayPosition(day);
         }
-        viewPager.setCurrentItem(Cache.getGoingdayPosition(),true);
+        viewPager.setCurrentItem(Cache.getGoingdayPosition(), true);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -108,8 +108,8 @@ public class GoingFragment extends Fragment {
         super.onStart();
     }
 
-    public void generateDays(List<GsonModels.Event> eventList){
-        if(eventList!=null) {
+    public void generateDays(List<GsonModels.Event> eventList) {
+        if (eventList != null) {
             for (GsonModels.Event event : eventList) {
                 if (event.getDay().get_1()) {
                     goingday1list.add(event);
@@ -135,10 +135,10 @@ public class GoingFragment extends Fragment {
             goingday4list = Utils.mergeSort(goingday4list);
         }
 
-        Log.d("Going Fragment",goingday1list.toString());
-        Log.d("Going Fragment",goingday2list.toString());
-        Log.d("Going Fragment",goingday3list.toString());
-        Log.d("Going Fragment",goingday4list.toString());
+        Log.d("Going Fragment", goingday1list.toString());
+        Log.d("Going Fragment", goingday2list.toString());
+        Log.d("Going Fragment", goingday3list.toString());
+        Log.d("Going Fragment", goingday4list.toString());
     }
 
     public class PagerAdapter extends FragmentStatePagerAdapter {

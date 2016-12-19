@@ -63,7 +63,7 @@ public class GoingDayFragment extends Fragment {
             goingRecyclerView.setAdapter(bookmarkedEventsListAdapter);
         }
 
-    return goingDayView;
+        return goingDayView;
     }
 
 }
