@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EventPageFragment extends Fragment {
+public class EventPageFragment extends Fragment implements View.OnClickListener {
 
     GsonModels.Event event;
     private SharedPreferences.Editor goingSharedPreferencesEditor;
@@ -79,6 +81,8 @@ public class EventPageFragment extends Fragment {
             notification.setColorFilter(Color.parseColor("#DEB951"));
             notification.setImageResource(R.drawable.ic_notifications_black_48dp);
         }
+        eventVenue.setOnClickListener(this);
+        locationIcon.setOnClickListener(this);
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,5 +110,16 @@ public class EventPageFragment extends Fragment {
         });
         return rootView;
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        MapFragment mapFragment = new MapFragment(event);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+        transaction.commit();
     }
 }
