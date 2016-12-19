@@ -59,6 +59,8 @@ import retrofit2.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.iitb.moodindigo.mi2016.R.id.beginning;
+import static com.iitb.moodindigo.mi2016.R.id.calligraphy_tag_id;
 import static com.iitb.moodindigo.mi2016.R.id.map;
 
 
@@ -93,6 +95,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     private List<Place> eateriesList = new ArrayList<>();
     private List<Place> accomodationList = new ArrayList<>();
     private List<Place> toiletList = new ArrayList<>();
+    private GsonModels.Event launchEvent;
+
+    public MapFragment(GsonModels.Event launchEvent) {
+        this.launchEvent = launchEvent;
+    }
 
     public MapFragment() {
         // Required empty public constructor
@@ -328,6 +335,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
+        if(launchEvent != null) {
+            launchEventOnMap(launchEvent);
+        }
     }
 
     @Override
@@ -337,11 +348,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             mCurrLocationMarker.remove();
         }
 
-        //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+        if(launchEvent == null) {
+            //Place current location marker
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            //move map camera
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+        }
 
         //stop location updates
         if (mGoogleApiClient != null) {
@@ -499,9 +512,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
             directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
         }
-        if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_COLLAPSED) {
-            mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
-        }
     }
 
     @Override
@@ -582,5 +592,76 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             marker.setTag(place);
         }
         fabMenu.close(true);
+    }
+
+    public void launchEventOnMap(GsonModels.Event event) {
+        Place place = null;
+        switch (event.getMap_loc()) {
+            case "PCSA":
+                place = new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)");
+                break;
+            case "lch":
+                place = new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)");
+                break;
+            case "Convo":
+                place = new Place(new LatLng(19.131973, 72.914285), "Convocation Hall");
+                break;
+            case "SAC parking lot":
+                place = new Place(new LatLng(19.135771, 72.914428), "SAC Parking Lot");
+                break;
+            case "fck":
+                place = new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)");
+                break;
+            case "NCC":
+                place = new Place(new LatLng(19.133572, 72.913399), "NCC Grounds");
+                break;
+            case "OSP":
+                place = new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool");
+                break;
+            case "KV":
+                place = new Place(new LatLng(19.129113, 72.918408), "Kendriya Vidyalaya (KV)");
+                break;
+            case "SOM":
+                place = new Place(new LatLng(19.131651, 72.915758), "SJM SOM");
+                break;
+            case "h 10 t point":
+                place = new Place(new LatLng(19.129574, 72.915394), "H10 T-Point");
+                break;
+            case "PCSA back lawns":
+                place = new Place(new LatLng(19.132030, 72.915920), "PCSA Backlawns");
+                break;
+            case "MB lawns":
+                place = new Place(new LatLng(19.132635, 72.915716), "MB Lawns");
+                break;
+            case "OAT":
+                place = new Place(new LatLng(19.135045, 72.913401), "Open Air Theatre (OAT)");
+                break;
+            case "liby road":
+                place = new Place(new LatLng(19.134299, 72.915376), "Library Road");
+                break;
+            case "ppl":
+                place = new Place(new LatLng(19.130005, 72.916704), "Physics Parking Lot");
+                break;
+            case "Gymkhana":
+                place = new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds");
+                break;
+        }
+        Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
+        marker.setTag(place);
+        selectedPlace = (Place) marker.getTag();
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 17));
+        directionsAndLocationButton.setImageResource(R.drawable.ic_directions_walk_black_24dp);
+        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2962FF")));
+
+        titleTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_title);
+        titleTextView.setText(selectedPlace.getTitle());
+        currentLocation = getLastKnownLocation();
+        mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
+        RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
+        retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
+                selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
+                "walking",
+                GOOGLE_API_KEY).enqueue(MapFragment.this);
     }
 }
