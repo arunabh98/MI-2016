@@ -46,8 +46,7 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         goingPreferences = getContext().getSharedPreferences("GOING", Context.MODE_PRIVATE);
         final String goingList = goingPreferences.getString("GOING_LIST", null);
-        Type type = new TypeToken<List<GsonModels.Event>>() {
-        }.getType();
+        Type type = new TypeToken<List<GsonModels.Event>>() {}.getType();
         final List<GsonModels.Event> goingListGson = (new Gson()).fromJson(goingList, type);
         final View rootView = inflater.inflate(R.layout.fragment_event_page, container, false);
         final ImageButton notification = (ImageButton) rootView.findViewById(R.id.icon_button);

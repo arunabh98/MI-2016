@@ -13,13 +13,16 @@
         android:layout_weight="1"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingBottom="4dp">
+        android:paddingBottom="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingStart="22dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
             <Button
                 android:id="@+id/day1"
@@ -34,8 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:alpha="0.5"
+                android:scaleType="fitXY"
                 android:src="@drawable/day1" />
         </FrameLayout>
 
@@ -43,7 +46,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingEnd="22dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
             <Button
                 android:id="@+id/day2"
@@ -58,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:alpha="0.5"
+                android:scaleType="fitXY"
                 android:src="@drawable/day2" />
         </FrameLayout>
 
@@ -70,13 +74,16 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:paddingTop="4dp">
+        android:paddingTop="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingStart="22dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
             <Button
                 android:id="@+id/day3"
@@ -91,8 +98,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:alpha="0.5"
+                android:scaleType="fitXY"
                 android:src="@drawable/day3" />
         </FrameLayout>
 
@@ -100,7 +107,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingEnd="22dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
             <Button
                 android:id="@+id/day4"
@@ -115,8 +123,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:alpha="0.4"
-                android:scaleType="centerCrop"
+                android:alpha="0.5"
+                android:scaleType="fitXY"
                 android:src="@drawable/day4" />
         </FrameLayout>
 
