@@ -59,8 +59,6 @@ import retrofit2.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
 import static com.facebook.FacebookSdk.getApplicationContext;
-import static com.iitb.moodindigo.mi2016.R.id.beginning;
-import static com.iitb.moodindigo.mi2016.R.id.calligraphy_tag_id;
 import static com.iitb.moodindigo.mi2016.R.id.map;
 
 
@@ -336,7 +334,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             mMap.setMyLocationEnabled(true);
         }
 
-        if(launchEvent != null) {
+        if (launchEvent != null) {
             launchEventOnMap(launchEvent);
         }
     }
@@ -348,7 +346,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             mCurrLocationMarker.remove();
         }
 
-        if(launchEvent == null) {
+        if (launchEvent == null) {
             //Place current location marker
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
             //move map camera
@@ -538,7 +536,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                 break;
         }
         for (Place place : placeList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(iconDrawable)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(iconDrawable)).anchor(0.5f, 0.5f));
             marker.setTag(place);
         }
     }
@@ -575,20 +573,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
     public void displayAll() {
         mMap.clear();
+        final float half = (float)0.5;
         for (Place place : eventList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_play_white_24dp)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_play_white_24dp)).anchor(half, half));
             marker.setTag(place);
         }
         for (Place place : eateriesList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_dining_white_24dp)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_dining_white_24dp)).anchor(half, half));
             marker.setTag(place);
         }
         for (Place place : accomodationList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hotel_white_24dp)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hotel_white_24dp)).anchor(half, half));
             marker.setTag(place);
         }
         for (Place place : toiletList) {
-            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_toilet_white_24dp)));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_toilet_white_24dp)).anchor(half, half));
             marker.setTag(place);
         }
         fabMenu.close(true);
