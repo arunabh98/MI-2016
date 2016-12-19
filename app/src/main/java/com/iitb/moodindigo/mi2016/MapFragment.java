@@ -499,6 +499,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
             directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
         }
+        if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_COLLAPSED) {
+            mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
+        }
     }
 
     @Override
