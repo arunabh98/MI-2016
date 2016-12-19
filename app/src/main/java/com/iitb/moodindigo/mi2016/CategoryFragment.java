@@ -8,13 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -39,6 +40,20 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View singledayview = (View) inflater.inflate(R.layout.fragment_category, container, false);
         categoryRecyclerView = (RecyclerView) singledayview.findViewById(R.id.category_list);
+        FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
+        if (!fragment.getName().equals("back")) {
+            int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            int pos=-1;
+            Log.d("current hour",Integer.toString(hour));
+            hour = hour*100;
+            for(GsonModels.Event event:eventResponse){
+                pos++;
+                if(event.getTime()>=hour){
+                    break;
+                }
+            }
+            Cache.setListPosition(pos);
+        }
         categoryListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
             @Override
             public void onItemClick(View v, int position) {

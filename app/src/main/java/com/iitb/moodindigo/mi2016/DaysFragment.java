@@ -147,7 +147,7 @@ public class DaysFragment extends Fragment implements Callback<List<GsonModels.E
     public void openFragment(Fragment fragment) {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("day");
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.relativelayout_for_fragment, fragment, fragment.getTag());
         transaction.commit();
