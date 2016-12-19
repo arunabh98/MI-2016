@@ -67,13 +67,13 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
             @Override
             public void onClick(View view) {
                 if (holder.eventName.getCurrentTextColor() == Color.parseColor("#FFFFFF")) {
-                    holder.eventName.setTextColor(Color.parseColor("#FFC107"));
-                    holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
-                    holder.eventTime.setTextColor(Color.parseColor("#FFC107"));
-                    holder.eventDescription.setTextColor(Color.parseColor("#FFC107"));
-                    holder.venueIcon.setColorFilter(Color.parseColor("#FFC107"));
-                    holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
-                    holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
+                    holder.eventName.setTextColor(Color.parseColor("#DEB951"));
+                    holder.eventVenue.setTextColor(Color.parseColor("#DEB951"));
+                    holder.eventTime.setTextColor(Color.parseColor("#DEB951"));
+                    holder.eventDescription.setTextColor(Color.parseColor("#DEB951"));
+                    holder.venueIcon.setColorFilter(Color.parseColor("#DEB951"));
+                    holder.timeIcon.setColorFilter(Color.parseColor("#DEB951"));
+                    holder.bookmarkIcon.setColorFilter(Color.parseColor("#DEB951"));
                     holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
                     Cache.addToGoingList(selectedEvent);
                 } else {
@@ -102,18 +102,18 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
             ;
         } else {
             if (goingListGson.contains(selectedEvent)) {
-                holder.eventName.setTextColor(Color.parseColor("#FFC107"));
-                holder.eventDescription.setTextColor(Color.parseColor("#FFC107"));
-                holder.eventVenue.setTextColor(Color.parseColor("#FFC107"));
-                holder.eventTime.setTextColor(Color.parseColor("#FFC107"));
-                holder.venueIcon.setColorFilter(Color.parseColor("#FFC107"));
-                holder.timeIcon.setColorFilter(Color.parseColor("#FFC107"));
-                holder.bookmarkIcon.setColorFilter(Color.parseColor("#FFC107"));
+                holder.eventName.setTextColor(Color.parseColor("#DEB951"));
+                holder.eventDescription.setTextColor(Color.parseColor("#DEB951"));
+                holder.eventVenue.setTextColor(Color.parseColor("#DEB951"));
+                holder.eventTime.setTextColor(Color.parseColor("#DEB951"));
+                holder.venueIcon.setColorFilter(Color.parseColor("#DEB951"));
+                holder.timeIcon.setColorFilter(Color.parseColor("#DEB951"));
+                holder.bookmarkIcon.setColorFilter(Color.parseColor("#DEB951"));
                 holder.bookmarkIcon.setImageResource(R.drawable.ic_notifications_black_48dp);
             }
         }
 
-        if (holder.eventName.getCurrentTextColor() == Color.parseColor("#FFC107")) {
+        if (holder.eventName.getCurrentTextColor() == Color.parseColor("#DEB951")) {
             if (goingListGson.contains(selectedEvent)) {
                 ;
             } else {

@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#000000"
@@ -10,81 +9,91 @@
         android:id="@+id/event_image"
         android:layout_width="wrap_content"
         android:layout_height="220dp"
-        android:src="@drawable/reflectedsunrise"
+        android:layout_alignParentEnd="true"
         android:scaleType="fitXY"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/reflectedsunrise" />
+
     <TextView
         android:id="@+id/genre_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/event_image"
         android:layout_alignBottom="@id/event_image"
-        android:textColor="#FFFFFF"
-        android:text="@string/genre_name"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_alignLeft="@id/event_image"
+        android:paddingBottom="8dp"
         android:paddingLeft="32dp"
-        android:paddingBottom="8dp"/>
+        android:text="@string/genre_name"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/event_image"
         android:layout_above="@id/genre_name"
-        android:textColor="#FFFFFF"
+        android:layout_alignLeft="@id/event_image"
+        android:paddingLeft="32dp"
         android:text="@string/event_name"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingLeft="32dp" />
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/location_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_image"
-        android:src="@drawable/ic_place_white_24px"
         android:paddingLeft="32dp"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp"
+        android:src="@drawable/ic_place_black_24dp"
+        android:tint="#FFFFFF" />
+
     <TextView
         android:id="@+id/event_venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/location_icon"
-        android:textColor="@color/white"
         android:layout_alignBottom="@id/location_icon"
-        android:paddingLeft="8dp"
-        android:textSize="20sp"
+        android:layout_toRightOf="@id/location_icon"
         android:fontFamily="sans-serif-light"
-        android:text="@string/event_venue"/>
+        android:paddingLeft="8dp"
+        android:text="@string/event_venue"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
     <ImageView
         android:id="@+id/clock_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/location_icon"
-        android:paddingTop="8dp"
         android:paddingLeft="32dp"
-        android:src="@drawable/ic_access_time_white_24px" />
+        android:paddingTop="8dp"
+        android:src="@drawable/ic_access_time_black_24dp"
+        android:tint="#FFFFFF" />
+
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/clock_icon"
         android:layout_alignBottom="@id/clock_icon"
-        android:paddingLeft="8dp"
-        android:textSize='20sp'
+        android:layout_toRightOf="@id/clock_icon"
         android:fontFamily="sans-serif-light"
+        android:paddingLeft="8dp"
+        android:text="@string/time"
         android:textColor="@color/white"
-        android:text="@string/time"/>
+        android:textSize='20sp' />
+
     <ImageButton
         android:id="@+id/icon_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/clock_icon"
         android:layout_alignParentRight="true"
         android:layout_below="@id/event_image"
-        android:src="@drawable/ic_notifications_none_white_24px"
-        android:layout_alignBottom="@id/clock_icon"
-        android:paddingRight="8dp"
         android:background="#000000"
-        />
+        android:paddingRight="8dp"
+        android:src="@drawable/ic_notifications_none_black_48dp"
+        android:tint="#FFFFFF" />
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,13 +101,14 @@
         android:paddingLeft="32dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp">
+
         <TextView
-            android:layout_width="wrap_content"
             android:id="@+id/description"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/event_info"
-            android:textSize="20sp"
             android:fontFamily="sans-serif-light"
-            android:textColor="#FFFFFF"/>
+            android:text="@string/event_info"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </ScrollView>
 </RelativeLayout>
