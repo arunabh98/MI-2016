@@ -1,6 +1,9 @@
 package com.iitb.moodindigo.mi2016;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +46,7 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
 
     @Override
     public void onBindViewHolder(final BookmarkedEventsListAdapter.ViewHolder holder, int position) {
-        GsonModels.Event selectedEvent = eventList.get(position);
+        final GsonModels.Event selectedEvent = eventList.get(position);
         holder.eventName.setText(selectedEvent.getTitle());
         holder.eventVenue.setText(selectedEvent.getLocation());
         holder.eventDescripiton.setText(selectedEvent.getShort_des());
@@ -51,6 +54,20 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
         if (time.length() == 3)
             time = "0" + time;
         holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2));
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapFragment mapFragment = new MapFragment(selectedEvent);
+                FragmentManager manager = ((FragmentActivity)context).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
+                transaction.commit();
+            }
+        };
+        holder.venueIcon.setOnClickListener(onClickListener);
+        holder.eventVenue.setOnClickListener(onClickListener);
     }
 
     @Override

@@ -120,5 +120,6 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
         transaction.addToBackStack(null);
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
-        transaction.commit();    }
+        transaction.commit();
+    }
 }
