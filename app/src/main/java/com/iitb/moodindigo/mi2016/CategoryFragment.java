@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class CategoryFragment extends Fragment {
 
     private RecyclerView categoryRecyclerView;
     private EventsListAdapter categoryListAdapter;
-    private List<GsonModels.Event> eventResponse;
+    private List<GsonModels.Event> eventResponse = new ArrayList<>();
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -41,18 +42,20 @@ public class CategoryFragment extends Fragment {
         View singledayview = (View) inflater.inflate(R.layout.fragment_category, container, false);
         categoryRecyclerView = (RecyclerView) singledayview.findViewById(R.id.category_list);
         FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
-        if (!fragment.getName().equals("back")) {
-            int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-            int pos = -1;
-            Log.d("current hour", Integer.toString(hour));
-            hour = hour * 100;
-            for (GsonModels.Event event : eventResponse) {
-                pos++;
-                if (event.getTime() >= hour) {
-                    break;
+        if (fragment != null) {
+            if (!fragment.getName().equals("back")) {
+                int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+                int pos = -1;
+                Log.d("current hour", Integer.toString(hour));
+                hour = hour * 100;
+                for (GsonModels.Event event : eventResponse) {
+                    pos++;
+                    if (event.getTime() >= hour) {
+                        break;
+                    }
                 }
+                Cache.setListPosition(pos);
             }
-            Cache.setListPosition(pos);
         }
         categoryListAdapter = new EventsListAdapter(eventResponse, new ItemCLickListener() {
             @Override

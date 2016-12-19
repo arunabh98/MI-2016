@@ -47,6 +47,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.iitb.moodindigo.mi2016.ServerConnection.RetrofitInterface;
 
@@ -223,7 +224,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
 
-        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+        if (directionsAndLocationButton != null) {
+            directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+        }
 
         eventList.add(new Place(new LatLng(19.131973, 72.914285), "Convocation Hall"));
         eventList.add(new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)"));
@@ -313,7 +316,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.131973, 72.914285), 17));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCameraMoveListener(this);
-        directionsAndLocationButton.performClick();
+        if (directionsAndLocationButton != null) {
+            directionsAndLocationButton.performClick();
+        }
 
         displayAll();
 
@@ -486,8 +491,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                 if (status.equals("OK")) {
                     distanceTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_distance);
                     timeTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_time);
-                    distanceTextView.setText(distance.getText());
-                    timeTextView.setText(duration.getText());
+                    if (distanceTextView != null) {
+                        distanceTextView.setText(distance.getText());
+                    }
+                    if (timeTextView != null) {
+                        timeTextView.setText(duration.getText());
+                    }
                 } else {
                     Toast.makeText(getContext(), status, Toast.LENGTH_SHORT).show();
                 }
@@ -573,7 +582,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
     public void displayAll() {
         mMap.clear();
-        final float half = (float)0.5;
+        final float half = (float) 0.5;
         for (Place place : eventList) {
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local_play_white_24dp)).anchor(half, half));
             marker.setTag(place);
@@ -662,5 +671,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                 selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
                 "walking",
                 GOOGLE_API_KEY).enqueue(MapFragment.this);
+    }
+
+    public GsonModels.Event getLaunchEvent() {
+        return launchEvent;
     }
 }
