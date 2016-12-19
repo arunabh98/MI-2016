@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,11 +87,18 @@ public class MainFragment extends Fragment {
                         openContactUs();
                         break;
                     case 6:
+                        openDev();
+                        break;
+                    case 7:
                         logout();
 
                 }
             }
         });
+    }
+
+    private void openDev() {
+        ((MainActivity) getActivity()).openDevelopersFromFragment();
     }
 
     public void openQRCode() {
@@ -102,7 +108,6 @@ public class MainFragment extends Fragment {
     }
 
     public void openGoing() {
-        Log.e("dfsd", "dsdfsdfsdf");
         GoingFragment goingFragment = new GoingFragment();
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

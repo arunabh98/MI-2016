@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?android:attr/actionBarSize"
+    android:orientation="vertical">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical">
+
+        <LinearLayout style="@style/Department">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/CG_Row"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Sajal Narang" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-8087088708" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="sajalnarang@gmail.com" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Arunabh Ghosh" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-9702070117" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="arunabhghosh98@gmail.com" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/CG_Row"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Darshan Tank" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-9969575065" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="darshantank3@gmail.com" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Soham Gaunekar" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-7738690958" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="soham@moodi.org" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/CG_Row"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Sarthak Khandelwal" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-9820914088" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="sarthak@gmail.com" />
+                        <!--TODO-->
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Nihal Singh" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="nihal.111@gmail.com" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/CG_Row"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Aditya Mittal" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-8879137295" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="adityamittal011@gmail.com" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

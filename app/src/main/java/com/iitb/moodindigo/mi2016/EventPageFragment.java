@@ -3,9 +3,9 @@ package com.iitb.moodindigo.mi2016;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +19,6 @@ import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
 import java.util.List;
-
-import static com.iitb.moodindigo.mi2016.Cache.addToGoingList;
-import static com.iitb.moodindigo.mi2016.Cache.removeFromGoingList;
 
 
 /**
@@ -75,28 +72,31 @@ public class EventPageFragment extends Fragment {
         if (goingListGson == null) {
             ;
         } else if (goingListGson.contains(event)) {
-            eventVenue.setTextColor(getResources().getColor(R.color.yellow));
-            time.setTextColor(getResources().getColor(R.color.yellow));
-            clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
-            locationIcon.setImageResource(R.drawable.ic_place_yellow_24px);
-            notification.setImageResource(R.drawable.ic_notifications_white_24px);
+            eventVenue.setTextColor(Color.parseColor("#DEB951"));
+            time.setTextColor(Color.parseColor("#DEB951"));
+            clockIcon.setColorFilter(Color.parseColor("#DEB951"));
+            locationIcon.setColorFilter(Color.parseColor("#DEB951"));
+            notification.setColorFilter(Color.parseColor("#DEB951"));
+            notification.setImageResource(R.drawable.ic_notifications_black_48dp);
         }
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (eventVenue.getCurrentTextColor() != getResources().getColor(R.color.yellow)) {
-                    eventVenue.setTextColor(getResources().getColor(R.color.yellow));
-                    time.setTextColor(getResources().getColor(R.color.yellow));
-                    clockIcon.setImageResource(R.drawable.ic_access_time_yellow_24px);
-                    locationIcon.setImageResource(R.drawable.ic_place_yellow_24px);
-                    notification.setImageResource(R.drawable.ic_notifications_white_24px);
+                if (eventVenue.getCurrentTextColor() != Color.parseColor("#DEB951")) {
+                    eventVenue.setTextColor(Color.parseColor("#DEB951"));
+                    time.setTextColor(Color.parseColor("#DEB951"));
+                    clockIcon.setColorFilter(Color.parseColor("#DEB951"));
+                    locationIcon.setColorFilter(Color.parseColor("#DEB951"));
+                    notification.setColorFilter(Color.parseColor("#DEB951"));
+                    notification.setImageResource(R.drawable.ic_notifications_black_48dp);
                     Cache.addToGoingList(event);
                 } else {
-                    notification.setImageResource(R.drawable.ic_notifications_none_white_24px);
-                    eventVenue.setTextColor(getResources().getColor(R.color.white));
-                    time.setTextColor(getResources().getColor(R.color.white));
-                    clockIcon.setImageResource(R.drawable.ic_access_time_white_24px);
-                    locationIcon.setImageResource(R.drawable.ic_place_white_24px);
+                    eventVenue.setTextColor(Color.parseColor("#FFFFFF"));
+                    time.setTextColor(Color.parseColor("#FFFFFF"));
+                    clockIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                    locationIcon.setColorFilter(Color.parseColor("#FFFFFF"));
+                    notification.setColorFilter(Color.parseColor("#FFFFFF"));
+                    notification.setImageResource(R.drawable.ic_notifications_none_black_48dp);
                     Cache.removeFromGoingList(event);
                 }
                 String goingEventsListJson = (new Gson()).toJson(Cache.getGoingEventsList());

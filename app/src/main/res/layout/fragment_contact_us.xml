@@ -474,7 +474,7 @@
 
                         <TextView
                             style="@style/CG_Contact"
-                            android:text="+91-" />
+                            android:text="+91-8655344948" />
 
                         <TextView
                             style="@style/CG_Mail"

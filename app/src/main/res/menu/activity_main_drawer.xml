@@ -11,6 +11,14 @@
             android:icon="@drawable/going"
             android:title="Going" />
         <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/map"
+            android:title="Map" />
+        <item
+            android:id="@+id/nav_qr"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="QR Code Scanner" />
+        <item
             android:id="@+id/nav_faq"
             android:icon="@drawable/faq"
             android:title="FAQ" />
@@ -19,13 +27,9 @@
             android:icon="@drawable/contactus"
             android:title="Contact Us" />
         <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/map"
-            android:title="Map" />
-        <item
-            android:id="@+id/nav_qr"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="QR Code Scanner" />
+            android:id="@+id/nav_dev"
+            android:icon="@drawable/ic_dev"
+            android:title="Developers" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
