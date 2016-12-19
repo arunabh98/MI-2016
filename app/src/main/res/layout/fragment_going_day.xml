@@ -20,7 +20,7 @@ tools:context="com.iitb.moodindigo.mi2016.GoingDayFragment">
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
     android:textSize="20sp"
-    android:text="You have not selected any events for this day. Click the bell button next to Events to have some Fun!!"
+    android:text="You have not selected any events for this day. Click the bell button next to Events to recieve notifications before the event starts."
     android:textColor="#FFF"/>
 
 </FrameLayout>

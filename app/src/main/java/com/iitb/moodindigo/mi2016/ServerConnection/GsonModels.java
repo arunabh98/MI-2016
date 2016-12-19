@@ -212,6 +212,39 @@ public class GsonModels {
                 return -1;
         }
 
+        public Day(int date){
+            switch (date){
+                case 0:
+                    this._0 = false;
+                    this._1 = true;
+                    this._2 = false;
+                    this._3 = false;
+                    this._4 = false;
+                    break;
+                case 1:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = true;
+                    this._3 = false;
+                    this._4 = false;
+                    break;
+                case 2:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = false;
+                    this._3 = true;
+                    this._4 = false;
+                    break;
+                case 3:
+                    this._0 = false;
+                    this._1 = false;
+                    this._2 = false;
+                    this._3 = false;
+                    this._4 = true;
+                    break;
+            }
+        }
+
         @Override
         public boolean equals(Object obj) {
             if(obj instanceof Day) {

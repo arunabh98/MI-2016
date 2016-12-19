@@ -20,6 +20,7 @@ import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -63,11 +64,27 @@ public class GoingFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Day2"));
         tabLayout.addTab(tabLayout.newTab().setText("Day3"));
         tabLayout.addTab(tabLayout.newTab().setText("Day4"));
+
         final ViewPager viewPager = (ViewPager) goingview.findViewById(R.id.goingViewPager);
         viewPager.setAdapter(new GoingFragment.PagerAdapter
                 (getFragmentManager(), tabLayout.getTabCount()));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        viewPager.setCurrentItem(Cache.getGoingdayPosition(), true);
+
+        FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
+        if (!fragment.getName().equals("goingback")) {
+            Integer date = Calendar.getInstance().get(Calendar.DATE);
+            Log.d("time", Integer.toString(date));
+            if(date>22 && date <27){
+                date=date-23;
+            }
+            else {
+                date = 0;
+            }
+            GsonModels.Day day = new GsonModels.Day(date);
+            Cache.setGoingdayPosition(day);
+        }
+        viewPager.setCurrentItem(Cache.getGoingdayPosition(),true);
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

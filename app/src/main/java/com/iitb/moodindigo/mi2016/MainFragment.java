@@ -109,7 +109,12 @@ public class MainFragment extends Fragment {
 
     public void openGoing() {
         GoingFragment goingFragment = new GoingFragment();
-        openFragment(goingFragment);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("goingmain");
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
+        transaction.commit();
     }
 
     public void openSchedule() {

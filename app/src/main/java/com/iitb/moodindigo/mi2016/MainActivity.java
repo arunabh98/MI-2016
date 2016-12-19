@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(daysList, day);
                             FragmentManager manager = getSupportFragmentManager();
                             FragmentTransaction transaction = manager.beginTransaction();
-                            transaction.addToBackStack(null);
+                            transaction.addToBackStack("back");
                             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
                             transaction.replace(R.id.relativelayout_for_fragment, categoryGroupFragment1, categoryGroupFragment1.getTag());
                             transaction.commit();
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             FragmentManager manager = getSupportFragmentManager();
                             FragmentTransaction transaction = manager.beginTransaction();
                             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                            transaction.addToBackStack(null);
+                            transaction.addToBackStack("goingback");
                             transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
                             transaction.commit();
                         }
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             CategoryGroupFragment categoryGroupFragment1 = new CategoryGroupFragment(daysList, day);
                             FragmentManager manager = getSupportFragmentManager();
                             FragmentTransaction transaction = manager.beginTransaction();
-                            transaction.addToBackStack(null);
+                            transaction.addToBackStack("back");
                             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
                             transaction.replace(R.id.relativelayout_for_fragment, categoryGroupFragment1, categoryGroupFragment1.getTag());
                             transaction.commit();
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             FragmentManager manager = getSupportFragmentManager();
                             FragmentTransaction transaction = manager.beginTransaction();
                             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-                            transaction.addToBackStack(null);
+                            transaction.addToBackStack("goingback");
                             transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
                             transaction.commit();
                         }
@@ -324,6 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         GoingFragment goingFragment = new GoingFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("goingmain");
         transaction.replace(R.id.relativelayout_for_fragment, goingFragment, goingFragment.getTag());
         transaction.commit();
     }
