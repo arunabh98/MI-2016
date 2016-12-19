@@ -256,8 +256,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         accomodationList.add(new Place(new LatLng(19.135883, 72.910248), "Tansa House"));
         accomodationList.add(new Place(new LatLng(19.135305, 72.913685), "Hospitality Desk"));
 
-        eateriesList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
-        eateriesList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
+        eateriesList.add(new Place(new LatLng(19.134599, 72.910057), "The Campus Hub"));
+        eateriesList.add(new Place(new LatLng(19.133698, 72.911471), "Brews & Bites"));
+        eateriesList.add(new Place(new LatLng(19.129769, 72.915152), "Gulmohar"));
+        eateriesList.add(new Place(new LatLng(19.134865, 72.913824), "SAC Food Court"));
+        eateriesList.add(new Place(new LatLng(19.129861, 72.915798), "Day Food Court"));
+        eateriesList.add(new Place(new LatLng(19.134377, 72.910707), "Concert Lounge"));
+        eateriesList.add(new Place(new LatLng(19.135148, 72.905608), "Amul Parlour"));
+        eateriesList.add(new Place(new LatLng(19.134948, 72.905138), "H12 Night Canteen"));
+        eateriesList.add(new Place(new LatLng(19.129815,72.915176),"Coffee Shack"));
 
         toiletList.add(new Place(new LatLng(19.12541, 72.909201), "Near Padmavati Devi Temple"));
         toiletList.add(new Place(new LatLng(19.125455, 72.916304), "Main Gate"));
@@ -392,6 +399,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                                 //Prompt the user once explanation has been shown
                                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
+
                             }
                         })
                         .create()
@@ -570,5 +578,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_toilet_white_24dp)));
             marker.setTag(place);
         }
+        fabMenu.close(true);
     }
 }
