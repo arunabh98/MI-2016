@@ -72,7 +72,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
                 MapFragment mapFragment = new MapFragment(selectedEvent);
                 FragmentManager manager = ((FragmentActivity)context).getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("event");
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
                 transaction.commit();

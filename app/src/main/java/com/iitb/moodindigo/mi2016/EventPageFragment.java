@@ -116,7 +116,7 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
         MapFragment mapFragment = new MapFragment(event);
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("singleevent");
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.relativelayout_for_fragment, mapFragment, mapFragment.getTag());
         transaction.commit();
