@@ -39,7 +39,7 @@ public class FaqsFragment extends Fragment {
         items1.add(new Faq("Is the entry free?", "The entry has been and will always be free. All you need is a valid college ID."));
         items1.add(new Faq("How do we reach the campus?", "The campus is located in Powai, near Hiranandani. The nearest local station is Kanjur Marg, and the campus is easily accessible by taxis or autos."));
         items1.add(new Faq("What are the food and beverage facilities?", "There will be 3 food courts during the fest - SAC Food Court, PPL Food Court(Physics Parking Lot) and Gymkhana Grounds Food Court. The PPL Food Court will be open till 5 PM while the  SAC & Gymkhana Grounds’ Food Court will be operational during the concerts."));
-        items1.add(new Faq("What if I don’t have my MI Number before coming to the fest?", "You can register and get you MI Number for the festival at the registration desk at the main gate."));
+        items1.add(new Faq("What if I don’t have my MI Number before coming to the fest?", "You can register and get your MI Number for the festival at the registration desk at the main gate."));
         items1.add(new Faq("Are we allowed to get vehicles inside the campus?", "Personal vehicles won’t be allowed to enter the campus, and there is no parking facility near the campus so it is advised to use public transport."));
         items1.add(new Faq("Who can we contact in case of need of help/emergency?", "You can contact the helpline at : 022-25765562."));
         //populating items2

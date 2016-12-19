@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 mi_login_button.setEnabled(false);
                 fb_login_button.setEnabled(false);
                 reg_later_button.setEnabled(false);
+                reg_now_button.setEnabled(false);
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -275,6 +276,7 @@ public class LoginActivity extends AppCompatActivity {
                 mi_no.setEnabled(false);
                 submit_button.setEnabled(false);
                 reg_later_button.setEnabled(false);
+                reg_now_button.setEnabled(false);
                 startActivity(intent);
                 overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {
@@ -377,6 +379,7 @@ public class LoginActivity extends AppCompatActivity {
         mi_login_button.setEnabled(true);
         fb_login_button.setEnabled(true);
         reg_later_button.setEnabled(true);
+        reg_now_button.setEnabled(true);
         submit_button.setEnabled(true);
         mi_no.setEnabled(true);
     }
