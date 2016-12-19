@@ -13,12 +13,16 @@
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical">
 
-        <LinearLayout style="@style/Department">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/Department">
+
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="DEVELOPERS" />
 
                 <LinearLayout
                     style="@style/CG_Row"
@@ -122,6 +126,7 @@
                         <TextView
                             style="@style/Dev_Contact"
                             android:text="+91-" />
+                        <!--TODO-->
 
                         <TextView
                             style="@style/Dev_Mail"
@@ -147,6 +152,72 @@
                         <TextView
                             style="@style/Dev_Mail"
                             android:text="adityamittal011@gmail.com" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/Department">
+
+                <TextView
+                    style="@style/Department_Header"
+                    android:text="DESIGNERS" />
+
+                <LinearLayout
+                    style="@style/CG_Row"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Parag Kale" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-8879144227" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="parag@gmail.com" />
+                        <!--TODO-->
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Raaghav Verma" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="raaghav@gmail.com" />
+                        <!--TODO-->
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/CG_Row"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout style="@style/CG_Holder">
+
+                        <TextView
+                            style="@style/CG_Name"
+                            android:text="Manit Rambhia" />
+
+                        <TextView
+                            style="@style/Dev_Contact"
+                            android:text="+91-9619120821" />
+
+                        <TextView
+                            style="@style/Dev_Mail"
+                            android:text="manit.rambhia@gmail.com" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
