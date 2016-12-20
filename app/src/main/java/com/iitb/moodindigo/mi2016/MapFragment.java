@@ -69,7 +69,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener, Callback<GsonModels.DistanceMatrix>, View.OnClickListener {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    private static final String GOOGLE_API_KEY = "AIzaSyBXDe7lj28A5q8uYwy9uMb3xGielAqsWTE";
+    private static final String GOOGLE_API_KEY = "AIzaSyCcD-MXdPrnYbDId8qSrij6EClfkJuJNE4";
     private static double lat = 0.0;
     private static double lon = 0.0;
     LocationRequest mLocationRequest;
@@ -471,8 +471,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
         retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
                 selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
-                "walking",
-                GOOGLE_API_KEY).enqueue(MapFragment.this);
+                "walking").enqueue(MapFragment.this);
         mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
         return true;
     }
@@ -669,8 +668,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         if (currentLocation != null) {
             retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
                     selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
-                    "walking",
-                    GOOGLE_API_KEY).enqueue(MapFragment.this);
+                    "walking").enqueue(MapFragment.this);
         }
     }
 
