@@ -51,14 +51,17 @@ public class BookmarkedEventsListAdapter extends RecyclerView.Adapter<Bookmarked
         holder.eventVenue.setText(selectedEvent.getLocation());
         holder.eventDescripiton.setText(selectedEvent.getShort_des());
         String time = String.valueOf(selectedEvent.getTime());
-        if (time.length() == 3)
+        if (time.length() == 3 || time.length() == 7)
             time = "0" + time;
-        holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2));
+        if (time.length() == 4)
+            holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2, 4));
+        if (time.length() == 8)
+            holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2, 4) + " - " + time.substring(4, 6) + ":" + time.substring(6, 8));
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MapFragment mapFragment = new MapFragment(selectedEvent);
-                FragmentManager manager = ((FragmentActivity)context).getSupportFragmentManager();
+                FragmentManager manager = ((FragmentActivity) context).getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);

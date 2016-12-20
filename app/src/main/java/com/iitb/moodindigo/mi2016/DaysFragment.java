@@ -66,8 +66,8 @@ public class DaysFragment extends Fragment implements Callback<List<GsonModels.E
             scheduleProgressDialog.setIndeterminate(true);
             scheduleProgressDialog.setCancelable(false);
             scheduleProgressDialog.setMessage("Requesting Details");
-            RetrofitInterface scheduleretrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
-            scheduleretrofitInterface.getEvents().enqueue(this);
+            RetrofitInterface scheduleRetrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
+            scheduleRetrofitInterface.getEvents().enqueue(this);
             scheduleProgressDialog.show();
         } else {
             inflateTabs(Cache.getEventList());
