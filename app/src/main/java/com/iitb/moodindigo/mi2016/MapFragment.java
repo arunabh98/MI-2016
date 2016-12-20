@@ -118,71 +118,73 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     public void onStart() {
         super.onStart();
         directionsAndLocationButton = (FloatingActionButton) getActivity().findViewById(R.id.directions);
-        View bottomSheetView = getView().findViewById(R.id.bottom_sheet);
-        mBottomSheetBehavior = (UserLockBottomSheetBehavior) UserLockBottomSheetBehavior.from(bottomSheetView);
-        mBottomSheetBehavior.setHideable(true);
-        mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
-        mBottomSheetBehavior.setBottomSheetCallback(new UserLockBottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == UserLockBottomSheetBehavior.STATE_HIDDEN) {
-                    directionsAndLocationButton.setImageResource(R.drawable.ic_my_location_black_24dp);
-                    directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
-                    directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });
-        fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
-        fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (fabMenu.isOpened()) {
-                    displayAll();
-                }
-                fabMenu.toggle(true);
-            }
-        });
-        createCustomAnimation();
-
-        fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
-        fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
-        fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
-        fabToilets = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_toilets);
-
-        fabEvents.setOnClickListener(this);
-        fabEateries.setOnClickListener(this);
-        fabAccomodation.setOnClickListener(this);
-        fabToilets.setOnClickListener(this);
-
-        directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
-                    if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
-                        return;
-                    }
-                    currentLocation = getLastKnownLocation();
-                    if (currentLocation != null) {
-                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 17);
-                        mMap.moveCamera(cameraUpdate);
-                        mMap.animateCamera(cameraUpdate);
-                        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                    }
-                } else {
-                    if (selectedPlace != null) {
-                        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude + "&mode=w");
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                        startActivity(mapIntent);
+        if (getView() != null) {
+            View bottomSheetView = getView().findViewById(R.id.bottom_sheet);
+            mBottomSheetBehavior = (UserLockBottomSheetBehavior) UserLockBottomSheetBehavior.from(bottomSheetView);
+            mBottomSheetBehavior.setHideable(true);
+            mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
+            mBottomSheetBehavior.setBottomSheetCallback(new UserLockBottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    if (newState == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+                        directionsAndLocationButton.setImageResource(R.drawable.ic_my_location_black_24dp);
+                        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
+                        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
                     }
                 }
-            }
-        });
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+                }
+            });
+            fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
+            fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (fabMenu.isOpened()) {
+                        displayAll();
+                    }
+                    fabMenu.toggle(true);
+                }
+            });
+            createCustomAnimation();
+
+            fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
+            fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
+            fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
+            fabToilets = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_toilets);
+
+            fabEvents.setOnClickListener(this);
+            fabEateries.setOnClickListener(this);
+            fabAccomodation.setOnClickListener(this);
+            fabToilets.setOnClickListener(this);
+
+            directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+                        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+                            return;
+                        }
+                        currentLocation = getLastKnownLocation();
+                        if (currentLocation != null) {
+                            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 17);
+                            mMap.moveCamera(cameraUpdate);
+                            mMap.animateCamera(cameraUpdate);
+                            directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                        }
+                    } else {
+                        if (selectedPlace != null) {
+                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude + "&mode=w");
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            startActivity(mapIntent);
+                        }
+                    }
+                }
+            });
+        }
     }
 
     private Location getLastKnownLocation() {
@@ -469,9 +471,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         titleTextView.setText(selectedPlace.getTitle());
         currentLocation = getLastKnownLocation();
         RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
-        retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
-                selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
-                "walking").enqueue(MapFragment.this);
+        if (currentLocation != null) {
+            retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
+                    selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
+                    "walking").enqueue(MapFragment.this);
+        }
         mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
         return true;
     }
@@ -652,23 +656,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                 place = new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds");
                 break;
         }
-        Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
-        marker.setTag(place);
-        selectedPlace = (Place) marker.getTag();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 17));
-        directionsAndLocationButton.setImageResource(R.drawable.ic_directions_walk_black_24dp);
-        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent), PorterDuff.Mode.SRC_IN);
-        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2962FF")));
+        if (place != null) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
+            marker.setTag(place);
+            selectedPlace = (Place) marker.getTag();
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 17));
+            directionsAndLocationButton.setImageResource(R.drawable.ic_directions_walk_black_24dp);
+            directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+            directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2962FF")));
 
-        titleTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_title);
-        titleTextView.setText(selectedPlace.getTitle());
-        currentLocation = getLastKnownLocation();
-        mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
-        RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
-        if (currentLocation != null) {
-            retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
-                    selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
-                    "walking").enqueue(MapFragment.this);
+            titleTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_title);
+            titleTextView.setText(selectedPlace.getTitle());
+            currentLocation = getLastKnownLocation();
+            mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
+            RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
+            if (currentLocation != null) {
+                retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
+                        selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
+                        "walking").enqueue(MapFragment.this);
+            }
         }
     }
 
