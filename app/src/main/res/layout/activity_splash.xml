@@ -12,40 +12,44 @@
     android:background="@drawable/background_login"
     tools:context="com.iitb.moodindigo.mi2016.SplashActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/logo"
-        android:id="@+id/imageView"
-        android:scaleType="fitXY"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
-        android:text="A Product of MI Creatives Team"
+        android:text="Developed by Mood Indigo Creatives"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/textView2" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/mascot"
-        android:id="@+id/imageView4"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/textView2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chronicle"
+            android:paddingLeft="25dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:/>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        app:srcCompat="@drawable/chronicle"
-        android:id="@+id/imageView3"
-        android:paddingTop="8dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/imageView4" />
+        android:layout_marginEnd="15dp" />
 
 </RelativeLayout>
