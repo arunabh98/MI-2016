@@ -95,6 +95,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     private List<Place> accomodationList = new ArrayList<>();
     private List<Place> toiletList = new ArrayList<>();
     private GsonModels.Event launchEvent;
+    private boolean firstLaunch = true;
 
     public MapFragment(GsonModels.Event launchEvent) {
         this.launchEvent = launchEvent;
@@ -318,9 +319,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.131973, 72.914285), 17));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCameraMoveListener(this);
-        if (directionsAndLocationButton != null) {
-            directionsAndLocationButton.performClick();
-        }
 
         displayAll();
 
@@ -354,11 +352,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         }
 
         if (launchEvent == null) {
-            //Place current location marker
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+            if(!firstLaunch) {
+                //Place current location marker
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                //move map camera
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+            } else {
+                firstLaunch =false;
+            }
         }
 
         //stop location updates
