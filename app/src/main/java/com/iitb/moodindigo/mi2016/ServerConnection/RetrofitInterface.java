@@ -11,5 +11,5 @@ public interface RetrofitInterface {
     Call<List<GsonModels.Event>> getEvents();
 
     @GET("json")
-    Call<GsonModels.DistanceMatrix> getMatrix(@Query("origins") String origin, @Query("destinations") String destination, @Query("mode") String mode, @Query("key") String key);
+    Call<GsonModels.DistanceMatrix> getMatrix(@Query("origins") String origin, @Query("destinations") String destination, @Query("mode") String mode);
 }
