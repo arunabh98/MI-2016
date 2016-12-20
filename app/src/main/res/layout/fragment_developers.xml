@@ -188,7 +188,7 @@
 
                         <TextView
                             style="@style/Dev_Contact"
-                            android:text="+91-" />
+                            android:text="+91-8800366554" />
 
                         <TextView
                             style="@style/Dev_Mail"
