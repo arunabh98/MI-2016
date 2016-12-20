@@ -247,7 +247,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         eventList.add(new Place(new LatLng(19.134779, 72.912952), "SAC Backyard"));
         eventList.add(new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool"));
 
-        accomodationList.add(new Place(new LatLng(19.137878, 72.912871), "Hostel 1"));
+        accomodationList.add(new Place(new LatLng(19.136110, 72.913904), "Hostel 1"));
         accomodationList.add(new Place(new LatLng(19.136357, 72.912555), "Hostel 2"));
         accomodationList.add(new Place(new LatLng(19.136231, 72.911482), "Hostel 3"));
         accomodationList.add(new Place(new LatLng(19.136142, 72.910456), "Hostel 4"));
@@ -272,7 +272,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         eateriesList.add(new Place(new LatLng(19.134377, 72.910707), "Concert Lounge"));
         eateriesList.add(new Place(new LatLng(19.135148, 72.905608), "Amul Parlour"));
         eateriesList.add(new Place(new LatLng(19.134948, 72.905138), "H12 Night Canteen"));
-        eateriesList.add(new Place(new LatLng(19.129815, 72.915176), "Coffee Shack"));
+        eateriesList.add(new Place(new LatLng(19.131994, 72.915479), "Coffee Shack"));
 
         toiletList.add(new Place(new LatLng(19.12541, 72.909201), "Near Padmavati Devi Temple"));
         toiletList.add(new Place(new LatLng(19.125455, 72.916304), "Main Gate"));
