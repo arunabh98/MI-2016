@@ -79,7 +79,7 @@ public class EventPageFragment extends Fragment implements View.OnClickListener 
         if (timeString.length() == 4)
             time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2, 4));
         if (timeString.length() == 8)
-            time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + "-" + timeString.substring(4, 6) + ":" + timeString.substring(6, 8));
+            time.setText(timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + " - " + timeString.substring(4, 6) + ":" + timeString.substring(6, 8));
         description.setText(event.getDescription());
         eventVenue.setText(event.getLocation());
         genre.setText(event.getCategory());

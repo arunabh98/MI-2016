@@ -68,7 +68,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Vi
         if (time.length() == 4)
             holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2, 4));
         if (time.length() == 8)
-            holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2, 4) + "-" + time.substring(4, 6) + ":" + time.substring(6, 8));
+            holder.eventTime.setText(time.substring(0, 2) + ":" + time.substring(2, 4) + " - " + time.substring(4, 6) + ":" + time.substring(6, 8));
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
