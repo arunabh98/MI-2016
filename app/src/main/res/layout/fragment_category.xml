@@ -13,4 +13,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <TextView
+        android:id="@+id/no_events"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:text="Sorry we could not fetch any events due to network problems."
+        android:textColor="#FFF"
+        android:textSize="20sp" />
 </FrameLayout>

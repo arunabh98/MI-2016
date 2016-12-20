@@ -310,11 +310,11 @@ public class LoginActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 } else {
                     LoginManager.getInstance().logOut();
-                    Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "We are facing server difficulties. Please try after a while.", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 LoginManager.getInstance().logOut();
-                Toast.makeText(LoginActivity.this, "Not successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "We are facing server difficulties. Please try after a while.", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();

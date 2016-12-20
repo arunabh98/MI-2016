@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
@@ -41,6 +42,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View singledayview = (View) inflater.inflate(R.layout.fragment_category, container, false);
         categoryRecyclerView = (RecyclerView) singledayview.findViewById(R.id.category_list);
+        TextView noEvents = (TextView) singledayview.findViewById(R.id.no_events);
         FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
         if (fragment != null) {
             if (!fragment.getName().equals("back")) {
@@ -76,10 +78,18 @@ public class CategoryFragment extends Fragment {
                 transaction.commit();
             }
         });
-        categoryRecyclerView.setAdapter(categoryListAdapter);
-        LinearLayoutManager llm = (LinearLayoutManager) new LinearLayoutManager(getContext());
-        categoryRecyclerView.setLayoutManager(llm);
-        llm.scrollToPosition(Cache.getListPosition());
+
+        if (categoryListAdapter.getItemCount() == 0) {
+            noEvents.setVisibility(View.VISIBLE);
+            categoryRecyclerView.setVisibility(View.GONE);
+        } else {
+            noEvents.setVisibility(View.GONE);
+            categoryRecyclerView.setVisibility(View.VISIBLE);
+            categoryRecyclerView.setAdapter(categoryListAdapter);
+            LinearLayoutManager llm = (LinearLayoutManager) new LinearLayoutManager(getContext());
+            categoryRecyclerView.setLayoutManager(llm);
+            llm.scrollToPosition(Cache.getListPosition());
+        }
 
         return singledayview;
     }
