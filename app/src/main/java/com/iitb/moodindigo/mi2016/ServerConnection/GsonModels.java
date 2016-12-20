@@ -222,7 +222,7 @@ public class GsonModels {
             String time = String.valueOf(getTime());
             if (time.length() == 3 || time.length() == 7)
                 time = "0" + time;
-            time = time.substring(0,4);
+            time = time.substring(0, 4);
             try {
                 date = dateFormat.parse("2016-12-" + String.valueOf(22 + getActualDay()) + " " + time.substring(0, 2) + ":" + time.substring(2, 4) + ":00");
             } catch (ParseException e) {

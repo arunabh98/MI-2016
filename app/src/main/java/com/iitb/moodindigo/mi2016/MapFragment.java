@@ -47,7 +47,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 import com.iitb.moodindigo.mi2016.ServerConnection.RetrofitInterface;
 
@@ -667,7 +666,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         currentLocation = getLastKnownLocation();
         mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_COLLAPSED);
         RetrofitInterface retrofitInterface = MatrixGenerator.createService(RetrofitInterface.class);
-        if(currentLocation != null) {
+        if (currentLocation != null) {
             retrofitInterface.getMatrix(currentLocation.getLatitude() + "," + currentLocation.getLongitude(),
                     selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude,
                     "walking",

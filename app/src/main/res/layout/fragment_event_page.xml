@@ -7,12 +7,11 @@
 
     <ImageView
         android:id="@+id/event_image"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_alignParentEnd="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/reflectedsunrise" />
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/genre_name"
@@ -99,8 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/clock_icon"
-        android:paddingStart="32dp"
         android:paddingEnd="8dp"
+        android:paddingStart="32dp"
         android:paddingTop="8dp">
 
         <TextView

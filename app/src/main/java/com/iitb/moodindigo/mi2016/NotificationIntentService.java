@@ -1,6 +1,7 @@
 package com.iitb.moodindigo.mi2016;
 
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -80,28 +81,34 @@ public class NotificationIntentService extends IntentService {
         } else {
             for (int i = 0; i < goingListGson.size(); i++) {
                 GsonModels.Event event = goingListGson.get(i);
-                Log.d("nihal111", "Minutes left: " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES));
                 long timediff = getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES);
                 if (timediff <= 30 && timediff > 0) { // Change this to 30*10000 for testing
                     NOTIFICATION_ID = (int) Long.parseLong(event.get_id().substring(6, 11), 16);
                     Log.d("nihal111", "notification ID= " + NOTIFICATION_ID);
                     final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-                    builder.setContentTitle("Mood Indigo: " + event.getTitle())
+                    builder.setContentTitle(event.getTitle())
                             .setAutoCancel(true)
                             .setColor(getResources().getColor(R.color.yellow))
-                            .setContentText("Event is about to start in " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) + " minutes.")
-                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.notification_logo))
-                            .setSmallIcon(R.drawable.notification_logo);
+                            .setContentText("Event is about to start in " + getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) + ((getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES) == 1) ? " minute." : " minutes."))
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_event_white_24dp))
+                            .setSmallIcon(R.drawable.ic_event_white_24dp);
 
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.setAction("OPEN_EVENT");
+                    String eventJson = (new Gson()).toJson(event);
+                    intent.putExtra("EVENT_JSON", eventJson);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this,
                             NOTIFICATION_ID,
-                            new Intent(this, MainActivity.class),
+                            intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     builder.setContentIntent(pendingIntent);
                     builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
 
                     final NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-                    manager.notify(NOTIFICATION_ID, builder.build());
+                    Notification notification = builder.build();
+                    notification.defaults |= Notification.DEFAULT_SOUND;
+                    notification.defaults |= Notification.DEFAULT_VIBRATE;
+                    manager.notify(NOTIFICATION_ID, notification);
                 }
             }
         }

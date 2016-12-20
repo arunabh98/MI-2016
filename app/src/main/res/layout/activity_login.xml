@@ -16,6 +16,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="200dp"
         android:src="@drawable/splashlogo" />
+
     <Button
         android:id="@+id/login_submit"
         android:layout_width="50dp"
@@ -96,7 +97,7 @@
         android:layout_alignStart="@+id/fb_login_button"
         android:layout_marginBottom="24dp"
         android:background="#DEB951"
-        android:drawableStart="@drawable/mi_logo"
+        android:drawableStart="@drawable/ic_date_range_white_48dp"
         android:paddingEnd="50sp"
         android:paddingStart="9sp"
         android:text="Log in with MI Number"

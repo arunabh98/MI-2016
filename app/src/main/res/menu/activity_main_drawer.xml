@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
-            android:icon="@drawable/schedule"
+            android:icon="@drawable/ic_date_range_white_48dp"
             android:title="Schedule" />
         <item
             android:id="@+id/nav_going"
@@ -24,7 +24,7 @@
             android:title="FAQ" />
         <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/contactus"
+            android:icon="@drawable/ic_call_white_48dp"
             android:title="Contact Us" />
         <item
             android:id="@+id/nav_dev"

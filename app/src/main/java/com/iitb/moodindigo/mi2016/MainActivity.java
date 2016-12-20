@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.gson.Gson;
 import com.iitb.moodindigo.mi2016.ServerConnection.GsonModels;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -107,6 +108,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.commit();
 
         NotificationEventReceiver.setupAlarm(getApplicationContext());
+
+        if (getIntent() != null) {
+            if (getIntent().getAction() != null) {
+                if (getIntent().getAction().equals("OPEN_EVENT")) {
+                    GsonModels.Event event = (new Gson().fromJson(getIntent().getStringExtra("EVENT_JSON"), GsonModels.Event.class));
+                    EventPageFragment eventPageFragment = new EventPageFragment(this, event);
+                    manager = getSupportFragmentManager();
+                    transaction = manager.beginTransaction();
+                    transaction.addToBackStack("going");
+                    transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
+                    transaction.commit();
+                }
+            }
+        }
     }
 
     @Override

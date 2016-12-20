@@ -44,9 +44,9 @@ public class CategoryFragment extends Fragment {
         FragmentManager.BackStackEntry fragment = getActivity().getSupportFragmentManager().getBackStackEntryAt(getActivity().getSupportFragmentManager().getBackStackEntryCount() - 1);
         if (fragment != null) {
             if (!fragment.getName().equals("back")) {
-                int date = (int)getActivity().getTitle().charAt(4);
+                int date = (int) getActivity().getTitle().charAt(4);
                 date -= 26;
-                if ((int)Calendar.getInstance().get(Calendar.DATE) == date) {
+                if ((int) Calendar.getInstance().get(Calendar.DATE) == date) {
                     int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
                     int pos = -1;
                     Log.d("current hour", Integer.toString(hour));
