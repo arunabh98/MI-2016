@@ -230,7 +230,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
         eventList.add(new Place(new LatLng(19.131973, 72.914285), "Convocation Hall"));
         eventList.add(new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)"));
-        eventList.add(new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)"));
+        eventList.add(new Place(new LatLng(19.132348, 72.915785), "LT PCSA"));
         eventList.add(new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds"));
         eventList.add(new Place(new LatLng(19.133572, 72.913399), "NCC Grounds"));
         eventList.add(new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)"));
@@ -606,7 +606,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         Place place = null;
         switch (event.getMap_loc()) {
             case "PCSA":
-                place = new Place(new LatLng(19.132348, 72.915785), "PC Saxena Auditorium (LT PCSA)");
+                place = new Place(new LatLng(19.132348, 72.915785), "LT PCSA");
                 break;
             case "lch":
                 place = new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)");
