@@ -97,7 +97,7 @@
         android:layout_alignStart="@+id/fb_login_button"
         android:layout_marginBottom="24dp"
         android:background="#DEB951"
-        android:drawableStart="@drawable/ic_date_range_white_48dp"
+        android:drawableStart="@drawable/mi_logo"
         android:paddingEnd="50sp"
         android:paddingStart="9sp"
         android:text="Log in with MI Number"
