@@ -23,8 +23,12 @@ import java.util.concurrent.TimeUnit;
 
 public class NotificationIntentService extends IntentService {
 
+    private SharedPreferences.Editor goingSharedPreferencesEditor;
     private static final String ACTION_START = "ACTION_START";
     private static final String ACTION_DELETE = "ACTION_DELETE";
+    private static final String ACTION_NAVIGATE = "ACTION_NAVIGATE";
+    private static final String ACTION_NOT_GOING = "ACTION_NOT_GOING";
+    private NotificationManager manager;
     private static int NOTIFICATION_ID = 1;
 
     public NotificationIntentService() {
@@ -59,6 +63,19 @@ public class NotificationIntentService extends IntentService {
             if (ACTION_DELETE.equals(action)) {
                 processDeleteNotification(intent);
             }
+            if ("ACTION_NOT_GOING".equals(action)) {
+                if (Cache.getGoingEventsList() != null) {
+                    GsonModels.Event event = (new Gson().fromJson(intent.getStringExtra("EVENT_JSON"), GsonModels.Event.class));
+                    Cache.removeFromGoingList(event);
+                    goingSharedPreferencesEditor = this.getSharedPreferences("GOING", Context.MODE_PRIVATE).edit();
+                    String goingEventsListJson = (new Gson()).toJson(Cache.getGoingEventsList());
+                    goingSharedPreferencesEditor.putString("GOING_LIST", goingEventsListJson);
+                    goingSharedPreferencesEditor.apply();
+                }
+                manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+                Log.i("TAG", "onHandleIntent: " + intent.getIntExtra("NOTIFICATION_ID", -1));
+                manager.cancel(intent.getIntExtra("NOTIFICATION_ID", -1));
+            }
         } finally {
             WakefulBroadcastReceiver.completeWakefulIntent(intent);
         }
@@ -84,7 +101,6 @@ public class NotificationIntentService extends IntentService {
                 long timediff = getDateDiff(new Date(), event.getDate(), TimeUnit.MINUTES);
                 if (timediff <= 30 && timediff > 0) { // Change this to 30*10000 for testing
                     NOTIFICATION_ID = (int) Long.parseLong(event.get_id().substring(6, 11), 16);
-                    Log.d("nihal111", "notification ID= " + NOTIFICATION_ID);
                     final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                     builder.setContentTitle(event.getTitle())
                             .setAutoCancel(true)
@@ -97,6 +113,7 @@ public class NotificationIntentService extends IntentService {
                     intent.setAction("OPEN_EVENT");
                     String eventJson = (new Gson()).toJson(event);
                     intent.putExtra("EVENT_JSON", eventJson);
+
                     PendingIntent pendingIntent = PendingIntent.getActivity(this,
                             NOTIFICATION_ID,
                             intent,
@@ -104,7 +121,21 @@ public class NotificationIntentService extends IntentService {
                     builder.setContentIntent(pendingIntent);
                     builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
 
-                    final NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+                    Intent navigateIntent = new Intent(this, MainActivity.class);
+                    navigateIntent.setAction(ACTION_NAVIGATE);
+                    navigateIntent.putExtra("EVENT_JSON", eventJson);
+                    navigateIntent.putExtra("NOTIFICATION_ID", NOTIFICATION_ID);
+                    PendingIntent navigatePendingIntent = PendingIntent.getActivity(this, 0, navigateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.addAction(R.drawable.ic_navigation_black_24dp, "Navigate", navigatePendingIntent);
+
+                    Intent notGoingIntent = new Intent(this, NotificationIntentService.class);
+                    notGoingIntent.setAction(ACTION_NOT_GOING);
+                    notGoingIntent.putExtra("EVENT_JSON", eventJson);
+                    notGoingIntent.putExtra("NOTIFICATION_ID", NOTIFICATION_ID);
+                    PendingIntent notGoingPendingIntent = PendingIntent.getService(this, 0, notGoingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.addAction(R.drawable.ic_close_white_24dp, "Not Going", notGoingPendingIntent);
+
+                    manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
                     Notification notification = builder.build();
                     notification.defaults |= Notification.DEFAULT_SOUND;
                     notification.defaults |= Notification.DEFAULT_VIBRATE;

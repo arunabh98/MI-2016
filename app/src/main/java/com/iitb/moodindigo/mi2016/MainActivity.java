@@ -1,12 +1,14 @@
 package com.iitb.moodindigo.mi2016;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -111,14 +113,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (getIntent() != null) {
             if (getIntent().getAction() != null) {
+                GsonModels.Event event = (new Gson().fromJson(getIntent().getStringExtra("EVENT_JSON"), GsonModels.Event.class));
                 if (getIntent().getAction().equals("OPEN_EVENT")) {
-                    GsonModels.Event event = (new Gson().fromJson(getIntent().getStringExtra("EVENT_JSON"), GsonModels.Event.class));
                     EventPageFragment eventPageFragment = new EventPageFragment(this, event);
                     manager = getSupportFragmentManager();
                     transaction = manager.beginTransaction();
                     transaction.addToBackStack("going");
                     transaction.replace(R.id.relativelayout_for_fragment, eventPageFragment, eventPageFragment.getTag());
                     transaction.commit();
+                }
+                if (getIntent().getAction().equals("ACTION_NAVIGATE")) {
+                    NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancel(getIntent().getIntExtra("NOTIFICATION_ID", -1));
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + event.getPlace().getLatLng().latitude + "," + event.getPlace().getLatLng().longitude + "&mode=w");
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    startActivity(mapIntent);
                 }
             }
         }
