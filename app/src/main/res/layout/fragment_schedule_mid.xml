@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -9,28 +10,32 @@
 
         <TextView
             style="@style/Department_Header"
+            android:layout_width="0dp"
             android:text="DAY 1" />
 
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
+                android:gravity="end"
                 android:padding="3dp"
                 android:text="Time"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Event"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Venue"
                 android:textColor="#deb951"
@@ -40,23 +45,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="09:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Reporting"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -66,23 +74,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="QR Code Game"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -92,23 +103,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Vogue"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -118,23 +132,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="11:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Friends booth"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -144,23 +161,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="12:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Zorbing + Water Fight"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -170,23 +190,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="12:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Art Arena Tour + Caricature Showcase"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="SOM"
                 android:textColor="#fff"
@@ -196,23 +219,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="13:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Humor Workshop"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="IC(SOM)"
                 android:textColor="#fff"
@@ -222,23 +248,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="14:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Lunch"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="PPL"
                 android:textColor="#fff"
@@ -247,28 +276,32 @@
 
         <TextView
             style="@style/Department_Header"
+            android:layout_width="0dp"
             android:text="DAY 2" />
 
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Time"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Event"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Venue"
                 android:textColor="#deb951"
@@ -278,23 +311,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="09:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Reporting"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -304,23 +340,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="QR Code Game"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -330,23 +369,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Adventure Zone"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="KV"
                 android:textColor="#fff"
@@ -356,23 +398,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="11:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Conchord Finals"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="NCC"
                 android:textColor="#fff"
@@ -382,23 +427,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="12:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Hogathon + Room Escape"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -408,23 +456,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="13:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="YouTube FanFest (Humor Fest)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="LT PCSA"
                 android:textColor="#fff"
@@ -434,23 +485,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="14:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Chris Cheong Fringe Fest"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -460,23 +514,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="14:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Mame Khan (IMF)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -486,23 +543,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="15:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Break"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="PPL"
                 android:textColor="#fff"
@@ -512,23 +572,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="16:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Vidya Vox (IMF)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="NCC"
                 android:textColor="#fff"
@@ -537,28 +600,32 @@
 
         <TextView
             style="@style/Department_Header"
+            android:layout_width="0dp"
             android:text="DAY 3" />
 
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Time"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Event"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Venue"
                 android:textColor="#deb951"
@@ -568,23 +635,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="QR Code Game"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -594,23 +664,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Sanskriti Finals"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -620,23 +693,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="11:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Zorbing"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="MB"
                 android:textColor="#fff"
@@ -646,23 +722,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="12:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Drinking Arena + Life Size Piano "
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="OAT"
                 android:textColor="#fff"
@@ -672,23 +751,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="13:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Lunch"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="SAC"
                 android:textColor="#fff"
@@ -698,23 +780,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="14:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Dance Showcase"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -724,23 +809,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="15:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Art Arena Tour"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="SOM"
                 android:textColor="#fff"
@@ -750,23 +838,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="16:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="BNB (IMF)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="NCC"
                 android:textColor="#fff"
@@ -775,28 +866,32 @@
 
         <TextView
             style="@style/Department_Header"
+            android:layout_width="0dp"
             android:text="DAY 4" />
 
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Time"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Event"
                 android:textColor="#deb951"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Venue"
                 android:textColor="#deb951"
@@ -806,23 +901,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="09:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Reporting"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="H10"
                 android:textColor="#fff"
@@ -832,23 +930,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="09:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Adventure Zone"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="KV"
                 android:textColor="#fff"
@@ -858,23 +959,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="10:30"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Art Arena Tour"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="SOM"
                 android:textColor="#fff"
@@ -884,23 +988,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="11:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="She Got The Look (SGTL)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -910,23 +1017,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="12:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Laser Tag + Frisbee ball + Informal"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="OSP"
                 android:textColor="#fff"
@@ -936,23 +1046,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="13:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Lunch"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="OAT"
                 android:textColor="#fff"
@@ -962,23 +1075,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="13:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Prabhu Chawla (LitFest)"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="IRCC"
                 android:textColor="#fff"
@@ -988,23 +1104,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="15:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Bombay Bazar + Lavni performance"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="OAT"
                 android:textColor="#fff"
@@ -1014,23 +1133,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="16:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Honourable Devendra Fadnavis"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="Convo"
                 android:textColor="#fff"
@@ -1040,23 +1162,26 @@
         <TableRow>
 
             <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="14:00"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:padding="3dp"
                 android:text="Lunch"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:padding="3dp"
                 android:text="PPL"
                 android:textColor="#fff"
