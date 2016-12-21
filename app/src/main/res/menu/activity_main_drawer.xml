@@ -23,6 +23,10 @@
             android:icon="@drawable/faq"
             android:title="FAQ" />
         <item
+            android:id="@+id/nav_darshan"
+            android:icon="@drawable/ic_directions_bus_white_48dp"
+            android:title="MI Darshan" />
+        <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_call_white_48dp"
             android:title="Contact Us" />

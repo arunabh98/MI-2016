@@ -1,13 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.iitb.moodindigo.mi2016.AboutMIDFragment">
+    tools:context="com.iitb.moodindigo.mi2016.MIDarshanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:textSize="20sp"
+        android:padding="16dp"
+        android:id="@+id/description"
+        android:textColor="#DEB951"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="MI Darshan is a tour planned for first timers who want to experience all the diversity that is there to be offered in Mood Indigo. An itinerary covering various events of different generes will be covered so that participants get involved in cult of MI. In addition to this, participants will receive VIP entry for each event." />
 
-</FrameLayout>
+</LinearLayout>

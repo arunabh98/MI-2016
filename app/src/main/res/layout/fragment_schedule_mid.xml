@@ -1,13 +1,239 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.iitb.moodindigo.mi2016.ScheduleMIDFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <TableRow>
 
-</FrameLayout>
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Time"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Event"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Venue"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="09:30"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Reporting"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="H10"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="10:00"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="QR Code Game"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="H10"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="10:30"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Vogue"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Convo"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="11:30"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Friends booth"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Convo"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="12:00"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Zorbing + Water Fight"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Convo"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="12:30"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Art Arena Tour + Caricature Showcase"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="SOM"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="13:00"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Humor Workshop"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="IC(SOM)"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="14:00"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:text="Lunch"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="PPL"
+            android:textColor="#DEB951"
+            android:textSize="16sp" />
+    </TableRow>
+</TableLayout>

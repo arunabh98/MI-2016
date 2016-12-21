@@ -90,17 +90,25 @@ public class MainFragment extends Fragment {
                         openFaq();
                         break;
                     case 5:
-                        openContactUs();
+                        openMIDarshan();
                         break;
                     case 6:
-                        openDev();
+                        openContactUs();
                         break;
                     case 7:
+                        openDev();
+                        break;
+                    case 8:
                         logout();
 
                 }
             }
         });
+    }
+
+    private void openMIDarshan() {
+        MIDarshanFragment miDarshanFragment = new MIDarshanFragment();
+        openFragment(miDarshanFragment);
     }
 
     private void openDev() {

@@ -1,13 +1,75 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.iitb.moodindigo.mi2016.RulesMIDFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            style="@style/Department_Header"
+            android:text="CODE OF CONDUCT" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="1. Once you have boarded and tour has been started you are not allowed to leave the tour in between of the pre-defined schedule. Only in case of emergency with permission of the assigned coordinator exception will be made.\n
+2. Drinking and smoking are strictly prohibited in the campus.\n
+3. Any misbehaviour will not be entertained and strict action will be taken against the defaulter.\n
+4. Vulgarity and obscenity will not be entertained in any form.\n
+5. Itinerary is subjected to change in case of undue circumstances.\n
+6. Lunch will not be provided by the organizers.\n
+7. Only day 1 pronites passes are paid. VIP entry will not be provided through MI Darshan.\n
+8. In case of any issue please contact the assigned coordinator.
+"
+            android:textColor="#DEB951"
+            android:textSize="20sp" />
+
+        <TextView
+            style="@style/Department_Header"
+            android:text="SELECTION PROCEDURE" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="1. MI Darshan will be a special event organised by our team to cater the newcomers.\n
+2. All distant travellers are welcomed.\n
+3. A group of students will be prefered over single entries.\n
+4. Students participating in different competitions in Mood Indigo are welcomed.\n
+5. Shortlisted participants and the waiting list participants will be personally informed.
+"
+            android:textColor="#DEB951"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Decision of the coordinator executing the tour will be final and binding on all"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageButton
+                android:id="@+id/register_now_mid"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="@color/black"
+                android:scaleType="centerInside"
+                android:src="@drawable/register_now_button" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
