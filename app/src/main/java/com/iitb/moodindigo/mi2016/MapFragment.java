@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -121,70 +122,70 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         if (getView() != null) {
             View bottomSheetView = getView().findViewById(R.id.bottom_sheet);
             mBottomSheetBehavior = (UserLockBottomSheetBehavior) UserLockBottomSheetBehavior.from(bottomSheetView);
-            mBottomSheetBehavior.setHideable(true);
-            mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
-            mBottomSheetBehavior.setBottomSheetCallback(new UserLockBottomSheetBehavior.BottomSheetCallback() {
-                @Override
-                public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                    if (newState == UserLockBottomSheetBehavior.STATE_HIDDEN) {
-                        directionsAndLocationButton.setImageResource(R.drawable.ic_my_location_black_24dp);
-                        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
-                        directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
-                    }
-                }
-
-                @Override
-                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-                }
-            });
-            fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
-            fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (fabMenu.isOpened()) {
-                        displayAll();
-                    }
-                    fabMenu.toggle(true);
-                }
-            });
-            createCustomAnimation();
-
-            fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
-            fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
-            fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
-            fabToilets = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_toilets);
-
-            fabEvents.setOnClickListener(this);
-            fabEateries.setOnClickListener(this);
-            fabAccomodation.setOnClickListener(this);
-            fabToilets.setOnClickListener(this);
-
-            directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
-                        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
-                            return;
-                        }
-                        currentLocation = getLastKnownLocation();
-                        if (currentLocation != null) {
-                            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 17);
-                            mMap.moveCamera(cameraUpdate);
-                            mMap.animateCamera(cameraUpdate);
-                            directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                        }
-                    } else {
-                        if (selectedPlace != null) {
-                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude + "&mode=w");
-                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                            startActivity(mapIntent);
-                        }
-                    }
-                }
-            });
         }
+        mBottomSheetBehavior.setHideable(true);
+        mBottomSheetBehavior.setState(UserLockBottomSheetBehavior.STATE_HIDDEN);
+        mBottomSheetBehavior.setBottomSheetCallback(new UserLockBottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+                    directionsAndLocationButton.setImageResource(R.drawable.ic_my_location_black_24dp);
+                    directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorGray), PorterDuff.Mode.SRC_IN);
+                    directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        fabMenu = (FloatingActionMenu) getActivity().findViewById(R.id.fab_menu);
+        fabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fabMenu.isOpened()) {
+                    displayAll();
+                }
+                fabMenu.toggle(true);
+            }
+        });
+        createCustomAnimation();
+
+        fabEvents = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_event);
+        fabEateries = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_eateries);
+        fabAccomodation = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_accomodation);
+        fabToilets = (com.github.clans.fab.FloatingActionButton) getActivity().findViewById(R.id.fab_toilets);
+
+        fabEvents.setOnClickListener(this);
+        fabEateries.setOnClickListener(this);
+        fabAccomodation.setOnClickListener(this);
+        fabToilets.setOnClickListener(this);
+
+        directionsAndLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBottomSheetBehavior.getState() == UserLockBottomSheetBehavior.STATE_HIDDEN) {
+                    if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+                        return;
+                    }
+                    currentLocation = getLastKnownLocation();
+                    if (currentLocation != null) {
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 17);
+                        mMap.moveCamera(cameraUpdate);
+                        mMap.animateCamera(cameraUpdate);
+                        directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                    }
+                } else {
+                    if (selectedPlace != null) {
+                        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + selectedPlace.getLatLng().latitude + "," + selectedPlace.getLatLng().longitude + "&mode=w");
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        startActivity(mapIntent);
+                    }
+                }
+            }
+        });
     }
 
     private Location getLastKnownLocation() {
@@ -463,6 +464,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @Override
     public boolean onMarkerClick(Marker marker) {
         selectedPlace = (Place) marker.getTag();
+        distanceTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_distance);
+        timeTextView = (TextView) getActivity().findViewById(R.id.bottom_sheet_time);
+        if (distanceTextView != null) {
+            distanceTextView.setText(null);
+        }
+        if (timeTextView != null) {
+            timeTextView.setText(null);
+        }
         directionsAndLocationButton.setImageResource(R.drawable.ic_directions_walk_black_24dp);
         directionsAndLocationButton.getDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent), PorterDuff.Mode.SRC_IN);
         directionsAndLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2962FF")));
