@@ -73,7 +73,6 @@ public class NotificationIntentService extends IntentService {
                     goingSharedPreferencesEditor.apply();
                 }
                 manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-                Log.i("TAG", "onHandleIntent: " + intent.getIntExtra("NOTIFICATION_ID", -1));
                 manager.cancel(intent.getIntExtra("NOTIFICATION_ID", -1));
             }
         } finally {
@@ -126,7 +125,7 @@ public class NotificationIntentService extends IntentService {
                     navigateIntent.putExtra("EVENT_JSON", eventJson);
                     navigateIntent.putExtra("NOTIFICATION_ID", NOTIFICATION_ID);
                     PendingIntent navigatePendingIntent = PendingIntent.getActivity(this, 0, navigateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    builder.addAction(R.drawable.ic_navigation_black_24dp, "Navigate", navigatePendingIntent);
+                    builder.addAction(R.drawable.ic_navigation_white_24dp, "Navigate", navigatePendingIntent);
 
                     Intent notGoingIntent = new Intent(this, NotificationIntentService.class);
                     notGoingIntent.setAction(ACTION_NOT_GOING);
