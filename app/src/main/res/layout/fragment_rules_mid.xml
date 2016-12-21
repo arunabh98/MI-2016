@@ -26,7 +26,7 @@
 7. Only day 1 pronites passes are paid. VIP entry will not be provided through MI Darshan.\n
 8. In case of any issue please contact the assigned coordinator.
 "
-            android:textColor="#DEB951"
+            android:textColor="#FFF"
             android:textSize="20sp" />
 
         <TextView
@@ -43,7 +43,7 @@
 4. Students participating in different competitions in Mood Indigo are welcomed.\n
 5. Shortlisted participants and the waiting list participants will be personally informed.
 "
-            android:textColor="#DEB951"
+            android:textColor="#fff"
             android:textSize="20sp" />
 
         <TextView
@@ -53,23 +53,5 @@
             android:text="Decision of the coordinator executing the tour will be final and binding on all"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="10">
-
-            <ImageButton
-                android:id="@+id/register_now_mid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:background="@color/black"
-                android:scaleType="centerInside"
-                android:src="@drawable/register_now_button" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

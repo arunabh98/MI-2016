@@ -283,6 +283,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             openContactUs();
         } else if (id == R.id.nav_map) {
             openMap();
+        } else if (id == R.id.nav_darshan) {
+            MIDarshanFragment miDarshanFragment = new MIDarshanFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.relativelayout_for_fragment, miDarshanFragment, miDarshanFragment.getTag());
+            transaction.commit();
         } else if (id == R.id.nav_qr) {
             openQrCode();
         } else if (id == R.id.nav_dev) {

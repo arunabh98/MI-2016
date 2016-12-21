@@ -8,7 +8,7 @@
         android:textSize="20sp"
         android:padding="16dp"
         android:id="@+id/description"
-        android:textColor="#DEB951"
+        android:textColor="#fff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MI Darshan is a tour planned for first timers who want to experience all the diversity that is there to be offered in Mood Indigo. An itinerary covering various events of different generes will be covered so that participants get involved in cult of MI. In addition to this, participants will receive VIP entry for each event." />
