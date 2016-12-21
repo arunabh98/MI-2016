@@ -616,57 +616,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     }
 
     public void launchEventOnMap(GsonModels.Event event) {
-        Place place = null;
-        switch (event.getMap_loc()) {
-            case "PCSA":
-                place = new Place(new LatLng(19.132348, 72.915785), "LT PCSA");
-                break;
-            case "lch":
-                place = new Place(new LatLng(19.130735, 72.916900), "Lecture Hall Complex (LCH)");
-                break;
-            case "Convo":
-                place = new Place(new LatLng(19.131973, 72.914285), "Convocation Hall");
-                break;
-            case "SAC parking lot":
-                place = new Place(new LatLng(19.135771, 72.914428), "SAC Parking Lot");
-                break;
-            case "fck":
-                place = new Place(new LatLng(19.130480, 72.915724), "FC Kohli Auditorium (FCK)");
-                break;
-            case "NCC":
-                place = new Place(new LatLng(19.133572, 72.913399), "NCC Grounds");
-                break;
-            case "OSP":
-                place = new Place(new LatLng(19.135572, 72.914017), "Old Swimming Pool");
-                break;
-            case "KV":
-                place = new Place(new LatLng(19.129113, 72.918408), "Kendriya Vidyalaya (KV)");
-                break;
-            case "SOM":
-                place = new Place(new LatLng(19.131651, 72.915758), "SJM SOM");
-                break;
-            case "h 10 t point":
-                place = new Place(new LatLng(19.129574, 72.915394), "H10 T-Point");
-                break;
-            case "PCSA back lawns":
-                place = new Place(new LatLng(19.132030, 72.915920), "PCSA Backlawns");
-                break;
-            case "MB lawns":
-                place = new Place(new LatLng(19.132635, 72.915716), "MB Lawns");
-                break;
-            case "OAT":
-                place = new Place(new LatLng(19.135045, 72.913401), "Open Air Theatre (OAT)");
-                break;
-            case "liby road":
-                place = new Place(new LatLng(19.134299, 72.915376), "Library Road");
-                break;
-            case "ppl":
-                place = new Place(new LatLng(19.130005, 72.916704), "Physics Parking Lot");
-                break;
-            case "Gymkhana":
-                place = new Place(new LatLng(19.134446, 72.912217), "Gymkhana Grounds");
-                break;
-        }
+        Place place = event.getPlace();
         if (place != null) {
             Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
             marker.setTag(place);
