@@ -23,13 +23,13 @@ import java.util.concurrent.TimeUnit;
 
 public class NotificationIntentService extends IntentService {
 
-    private SharedPreferences.Editor goingSharedPreferencesEditor;
     private static final String ACTION_START = "ACTION_START";
     private static final String ACTION_DELETE = "ACTION_DELETE";
     private static final String ACTION_NAVIGATE = "ACTION_NAVIGATE";
     private static final String ACTION_NOT_GOING = "ACTION_NOT_GOING";
-    private NotificationManager manager;
     private static int NOTIFICATION_ID = 1;
+    private SharedPreferences.Editor goingSharedPreferencesEditor;
+    private NotificationManager manager;
 
     public NotificationIntentService() {
         super(NotificationIntentService.class.getSimpleName());

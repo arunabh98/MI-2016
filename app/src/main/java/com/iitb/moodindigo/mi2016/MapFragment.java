@@ -18,7 +18,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -352,14 +351,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         }
 
         if (launchEvent == null) {
-            if(!firstLaunch) {
+            if (!firstLaunch) {
                 //Place current location marker
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                 //move map camera
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
             } else {
-                firstLaunch =false;
+                firstLaunch = false;
             }
         }
 
