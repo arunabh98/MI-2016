@@ -511,20 +511,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
                         timeTextView.setText(duration.getText());
                     }
                 } else {
-                    Toast.makeText(getContext(), status, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getContext(), distanceMatrix.getStatus(), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getContext(), "Response Code:" + String.valueOf(response.code()), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onFailure(Call<GsonModels.DistanceMatrix> call, Throwable t) {
-        Toast.makeText(getContext(), "Network error occurred", Toast.LENGTH_LONG).show();
-        Log.d("TAG", "onFailure: " + t.toString());
+
     }
 
     @Override

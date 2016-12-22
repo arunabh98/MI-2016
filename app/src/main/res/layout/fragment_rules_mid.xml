@@ -13,7 +13,7 @@
             style="@style/Department_Header"
             android:text="CODE OF CONDUCT" />
 
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -33,7 +33,7 @@
             style="@style/Department_Header"
             android:text="SELECTION PROCEDURE" />
 
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -46,7 +46,7 @@
             android:textColor="#fff"
             android:textSize="20sp" />
 
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
