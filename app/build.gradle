@@ -32,7 +32,6 @@ ext {
     zxingVersion = '1.9'
     calligraphyVersion = '2.2.0'
     fabVersion = '1.6.4'
-    justifiedTextVersion = '1.0'
 }
 
 dependencies {
@@ -45,7 +44,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.uncopt:android.justified:${justifiedTextVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"

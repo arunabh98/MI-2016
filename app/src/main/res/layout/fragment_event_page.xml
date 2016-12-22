@@ -98,14 +98,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/clock_icon"
-        android:paddingEnd="32dp"
+        android:paddingEnd="8dp"
         android:paddingStart="32dp"
         android:paddingTop="8dp">
 
-        <com.uncopt.android.widget.text.justify.JustifiedTextView
+        <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
             android:text="@string/event_info"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
