@@ -1036,31 +1036,5 @@
                 android:textColor="#fff"
                 android:textSize="16sp" />
         </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_gravity="right"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:text="14:00"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_weight="2"
-                android:padding="3dp"
-                android:text="Lunch"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:text="PPL"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-        </TableRow>
     </TableLayout>
 </ScrollView>
