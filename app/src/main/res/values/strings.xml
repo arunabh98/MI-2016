@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mood Indigo 2016</string>
-    <string name="facebook_app_id">1243571392349731</string>
-    <string name="fb_login_protocol_scheme">fb1243571392349731</string>
+    <string name="facebook_app_id"></string>
+    <string name="fb_login_protocol_scheme"></string>
     <string name="register_later">Register later</string>
     <string name="com_facebook_loginview_log_out_button">LOG IN WITH FACEBOOK</string>
     <string name="question1">Lorem Ipsum is simply dummy text of the printing and typesetting industry?</string>
